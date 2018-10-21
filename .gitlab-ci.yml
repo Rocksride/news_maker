@@ -4,11 +4,7 @@ stages:
   - test
   - deploy
 
-services:
-  - docker:dind
-
 before_script:
-- docker info
 - apk update
 - apk upgrade
 - apk add python python-dev py-pip build-base
