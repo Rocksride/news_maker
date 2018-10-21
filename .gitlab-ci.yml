@@ -4,6 +4,9 @@ stages:
   - test
   - deploy
 
+services:
+  - docker:dind
+
 before_script:
 - docker info
 - apk update
