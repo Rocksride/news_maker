@@ -1,3 +1,9 @@
+stages:
+  - build
+  - test
+  - deploy
+  - lint
+
 lint-python:
   stage: lint
   except:
