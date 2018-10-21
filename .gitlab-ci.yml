@@ -4,6 +4,10 @@ stages:
   - deploy
   - lint
 
+before_script:
+-RUN apk --update add 'py-pip==8.1.2-r0' && \
+  pip install 'docker-compose==1.8.0'
+
 lint-python:
   stage: lint
   except:
