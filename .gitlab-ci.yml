@@ -1,21 +1,8 @@
-variables:
-  CONTAINER_IMAGE: dimavitvickiy/news_maker
-
-build-image:
-  stage: build
-  tags:
-  -  docker-vulyk-executor
-  only:
-  - master
-  script:
-  - docker build --build-arg VERSION=$CI_COMMIT_SHA -t $CONTAINER_IMAGE:$CI_COMMIT_SHA -f config/development/Dockerfile .
-  - docker push $CONTAINER_IMAGE:$CI_COMMIT_SHA
-
 stages:
+  - lint
   - build
   - test
   - deploy
-  - lint
 
 lint-python:
   stage: lint
