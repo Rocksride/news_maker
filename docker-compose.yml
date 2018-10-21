@@ -1,28 +1,28 @@
 version: "3"
 services:
-  web:
-    image: dimavitvickiy/news_maker:v.18.10.1
-    deploy:
-      replicas: 5
-      resources:
-        limits:
-          cpus: "0.1"
-          memory: 50M
-      restart_policy:
-        condition: on-failure
+  server:
+    build:
+      context: .
+      dockerfile: config/development/Dockerfile.server
+    image: newsmaker-server
+    volumes:
+      - .:/app
     ports:
-      - "4000:80"
-    networks:
-      - webnet
+      - "5000:5000"
+    depends_on:
+      - redis
+  flake8:
+    image: newsmaker-server
+    build:
+      context: .
+      dockerfile: config/development/Dockerfile.server
+    entrypoint: ["flake8", "--config=flake8.cfg"]
   redis:
     image: redis
     ports:
     - "6379:6379"
     volumes:
     - "/home/docker/data:/data"
-    deploy:
-      placement:
-        constraints: [node.role == manager]
     command: redis-server --appendonly yes
     networks:
     - webnet

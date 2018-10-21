@@ -1,0 +1,13 @@
+FROM python:3.7.0
+
+RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
+RUN apt-get install python-dev git python3-pkg-resources -y
+RUN apt install flake8 -y
+
+ADD requirements.txt /app/
+
+WORKDIR /app
+
+RUN python -m pip install -r requirements.txt
+
+ADD . /app
