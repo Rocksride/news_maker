@@ -5,10 +5,10 @@ stages:
   - deploy
 
 before_script:
-- apk update
-- apk upgrade
-- apk add python python-dev py-pip build-base
-- pip install docker-compose
+  - apk update
+  - apk upgrade
+  - apk add python python-dev py-pip build-base
+  - pip install docker-compose
 
 
 lint-python:
