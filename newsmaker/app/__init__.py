@@ -7,6 +7,8 @@ from redis import Redis, RedisError
 
 # Connect to Redis
 redis = Redis(host="redis", db=0, socket_connect_timeout=2, socket_timeout=2)
+
+
 async def handle(request):
     try:
         visits = redis.incr("counter")
@@ -25,4 +27,3 @@ async def handle(request):
 
 app = web.Application()
 app.add_routes([web.get('/', handle)])
-
