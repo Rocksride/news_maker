@@ -9,6 +9,8 @@ before_script:
   - apk add python python-dev py-pip build-base
   - pip install docker-compose
 
+services:
+- docker:dind
 
 lint-python:
   stage: lint
