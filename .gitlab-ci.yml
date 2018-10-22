@@ -3,6 +3,11 @@ stages:
 
 before_script:
   - apk update && apk add git
+  - apk update
+  - apk upgrade
+  - apk add python python-dev py-pip build-base
+  - pip install docker-compose
+
 
 lint-python:
   stage: lint
