@@ -1,5 +1,10 @@
+image: docker:latest
+
 stages:
   - lint
+
+services:
+- docker:dind
 
 before_script:
   - docker info
