@@ -14,7 +14,7 @@ async def handle(request):
         visits = redis.incr("counter")
     except RedisError:
         visits = "<i>cannot connect to Redis, counter disabled</i>"
-    html = "<h3>Hello {name}!</h3>" \
+    html = "<h3>Welcome, {name}!</h3>" \
            "<b>Hostname:</b> {hostname}<br/>" \
            "<b>Visits:</b> {visits}"
     return web.Response(
