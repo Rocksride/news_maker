@@ -15,3 +15,6 @@ https://docs.docker.com/compose/install/#install-compose
 Server: `docker-compose up --build server`
 
 More services you can find in `docker-compose.yml` file
+
+Also you can setup running docker-compose servers with PyCharm: 
+https://docs.google.com/document/d/1XBYSnPodnyewzkf-pxVJ3xNuP4nvaxkiSOpkNi9lcaM/edit?usp=sharing 
