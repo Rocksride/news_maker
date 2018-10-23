@@ -1,9 +1,6 @@
 stages:
   - lint
 
-before_script:
-  - docker info
-
 lint-python:
   stage: lint
   tags:
