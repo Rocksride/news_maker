@@ -9,5 +9,5 @@ async def handle(request):
         }
     )
 
-app = web.Application()
+app = web.Application(debug=True)
 app.add_routes([web.get('/', handle)])
