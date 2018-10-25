@@ -1,30 +1,23 @@
 version: "3"
+
 services:
   server:
     build:
       context: .
       dockerfile: config/development/Dockerfile.server
     image: newsmaker-server
-    command: ["python","manage.py", "runserver"]
-    depends_on:
-    - redis
-    volumes:
-    - .:/app
-    ports:
-    - "5000:5000"
+    command: ["watchexec", "-e", "py", "-r",  "python", "manage.py"]
     restart: on-failure
-    expose:
-      - 5000
+    volumes:
+      - .:/app
+    ports:
+      - "5000:5000"
   flake8:
     image: newsmaker-server
     build:
       context: .
       dockerfile: config/development/Dockerfile.server
     entrypoint: ["flake8", "--config=flake8.cfg"]
-  redis:
-    image: redis
-    environment:
-      - TZ=Europe/Kiev
 
 networks:
   default:
