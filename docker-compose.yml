@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: config/development/Dockerfile.server
     image: newsmaker-server
-    command: ["python", "manage.py"]
+    command: ["watchexec", "-e", "py", "-r",  "python", "manage.py"]
     restart: on-failure
     volumes:
       - .:/app
