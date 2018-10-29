@@ -2,6 +2,7 @@
   <div>
     <!-- <TheLoader /> -->
     <LoaderCircle />
+    <!-- <ButtonWithColoredBorders> click me</ButtonWithColoredBorders> -->
     <nuxt/>
   </div>
 </template>
@@ -10,10 +11,12 @@
 <script>
 import TheLoader from '@/components/UI/TheLoader'
 import LoaderCircle from '@/components/UI/LoaderCircle'
+import ButtonWithColoredBorders from '@/components/UI/ButtonWithColoredBorders'
 import { mapActions } from 'vuex';
 export default {
   components: {
     TheLoader,
+    ButtonWithColoredBorders,
     LoaderCircle,
   },
   methods: {
