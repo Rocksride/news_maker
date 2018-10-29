@@ -1,2 +1,2 @@
-export { default as colorSwitcher } from './colorSwitcher'
-export { default as auth } from './auth'
+export { default as colorSwitcher } from './colorSwitcher.js'
+export { default as auth } from './auth.js'

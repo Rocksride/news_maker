@@ -4,6 +4,21 @@
   </div>
 </template>
 
+<script>
+import { mapActions } from 'vuex';
+export default {
+  methods: {
+    async initApp() {
+      this.initColorTheme();
+    },
+    ...mapActions(['initColorTheme'])
+  },
+  created() {
+    this.initApp();
+  }
+}
+</script>
+
 <style>
 html
 {

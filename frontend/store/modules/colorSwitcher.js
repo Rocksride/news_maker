@@ -1,34 +1,38 @@
 import * as types from '../mutationTypes.js'
+
 const state = {
-  color: null
+  colorTheme: null,
+  themes: ['darkgreen', 'sera', 'harmony'],
+  defaultColorTheme: 'darkgreen'
 }
 
 const getters = {
-  color: state => state.color
+  colorTheme: state => state.colorTheme
 }
 
 const mutations = {
-  [types.SET_COLOR_THEME]: (state, newTheme) => state.color = newTheme
+  [types.SET_COLOR_THEME]: (state, newTheme) => state.colorTheme = newTheme
 }
 
 const actions = {
-  initColorTheme: ({ dispatch }) => {
-    const colorTheme = localStorage.getItem('colorTheme') || 'light'
-    dispatch('setColorTheme')
+  initColorTheme: ({ dispatch, state}) => {
+    console.log('initiating color theme');
+    const colorTheme = localStorage.getItem('colorTheme') || state.defaultColorTheme
+    console.log('color theme is ' + colorTheme);
+    dispatch('setColorTheme', colorTheme)
   },
   setColorTheme: ({ commit }, newTheme) => {
     localStorage.setItem('colorTheme', newTheme);
     commit(types.SET_COLOR_THEME, newTheme)
     document.documentElement.setAttribute('data-theme', newTheme)
   },
-  toggleColorTheme: ({ commit, dispatch }) => {
+  toggleColorTheme: ({ commit, dispatch }, newTheme) => {
+    const oldTheme = localStorage.getItem('colorTheme') || 'light'
+    if (oldTheme === newTheme) return;
+
     const html = document.documentElement
     if (html.classList.contains('theme-in-transition')) return
     html.classList.add('theme-in-transition')
-    const oldTheme = localStorage.getItem('colorTheme') || 'light'
-    const newTheme = oldTheme === 'light'
-      ? 'dark'
-      : 'light'
 
     dispatch('setColorTheme', newTheme)
     setTimeout(() => {

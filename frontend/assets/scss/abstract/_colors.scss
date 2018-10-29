@@ -7,24 +7,39 @@ $color-background-dark: darkgrey;
 $color-border-light: rgba(crimson, .3);
 $color-border-dark: rgba(0, 0, 0, .3);
 
-$themeVariables : (c-text, $color-text-dark, $color-text-light),
-  (c-text-reverse, $color-text-light, $color-text-dark),
-  (c-text-active, $color-text-active, $color-text-active-reverse),
-  (c-text-active-reverse, $color-text-active-reverse, $color-text-active),
-  (c-background, $color-background-dark, $color-background-light),
-  (c-background-reverse, $color-background-light, $color-background-dark),
-  (c-border, $color-border-light, $color-border-dark),
-  (c-border-reverse, $color-border-dark, $color-border-light);
+$themes:
+('sera', (
+  (c-text-light, #f3f7f8),
+  (c-text-dark, #bdc3c7),
+  (c-text-active, #21c2f8),
+  (c-background-dark, #202020),
+  (c-background-light, #2c3e50)
+  )),
+('harmony', (
+  (c-text-light, #ecfdff),
+  (c-text-dark, #018185),
+  (c-text-active, #3bbfc3),
+  (c-background-dark, #292b2f),
+  (c-background-light, #d7d5d9)
+)),
+('darkgreen', (
+  (c-text-light, #efedef),
+  (c-text-dark, #ceccce),
+  (c-text-active, #6ead3a),
+  (c-background-dark, #222022),
+  (c-background-light, #4c4947)
+));
 
-@each $variable, $color-dark, $color-light in $themeVariables {
-  @if $color-light==null {
-    $color-light: $color-dark;
-  }
-  html {
-    --#{$variable}: #{$color-light};
-  }
-  html[data-theme="dark"] {
-    --#{$variable}: #{$color-dark};
+@each $theme in $themes {
+  $themeName: nth($theme, 1);
+  $themeColors: nth($theme, 2);
+
+  @each $variable, $color in $themeColors {
+    html {
+      --#{$variable}: #{$color};
+    }
+    html[data-theme="#{$themeName}"] {
+      --#{$variable}: #{$color};
+    }
   }
 }
-

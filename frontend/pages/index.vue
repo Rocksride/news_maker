@@ -34,7 +34,7 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: var(--c-background-reverse);
+  background-color: var(--c-background-dark);
 
 }
 .title
@@ -50,7 +50,7 @@ export default {
 {
   font-weight: 300;
   font-size: 42px;
-  color: #526488;
+  color: var(--c-text-active);
   word-spacing: 5px;
   padding-bottom: 15px;
 }
