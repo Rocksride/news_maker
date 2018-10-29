@@ -1,6 +1,6 @@
 import * as R from 'ramda'
 import * as api from '@/api'
-// import * as helpers from '@/helpers'
+import * as types from '../mutationTypes'
 import Cookie from 'js-cookie'
 const log = R.tap(console.log);
 
@@ -14,8 +14,8 @@ const getters = {
 }
 
 const mutations = {
-  clearToken: state => state.token = null,
-  setToken: (state, payload) => {
+  [types.CLEAR_TOKEN]: state => state.token = null,
+  [types.SET_TOKEN]: (state, payload) => {
     state.token = payload;
   }
 }
@@ -38,7 +38,7 @@ const actions = {
         dispatch('logout');
         return;
       }
-      commit('setToken', token);
+      commit(types.SET_TOKEN, token);
     }
     else if (process.client) {
       const token = localStorage.getItem('token')
@@ -49,7 +49,7 @@ const actions = {
         return;
       }
 
-      commit('setToken', token);
+      commit(types.SET_TOKEN, token);
     }
   },
   signUp: async ({ commit }, payload) => {
@@ -57,7 +57,7 @@ const actions = {
       const resp = await api.signUp(payload)
       const data = resp.data;
 
-      // commit('setToken', data.idToken);
+      // commit(types.SET_TOKEN, data.idToken);
     } catch (err) {
       console.error(err);
     }
@@ -66,7 +66,7 @@ const actions = {
     try {
       const resp = await api.signIn(payload)
       const data = resp.data
-      commit('setToken', data.idToken);
+      commit(types.SET_TOKEN, data.idToken);
 
       const expirationDate = new Date().getTime() + Number.parseInt(data.expiresIn) * 1000
 
@@ -84,7 +84,7 @@ const actions = {
     }
   },
   logout: ({ commit, dispatch }) => {
-    commit('clearToken');
+    commit(types.CLEAR_TOKEN);
     if (process.client) {
       localStorage.removeItem('token')
       localStorage.removeItem('tokenExpiration')
