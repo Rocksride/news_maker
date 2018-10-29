@@ -1,12 +1,21 @@
 <template>
   <div>
+    <!-- <TheLoader /> -->
+    <LoaderCircle />
     <nuxt/>
   </div>
 </template>
 
+
 <script>
+import TheLoader from '@/components/UI/TheLoader'
+import LoaderCircle from '@/components/UI/LoaderCircle'
 import { mapActions } from 'vuex';
 export default {
+  components: {
+    TheLoader,
+    LoaderCircle,
+  },
   methods: {
     async initApp() {
       this.initColorTheme();
