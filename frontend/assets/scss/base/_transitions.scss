@@ -1,0 +1,8 @@
+html.theme-in-transition {
+  *,
+  *::before,
+  *::after {
+    transition: all $transition-all-time linear;
+
+  }
+}

@@ -1,0 +1,37 @@
+// generate paddings
+@for $i from 1 through 50 {
+  .pa-#{$i}{
+    padding: #{$i}rem;
+  }
+  .pd-#{$i}{
+    padding-bottom: #{$i}rem;
+  }
+  .pr-#{$i}{
+    padding-right: #{$i}rem;
+  }
+  .pt-#{$i}{
+    padding-top: #{$i}rem;
+  }
+  .pl-#{$i}{
+    padding-left: #{$i}rem;
+  }
+}
+
+// generate margins
+@for $i from 1 through 50 {
+  .ma-#{$i}{
+    margin: #{$i}rem;
+  }
+  .md-#{$i}{
+    margin-bottom: #{$i}rem;
+  }
+  .mr-#{$i}{
+    margin-right: #{$i}rem;
+  }
+  .mt-#{$i}{
+    margin-top: #{$i}rem;
+  }
+  .ml-#{$i}{
+    margin-left: #{$i}rem;
+  }
+}

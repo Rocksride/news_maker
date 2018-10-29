@@ -1,0 +1,30 @@
+$color-text-light: ivory;
+$color-text-dark: #111;
+$color-text-active: royalblue;
+$color-text-active-reverse: lightblue;
+$color-background-light: mintcream;
+$color-background-dark: darkgrey;
+$color-border-light: rgba(crimson, .3);
+$color-border-dark: rgba(0, 0, 0, .3);
+
+$themeVariables : (c-text, $color-text-dark, $color-text-light),
+  (c-text-reverse, $color-text-light, $color-text-dark),
+  (c-text-active, $color-text-active, $color-text-active-reverse),
+  (c-text-active-reverse, $color-text-active-reverse, $color-text-active),
+  (c-background, $color-background-dark, $color-background-light),
+  (c-background-reverse, $color-background-light, $color-background-dark),
+  (c-border, $color-border-light, $color-border-dark),
+  (c-border-reverse, $color-border-dark, $color-border-light);
+
+@each $variable, $color-dark, $color-light in $themeVariables {
+  @if $color-light==null {
+    $color-light: $color-dark;
+  }
+  html {
+    --#{$variable}: #{$color-light};
+  }
+  html[data-theme="dark"] {
+    --#{$variable}: #{$color-dark};
+  }
+}
+
