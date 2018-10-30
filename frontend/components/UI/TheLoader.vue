@@ -34,7 +34,8 @@ export default {
   .loader-wrapper {
     width: 100vw;
     height: 100vh;
-    background-color: var(--c-background-light);
+    $color: var(--c-text-active);
+    background-color: $color;
   }
 
   h1 {

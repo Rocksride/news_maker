@@ -19,4 +19,10 @@ $ npm start
 $ npm run generate
 ```
 
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+# build docker
+$ sudo docker build -t <image-name> .
+
+# run docker
+$ sudo docker run -it -p 3000:3000 <image-name>
+
+#After that I was abel to successfully go to localhost port 3000 :)
