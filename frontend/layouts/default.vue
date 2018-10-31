@@ -1,5 +1,6 @@
 <template>
   <div>
+    <TheHeader />
     <!-- <TheLoader /> -->
     <LoaderCircle />
     <!-- <ButtonWithColoredBorders> click me</ButtonWithColoredBorders> -->
@@ -10,6 +11,7 @@
 
 <script>
 import TheLoader from '@/components/UI/TheLoader'
+import TheHeader from '@/components/TheHeader'
 import LoaderCircle from '@/components/UI/LoaderCircle'
 import ButtonWithColoredBorders from '@/components/UI/ButtonWithColoredBorders'
 import { mapActions } from 'vuex';
@@ -18,6 +20,7 @@ export default {
     TheLoader,
     ButtonWithColoredBorders,
     LoaderCircle,
+    TheHeader,
   },
   methods: {
     async initApp() {

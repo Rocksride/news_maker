@@ -27,21 +27,20 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~/assets/scss/main.scss',
-    'element-ui/lib/theme-chalk/index.css'
+    '~/assets/scss/main.scss'
   ],
 
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/element-ui'
   ],
 
   /*
   ** Nuxt.js modules
   */
   modules: [
+    'nuxt-buefy',
   ],
 
   /*
@@ -64,3 +63,5 @@ module.exports = {
     }
   }
 }
+
+global.File = typeof window === 'undefined' ? Object : window.File

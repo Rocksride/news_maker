@@ -183,8 +183,8 @@
       &:after,&:before{
         content: '';
         background-color: currentColor;
-        width: 7px;
-        height: 7px;
+        width: 15px;
+        height: 15px;
         border-radius: 50%;
       }
       &:before{
@@ -201,7 +201,7 @@
         // $mode: nth($blendModes, $index);
         // mix-blend-mode: #{$mode};
         $color: $i * 360 / $circle-count;
-        transform: rotate(-$i * 360deg / $circle-count) translate($size + 10px);
+        transform: rotate(-$i * 360deg / $circle-count) translate($size + 100px);
         color: hsla($color,100%,50%,1);
         span{
           animation-delay: -$i * $speed * 3 / $circle-count;
