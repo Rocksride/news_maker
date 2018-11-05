@@ -1,17 +1,19 @@
 <template>
   <section>
     <div>
-
+      <Modal></Modal>
     </div>
   </section>
 </template>
 
 <script>
 import Logo from '~/components/Logo.vue'
+import Modal from '~/components/Modal.vue'
 
 export default {
   components: {
-    Logo
+    Modal,
+    Logo,
   }
 }
 </script>
