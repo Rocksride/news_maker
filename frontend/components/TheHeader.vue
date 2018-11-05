@@ -1,13 +1,12 @@
 <template>
-    <nav class="navbar is-dark my-navbar">
+    <nav class="navbar is-dark my-navbar pr-1">
     <div class="navbar-brand">
-      <a class="navbar-item" href="#">
-        <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
-          <!-- <img src="~/static/img/logo2.png" style="width: 100px;height: 100px;" alt="Bulma: a modern CSS framework based on Flexbox"> -->
+      <nuxt-link class="navbar-item" to="/">
+       <div class="logo">LOGO</div>
 
-      </a>
-      <a class="navbar-item" @click='$router.push("/user/auth")'>Go user</a>
-      <a class="navbar-item" @click='$router.push("/news")'>Go news</a>
+      </nuxt-link>
+      <nuxt-link class="navbar-item" to="/user/auth">Go user</nuxt-link>
+      <nuxt-link class="navbar-item" to="/news">Go news</nuxt-link>
       <div
         class="navbar-burger burger"
         data-target="navMenuColorblack-example"
@@ -24,11 +23,11 @@
       id="navMenuColorblack-example"
       class="navbar-menu" >
       <div class="navbar-start">
-        <a class="navbar-item" href="https://bulma.io/">
+        <nuxt-link class="navbar-item" to='/'>
           Home
-        </a>
+        </nuxt-link>
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link" href="https://bulma.io/documentation/overview/start/">
+          <a class="navbar-link" href="#">
             Themes
           </a>
           <div class="navbar-dropdown my-dropdown">
@@ -98,12 +97,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .my-navbar *  {
-    // color: var(--c-text-light);
-    // color: var(--c-text-light);
-  }
-  .my-navbar *:hover {
-    // color: var(--c-text-active);
+  .logo {
+    font-size: 2.3rem;
+    letter-spacing: 1rem;
+    text-shadow: 2.4px 5px 9px var(--c-text-active);
   }
 
 </style>

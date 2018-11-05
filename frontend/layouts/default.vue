@@ -1,5 +1,6 @@
 <template>
       <div class='default-wrapper'>
+      <portal-target name="modals"> </portal-target>
       <TheHeader />
       <LoaderCircle :show='circleLoaderVisibility'/>
       <LoaderTransition  :show='transitionLoaderVisibility'/>

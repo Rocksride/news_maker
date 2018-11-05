@@ -1,0 +1,15 @@
+.navbar-item {
+  margin-left: 0;
+  @include media(768px) {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+.navbar-dropdown{
+  background-color: var(--c-background-dark);
+  .navbar-item {
+    color: var(--c-text-light);
+    font-size: 1.4rem;
+  }
+}

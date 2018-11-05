@@ -1,20 +1,27 @@
 <template>
   <section>
     <div>
-      <Modal></Modal>
+      <portal to="modals">
+        <b-modal :active.sync="showModal">
+            <p class="image is-4by3">
+                <img src="/static/img/placeholder-1280x960.png">
+            </p>
+        </b-modal>
+      </portal>
     </div>
   </section>
 </template>
 
 <script>
 import Logo from '~/components/Logo.vue'
-import Modal from '~/components/Modal.vue'
 
 export default {
   components: {
-    Modal,
     Logo,
-  }
+  },
+  data: () => ({
+    showModal: false
+  })
 }
 </script>
 
