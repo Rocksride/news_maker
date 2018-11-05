@@ -6,6 +6,8 @@
           <!-- <img src="~/static/img/logo2.png" style="width: 100px;height: 100px;" alt="Bulma: a modern CSS framework based on Flexbox"> -->
 
       </a>
+      <a class="navbar-item" @click='$router.push("/user/auth")'>Go user</a>
+      <a class="navbar-item" @click='$router.push("/news")'>Go news</a>
       <div
         class="navbar-burger burger"
         data-target="navMenuColorblack-example"
@@ -38,6 +40,9 @@
             </a>
             <a @click="$store.dispatch('toggleColorTheme', 'harmony');" class="navbar-item" href="#">
               harmony
+            </a>
+            <a @click="$store.dispatch('toggleColorTheme', 'olive');" class="navbar-item" href="#">
+              olive
             </a>
           </div>
         </div>

@@ -1,5 +1,5 @@
-<template>
-  <div class='loader-wrapper'>
+<template functional>
+  <div class='loader-wrapper' v-if='props.show'>
     <div class='body'>
       <span>
         <span></span>
@@ -18,7 +18,7 @@
       <span></span>
       <span></span>
     </div>
-    <h1>Redirecting</h1>
+    <h1 style='font-size: 30px'>Redirecting</h1>
 
   </div>
 </template>
@@ -32,10 +32,10 @@ export default {
 <style lang="scss" scoped>
     // @import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
   .loader-wrapper {
-    width: 100vw;
-    height: 100vh;
-    $color: var(--c-text-active);
-    background-color: $color;
+    // width: 100vw;
+    // height: 100vh;
+    // $color: var(--c-text-active);
+    // background-color: $color;
   }
 
   h1 {
@@ -59,7 +59,7 @@ export default {
     > span {
       height: 5px;
       width: 35px;
-      background: #000;
+      background: var(--c-text-active);
       position: absolute;
       top: -19px;
       left: 60px;
@@ -73,7 +73,7 @@ export default {
       width: 0;
       height: 0;
       border-top: 6px solid transparent;
-      border-right: 100px solid #000;
+      border-right: 100px solid var(--c-text-active);
       border-bottom: 6px solid transparent;
 
       &:before {
@@ -81,7 +81,7 @@ export default {
         height: 22px;
         width: 22px;
         border-radius: 50%;
-        background: #000;
+        background: var(--c-text-active);
         position: absolute;
         right: -110px;
         top: -16px;
@@ -93,7 +93,7 @@ export default {
         width: 0;
         height: 0;
         border-top: 0 solid transparent;
-        border-right: 55px solid #000;
+        border-right: 55px solid var(--c-text-active);
         border-bottom: 16px solid transparent;
         top: -16px;
         right: -98px;
@@ -105,7 +105,7 @@ export default {
     position: absolute;
     height: 12px;
     width: 20px;
-    background: #000;
+    background: var(--c-text-active);
     border-radius: 20px 20px 0 0;
     transform: rotate(-40deg);
     right: -125px;
@@ -115,7 +115,7 @@ export default {
       content: "";
       height: 12px;
       width: 12px;
-      background: #000;
+      background: var(--c-text-active);
       right: 4px;
       top: 7px;
       position: absolute;
@@ -131,7 +131,7 @@ export default {
   .body > span > span:nth-child(4) {
     width: 30px;
     height: 1px;
-    background: #000;
+    background: var(--c-text-active);
     position: absolute;
     animation: fazer1 .2s linear infinite;
   }
@@ -238,7 +238,7 @@ export default {
       position: absolute;
       height: 2px;
       width: 20%;
-      background: #000;
+      background: var(--c-text-active);
 
       &:nth-child(1) {
         top: 20%;

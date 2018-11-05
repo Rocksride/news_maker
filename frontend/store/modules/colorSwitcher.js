@@ -2,7 +2,7 @@ import * as types from '../mutationTypes.js'
 
 const state = {
   colorTheme: null,
-  themes: ['darkgreen', 'sera', 'harmony'],
+  themes: ['darkgreen', 'sera', 'harmony', 'olive'],
   defaultColorTheme: 'darkgreen'
 }
 
