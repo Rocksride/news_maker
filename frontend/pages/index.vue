@@ -1,13 +1,19 @@
 <template>
   <section>
-    <div>
-      <portal to="modals">
-        <b-modal :active.sync="showModal">
-            <p class="image is-4by3">
-                <img src="/static/img/placeholder-1280x960.png">
-            </p>
-        </b-modal>
-      </portal>
+    <div class="row">
+      <article class="latest-news">
+        Latest News
+      </article>
+      <!-- <img class='img-1' src="../static/img/figures/figure13.jpg" alt="img"> -->
+      <div class="test-1"></div>
+    </div>
+    <div class="row">
+      <div class="test-2"></div>
+      <!-- <img class='img-2' src="../static/img/figures/figure10.jpg" alt="img"> -->
+      <article class="categories">
+        Explore Categories
+      </article>
+
     </div>
   </section>
 </template>
@@ -16,6 +22,7 @@
 import Logo from '~/components/Logo.vue'
 
 export default {
+  layout: 'layout1',
   components: {
     Logo,
   },
@@ -25,36 +32,60 @@ export default {
 }
 </script>
 
-<style>
-.container
-{
-  min-height: 100vh;
+<style lang='scss' scoped>
+@import '@/assets/scss/abstract/_variables.scss';
+
+section {
+  position: absolute;
+  right: 0;
+  /* margin-left: auto; */
+  width: calc(100vw - #{$sidebarWidth});
+  height: 100%;
   display: flex;
-  justify-content: center;
+  // margin-right: auto;
+  flex-direction: column;
   align-items: center;
-  text-align: center;
-  background-color: var(--c-background-dark);
+  justify-content: center;
+  /* flex-direction: column; */
 
 }
-.title
-{
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+.row {
+  height: 90%;
+  display: flex;
+  /* align-items: center; */
+  /* justify-content: space-between; */
 }
-.subtitle
-{
-  font-weight: 300;
-  font-size: 42px;
-  color: var(--c-text-active);
-  word-spacing: 5px;
-  padding-bottom: 15px;
+.latest-news {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 3;
+  height: 100%;
 }
-.links
-{
-  padding-top: 15px;
+.categories {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 2;
+  height: 100%;
+}
+img {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100%;
+}
+.img-1 {
+  border: 3px solid tomato;
+  flex: 2;
+}
+.img-2 {
+  flex: 3;
+}
+.test-1 {
+  flex: 2;
+}
+.test-2 {
+  flex: 3;
 }
 </style>

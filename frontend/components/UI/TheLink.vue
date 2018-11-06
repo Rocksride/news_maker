@@ -1,55 +1,45 @@
 <template>
-    <a href="#" class="button">
-      <span class="border l"></span>
-      <span class="border t"></span>
-      <span class="border r"></span>
-      <span class="border b"></span>
-      <slot>Add some text</slot>
-    </a>
+    <nuxt-link v-bind='$attrs' class="link">
+    <span class="border l"></span>
+    <span class="border t"></span>
+    <span class="border r"></span>
+    <span class="border b"></span>
+    <slot></slot>
+  </nuxt-link>
 </template>
 
-<script>
-export default {
-  name: 'button-with-borders'
-}
-</script>
 
 <style lang="scss" scoped>
   @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 
-  $main-color: green;
-  $color-primary: lighten($main-color, 20%);
-  $color-secondary: darken($main-color, 10%);
-
-  a {
-    // border: 0.5px dashed white;
+  .link {
     // overflow: hidden;
     box-sizing: border-box;
+    position: relative;
     margin: 0;
-    color: ivory;
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: 7px;
+    color: #202020;
+    font-size: 23px;
+  /*   font-weight: 700; */
+    letter-spacing: 5px;
     text-decoration: none;
-    padding: 24px 26px;
-    position: absolute;
+    padding: 1.4rem 1.6rem;
     display: inline-block;
+    width: 80%;
     display: flex;
-    background-color: var(--c-background-dark);
     transition: all .4s ease;
     // transition-delay: .2s;
   /*   align-items: center; */
   /*   justify-content: center; */
   }
-  a:hover {
+  .link:hover {
     // background-color: $color-secondary;
-    letter-spacing:8px;
+    letter-spacing:6px;
   }
-  .button .border {
+  .link .border {
     display: inline-block;
     position: absolute;
-    background-color: ivory;
-    transition: all .3s ease;
+    background-color: #202020;
+    transition: all .4s ease;
 
 
   }
@@ -57,15 +47,15 @@ export default {
     top: 0;
     transform: scale(0);
     left: 0;
-    width: 2px;
+    width: 1px;
     height: 100%;
     transform-origin: top;
   }
   .r {
     top: 0;
     transform: scale(0);
-    left: calc(100% - 2px);
-    width: 2px;
+    left: calc(100% - 1px);
+    width: 1px;
     height: 100%;
     transform-origin: bottom;
 
@@ -75,38 +65,37 @@ export default {
     transform: scale(0);
     left: 0;
     width: 100%;
-    height: 2px;
+    height: 1px;
     transform-origin: right;
 
   }
   .b {
-    top: calc(100% - 2px);
-    transform: scaleX(0);
+    top: calc(100% - 1px);
+    transform: scale(0);
     left: 0;
     width: 100%;
-    height: 2px;
+    height: 1px;
     transform-origin: left;
 
   }
-  .button:hover .l {
+  .link:hover .l {
     // transform: translateY(-100%);
-    transform: scaleY(1);
+    transform: scaleY(1.001);
     transform-origin: bottom;
   }
-  .button:hover .r {
+  .link:hover .r {
     // transform: translateY(100%);
-    transform: scaleY(1);
+    transform: scaleY(1.001);
     transform-origin: top;
   }
-  .button:hover .b {
+  .link:hover .b {
     // transform: translateX(-100%);
-    transform: scaleX(1);
+    transform: scaleX(1.001);
     transform-origin: right;
   }
-  .button:hover .t {
+  .link:hover .t {
       // transform: translateX(100%);
-    transform: scaleY(1);
+    transform: scaleY(1.001);
     transform-origin: left;
   }
 </style>
-
