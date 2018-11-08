@@ -1,13 +1,14 @@
 <template>
-  <h1 class="title">user</h1>
+  <h2 class="title">Tags</h2>
 </template>
 
 <script>
 const pkg = require('@/package')
-  
+
 export default {
+  layout: 'layout1',
   head: () => ({
-    title: `${pkg.name} - User`
+    title: `${pkg.name} - Tags`
   }),
   name: 'index',
 

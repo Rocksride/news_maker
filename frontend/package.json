@@ -1,5 +1,5 @@
 {
-  "name": "news-maker",
+  "name": "Newswell",
   "version": "1.0.0",
   "description": "My super Nuxt.js project",
   "author": "Rocksride",
@@ -29,6 +29,7 @@
     "eslint-plugin-vue": "^4.0.0",
     "node-sass": "^4.9.4",
     "nodemon": "^1.11.0",
+    "nuxt-sass-resources-loader": "^2.0.5",
     "sass-loader": "^7.1.0"
   }
 }

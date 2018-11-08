@@ -1,13 +1,13 @@
 <template>
   <nav class='nav'>
-    <div class="nav__logo">News Maker</div>
+    <div class="nav__logo">Newswell</div>
     <ul class="nav__links">
       <template v-if='isAuthenticated'>
         <TheLink to='/user'>User</TheLink>
       </template>
-      <nuxt-link class='nav__list-item' to="/categories">Categories</nuxt-link>
+      <nuxt-link class='nav__list-item' to="/tags">Categories</nuxt-link>
       <nuxt-link class='nav__list-item' to="/news">News</nuxt-link>
-      <nuxt-link class='nav__list-item' to="/about">Other</nuxt-link>
+      <nuxt-link class='nav__list-item' to="/">Other</nuxt-link>
       <footer class="nav__footer">
         <nuxt-link class='nav__list-item' to="/about">Services</nuxt-link>
         <nuxt-link class='nav__list-item' to="/about">Other</nuxt-link>
@@ -36,7 +36,9 @@ export default {
 
 </script>
 <style lang="scss" scoped>
-@import '@/assets/scss/abstract/_variables.scss';
+// @import '@/assets/scss/abstract/_variables.scss';
+@import '@/assets/scss/main.scss';
+
   .nav {
     position: fixed;
     display: flex;
@@ -55,11 +57,12 @@ export default {
       align-items: center;
       justify-content: center;
       text-transform: uppercase;
-      font-size: 2rem;
+      font-size: 3rem;
+      white-space: nowrap;
       // letter-spacing: 1rem;
       font-weight: 700;
       position: relative;
-      transform: perspective(400px) rotateY(50deg);
+      // transform: perspective(400px) rotateY(50deg);
       &:before {
         position: absolute;
         top: 70%;
@@ -89,7 +92,6 @@ export default {
       padding: 1rem;
       color: #333;
       font-size: 1.6rem;
-      border-bottom: 0px solid black;
       // transition: all .3s ease-in;
       display: block;
       // width: 80%;
@@ -99,7 +101,7 @@ export default {
         top: 90%;
         height: 3px;
         width: 0;
-        background-color: black;
+        background-color: var(--c-text-active);
         position: absolute;
       }
       &:hover:before {
@@ -132,11 +134,10 @@ export default {
       font-weight: 700;
       // letter-spacing: 7px;
       text-decoration: none;
-      // padding: 2.4rem 2.6rem;
+      padding: calc(3vh - 13.3795px) 2.6rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 9%;
       width: 100%;
       position: relative;
       display: flex;

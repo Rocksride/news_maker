@@ -19,3 +19,21 @@
     @content;
   }
 }
+
+@mixin image($src) {
+  background-image: url($src);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@mixin image-darken($src, $opacity) {
+  background:linear-gradient( rgba(0, 0, 0, $opacity), rgba(0, 0, 0, $opacity) ), url($src);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@mixin translateTransition {
+  transition: all $translateTime $translateFunction;
+}

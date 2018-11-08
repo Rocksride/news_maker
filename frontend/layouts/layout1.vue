@@ -20,9 +20,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-  @import '@/assets/scss/abstract/_variables.scss';
-
+<style lang="scss">
   .layout {
     position: relative;
     width: 100vw;

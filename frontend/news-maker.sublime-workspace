@@ -1,0 +1,423 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"aic",
+				"animtf-cb\tanimation-timing-function: cubic-bezier(${1:0.1}, ${2:0.7}, ${3:1.0}, ${3:0.1});"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/C/Users/Администратор/Desktop/notes",
+			"settings":
+			{
+				"buffer_size": 113,
+				"encoding": "UTF-8",
+				"line_ending": "Windows",
+				"name": "white-space: nowrap;"
+			}
+		},
+		{
+			"file": "components/TheNavbar.vue",
+			"settings":
+			{
+				"buffer_size": 4431,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "pages/index.vue",
+			"settings":
+			{
+				"buffer_size": 4205,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"materi",
+				"Activate Materialize Theme"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Colorsublime: Install Theme"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"color",
+				"Colorsublime: Install Theme"
+			],
+			[
+				"colr",
+				"Colorsublime: Install Theme"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"i",
+				"Package Control: Install Package"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"isnta",
+				"Package Control: Install Package"
+			],
+			[
+				"set syntax vue",
+				"Set Syntax: Vue Component"
+			],
+			[
+				"mater",
+				"Activate Materialize Theme"
+			],
+			[
+				"mari",
+				"Activate Materialize Theme"
+			],
+			[
+				"materia",
+				"Activate Materialize Theme"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"colorsub",
+				"Colorsublime: Install Theme"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"set systax vue",
+				"Set Syntax: Vue Component"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 157.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/D/ТАРАС/news-maker/news_maker/frontend",
+		"/D/ТАРАС/news-maker/news_maker/frontend/components",
+		"/D/ТАРАС/news-maker/news_maker/frontend/components/UI",
+		"/D/ТАРАС/news-maker/news_maker/frontend/pages",
+		"/D/ТАРАС/news-maker/news_maker/frontend/pages/news",
+		"/D/ТАРАС/news-maker/news_maker/frontend/pages/news/_id",
+		"/D/ТАРАС/news-maker/news_maker/frontend/static"
+	],
+	"file_history":
+	[
+		"/D/ТАРАС/news-maker/news_maker/frontend/components/UI/LoaderTransition.vue",
+		"/D/ТАРАС/news-maker/news_maker/frontend/pages/news/_id/index.vue",
+		"/D/ТАРАС/news-maker/news_maker/frontend/components/UI/TheLink.vue",
+		"/C/Users/Администратор/AppData/Roaming/Sublime Text 3/Installed Packages/Vue Syntax Highlight.sublime-package",
+		"/D/ТАРАС/news-maker/news_maker/frontend/components/TheNavbar.vue",
+		"/D/ТАРАС/news-maker/news_maker/frontend/components/UI/UnderlineHeading.vue",
+		"/D/ТАРАС/news-maker/news_maker/frontend/layouts/layout1.vue",
+		"/D/ТАРАС/news-maker/news_maker/frontend/components/Logo.vue",
+		"/D/ТАРАС/news-maker/news_maker/frontend/pages/index.vue",
+		"/D/ТАРАС/news-maker/news_maker/frontend/vuef.sublime-snippet",
+		"/D/ТАРАС/news-maker/news_maker/frontend/vue-functiona-template.sublime-snippet"
+	],
+	"find":
+	{
+		"height": 30.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"title",
+			"Logo"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"path": "D:\\ТАРАС\\news-maker\\news_maker\\frontend"
+		}
+	],
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/C/Users/Администратор/Desktop/notes",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 113,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								113,
+								113
+							]
+						],
+						"settings":
+						{
+							"auto_name": "white-space: nowrap;",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 1,
+					"file": "components/TheNavbar.vue",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4431,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								936,
+								936
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Vue Syntax Highlight/Vue Component.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1425.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "pages/index.vue",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 4205,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Vue Syntax Highlight/Vue Component.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 30.0
+	},
+	"input":
+	{
+		"height": 68.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "",
+	"replace":
+	{
+		"height": 56.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"navbar",
+				"components\\TheNavbar.vue"
+			],
+			[
+				"logo",
+				"components\\Logo.vue"
+			],
+			[
+				"layout",
+				"layouts\\layout1.vue"
+			],
+			[
+				"thenav",
+				"components\\TheNavbar.vue"
+			],
+			[
+				"theLink",
+				"components\\UI\\TheLink.vue"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 210.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
