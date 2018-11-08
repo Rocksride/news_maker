@@ -122,6 +122,7 @@ export default {
     }
 
     &__contact-button{
+      z-index: 1;
       text-align: center;
       background-color: transparent;
       border: none;

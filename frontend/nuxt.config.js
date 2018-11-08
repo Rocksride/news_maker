@@ -52,6 +52,10 @@ module.exports = {
   plugins: [
     "~/plugins/routerBeforeEach",
     "~/plugins/portal-vue",
+    {
+      src: '~/plugins/ksvuescrollmagic',
+      ssr: false
+    }
   ],
 
   /*

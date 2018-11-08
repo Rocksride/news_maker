@@ -16,12 +16,8 @@ export default {
         const items = Object.values(this.$refs) || []
         console.dir(items)
         items.forEach((el, i) => {
-          // setTimeout(() => {
             el.classList.add('translated');
-          // }, 200 * i)
-          // delay += 700 ;
         })
-        // next();
       setTimeout(next, 500)
   }  
 }

@@ -1,6 +1,6 @@
 <template>
-  <section>
-    <div class="row">
+  <section class='section-wrapper'>
+    <div class="row row-1">
       <article ref='test' class="latest-news translated">
           <div class="left">
           <UnderlineHeading>
@@ -22,27 +22,27 @@
       </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row row-2">
       <div class="img-2">
         <img src="../static/img/gazets/gazet1.jpg" alt="img">
         
       </div>
       <article class="categories">
          <div class="text-wrapper">
-           <UnderlineHeading>
+           <UnderlineHeading  class='article-heading'>
           Explore Categories
         </UnderlineHeading>
          </div>
       </article>
 
     </div>
-    <div class="row">
+    <div class="row row-3">
       <article class="about-us">
         <div class="img-3">
           <img src="../static/img/gazets/gazet6.jpg" alt="">
         </div>
          <div class="right">
-           <UnderlineHeading>
+           <UnderlineHeading class='about-heading'>
             About us
           </UnderlineHeading>
          </div>
@@ -57,6 +57,13 @@ import Logo from '~/components/Logo.vue'
 import translateMixin from '@/mixins/translateMixin.js'
 export default {
   layout: 'layout1',
+  mounted () {
+    this.$nextTick(this.pinContainerScene)
+  },
+  destroyed () {
+    // Destroy ScrollMagic when our component is removed from DOM
+    this.$ksvuescr.$emit('destroy')
+  },
   components: {
     UnderlineHeading,
     Logo,
@@ -64,6 +71,27 @@ export default {
   data: () => ({
     showModal: false,
   }),
+  methods: {
+    pinContainerScene() {
+      const tl = new this.$gsap.TimelineMax()
+        // .fromTo(`.row-2`, 1, {x: '-100%'}, {x: '0%', y: '0%', ease: Linear.easeNone})
+        .from(`.row-2`, 1, {x: '100%',  opacity: 0, ease: Linear.easeInOut})
+        .from(`.article-heading`,1, {x: '100%',  opacity: 0, ease: Linear.easeInOut}, )
+        .from(`.row-3`,1, {x: '100%',  opacity: 0, ease: Linear.easeInOut})
+        .from(`.about-heading`,0.5, {x: '-100%', opacity:0,  ease: Linear.easeInOut})
+        // .fromTo(`.row-3`, 1, {x: '-100%'}, {x: '0%', y: '0%', ease: Linear.easeNone})
+       const scene = new this.$scrollmagic.Scene({
+        triggerElement: '.row-1',
+        triggerHook: 0,
+        duration: '150%',
+        reverse: false
+       })
+       // .setPin('.row-2')
+       // .addIndicators()
+       .setTween(tl)
+       this.$ksvuescr.$emit('addScene', 'pinContainerScene', scene)
+    },
+  },
   mixins: [translateMixin]
 }
 </script>
@@ -85,6 +113,9 @@ section {
 
 }
 
+.row-2 {
+  z-index: 1;
+}
 .row {
   width: 100%;
   height: 94%;
