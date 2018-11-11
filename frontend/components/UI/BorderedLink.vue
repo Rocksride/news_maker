@@ -1,5 +1,5 @@
 <template>
-    <nuxt-link v-bind='$attrs' class="link">
+    <nuxt-link  class="link" v-bind='$attrs'>
     <span class="border l"></span>
     <span class="border t"></span>
     <span class="border r"></span>
@@ -28,12 +28,13 @@
     display: flex;
     transition: all .4s ease;
     // transition-delay: .2s;
-  /*   align-items: center; */
-  /*   justify-content: center; */
+    align-items: center;
+   justify-content: center;
+   white-space: nowrap;
   }
   .link:hover {
     // background-color: $color-secondary;
-    letter-spacing:6px;
+    // letter-spacing:6px;
   }
   .link .border {
     display: inline-block;

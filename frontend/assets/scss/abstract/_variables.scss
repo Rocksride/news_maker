@@ -1,3 +1,4 @@
+@import './mixins';
 $mobile-width: 600px;
 $tablet-width: 900px;
 $desktop-width: 1200px;
@@ -8,7 +9,29 @@ $box-shadow: 0 1rem 2rem var(--c-border);
 
 $transition-all-time: 0.45s;
 
-$sidebarWidth: 227px;
-
+// $sidebarWidth: 227px;
+$sidebarWidth-sm: calc(100vw / 3);
+$sidebarWidth-md: calc(100vw / 6);
+$sidebarWidth-lg: calc(100vw / 9);
 $translateFunction: ease-in-out;
 $translateTime: 0.5s;
+
+$mSmall: 320px;
+$mMedium: 375px;
+$mLarge: 425px;
+$tablet: 768px;
+$laptop: 1024px;
+$laptopL: 1440px;
+
+:root {
+  @include media($mSmall) {
+      --sidebar-width: calc(100vw / 3);
+  }
+  @include media($laptop) {
+     --sidebar-width: calc(100vw / 6);
+  }
+  @include media($laptopL) {
+     --sidebar-width: calc(100vw / 9);
+  }
+
+}

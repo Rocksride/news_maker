@@ -1,40 +1,30 @@
-$color-text-light: ivory;
-$color-text-dark: #111;
-$color-text-active: royalblue;
-$color-text-active-reverse: lightblue;
-$color-background-light: mintcream;
-$color-background-dark: darkgrey;
-$color-border-light: rgba(crimson, .3);
-$color-border-dark: rgba(0, 0, 0, .3);
-
 $themes:
-('sera', (
-  (c-text-light, #f3f7f8),
-  (c-text-dark, #bdc3c7),
-  (c-text-active, #21c2f8),
+('blue', (
+  (c-text-light, #252525),
+  (c-text-dark, #222),
+  (c-active, #21c2f8),
   (c-background-dark, #202020),
-  (c-background-light, #2c3e50)
+  (c-background-light,  #fff),
+  (c-delimiter, lavender),
+  (c-small-title, #a6a6a6)
   )),
-('harmony', (
-  (c-text-light, #ecfdff),
-  (c-text-dark, #018185),
-  (c-text-active, #3bbfc3),
-  (c-background-dark, #292b2f),
-  (c-background-light, #d7d5d9)
-)),
-('olive', (
-  (c-text-light, #ecfdff),
-  (c-text-dark, #737b15),
-  (c-text-active, #ebdf00),
-  (c-background-dark, #563e20),
-  (c-background-light, #b38540)
-)),
-('darkgreen', (
-  (c-text-light, #efedef),
-  (c-text-dark, #ceccce),
-  (c-text-active, #6ead3a),
-  (c-background-dark, #222022),
-  (c-background-light, #4c4947)
+('red', (
+  (c-text-light, #252525),
+  (c-text-dark, #222),
+  (c-active, #e83a30),
+  (c-background-dark, #202020),
+  (c-background-light,  #fff),
+  (c-delimiter, lavender),
+  (c-small-title, #a6a6a6)
+  )),
+('yellow', (
+  (c-text-light, #252525),
+  (c-text-dark, #222),
+  (c-active, hsl(12,51,30)),
+  (c-background-dark, #202020),
+  (c-background-light,  #fff),
+  (c-delimiter, lavender),
+  (c-small-title, #a6a6a6)
 ));
 
 @each $theme in $themes {

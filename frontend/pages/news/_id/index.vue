@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class='content-section'>
 	     <hgroup>
 	        <h1 ref='test' class="title translated">news with id</h1>
 	        <h2 ref='testImg' class="subtitle translated">{{$route.params.id}}</h2>
@@ -27,7 +27,7 @@ export default {
 section {
   position: absolute;
   right: 0;
-  width: calc(100vw - #{$sidebarWidth});
+  width: calc(100vw - var(--width));
   height: 100vh;
   display: flex;
   align-items: center;

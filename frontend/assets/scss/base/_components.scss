@@ -1,0 +1,7 @@
+.content-section {
+  width: calc(100vw - var(--sidebar-width));
+  margin-left: var(--sidebar-width);
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}

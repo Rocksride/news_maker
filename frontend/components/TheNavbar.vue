@@ -1,30 +1,26 @@
 <template>
   <nav class='nav'>
-    <div class="nav__logo">Newswell</div>
+    <div class="nav__logo"><nuxt-link class='logo-link' to="/">Newswell</nuxt-link></div>
     <ul class="nav__links">
       <template v-if='isAuthenticated'>
-        <TheLink to='/user'>User</TheLink>
+       <nuxt-link class='nav__list-item' to="/user">User</nuxt-link>
       </template>
-      <nuxt-link class='nav__list-item' to="/tags">Categories</nuxt-link>
+      <nuxt-link class='nav__list-item' to="/">Home</nuxt-link>
       <nuxt-link class='nav__list-item' to="/news">News</nuxt-link>
-      <nuxt-link class='nav__list-item' to="/">Other</nuxt-link>
-      <footer class="nav__footer">
-        <nuxt-link class='nav__list-item' to="/about">Services</nuxt-link>
-        <nuxt-link class='nav__list-item' to="/about">Other</nuxt-link>
-      </footer>
+      <nuxt-link class='nav__list-item' to="/tags">Tags</nuxt-link>
+      <nuxt-link class='nav__list-item' to="/about">About</nuxt-link>
+      <nuxt-link class='nav__list-item' to="/news/:1">Last article</nuxt-link>
     </ul>
-      <nuxt-link  class='nav__contact-button' to="/about">Contact us</nuxt-link>
+    <nuxt-link  class='nav__contact-button' to="/about">Contact us</nuxt-link>
 
   </nav>
 </template>
 
 <script>
-import TheLink from '@/components/UI/TheLink'
 import {mapGetters} from 'vuex'
 export default {
   name: 'the-navbar',
   components: {
-        TheLink
   },
   computed: {
     ...mapGetters([
@@ -45,24 +41,33 @@ export default {
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
-    width: $sidebarWidth;
+    // @include media($mSmall) {
+    //    width: $sidebarWidth-sm;
+    // }
+    // @include media($laptop) {
+    //    width: $sidebarWidth-md;
+    // }
+    // @include media($laptopL) {
+    //   width: $sidebarWidth-lg;
+    // }
+    width: var(--sidebar-width);
     height: 100%;
     border-right: 1px solid lavender;
     &__logo {
       height: 25%;
-      letter-spacing: 4px;
+      letter-spacing: 1px;
       text-shadow: 3px 7px 10px rgba(0, 0, 0, 0.3);
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
       text-transform: uppercase;
-      font-size: 3rem;
+      font-size: 2.4rem;
       white-space: nowrap;
       // letter-spacing: 1rem;
       font-weight: 700;
       position: relative;
-      // transform: perspective(400px) rotateY(50deg);
+      // transform: perspective(400px) skewY(-50deg);
       &:before {
         position: absolute;
         top: 70%;
@@ -70,16 +75,16 @@ export default {
         content: '';
         width: 80%;
         height: 3px;
-        background-color: var(--c-text-active);
+        background-color: var(--c-active);
         transform:  rotate(-45deg);
         z-index: -2;
       }
     }
 
     &__links {
+      margin-left: -4rem;
       height: 60%;
-      margin-left: auto;
-      width: 90%;
+      // width: 90%;
       display: flex;
       align-items: flex-start;
       justify-content: flex-start;
@@ -101,7 +106,7 @@ export default {
         top: 90%;
         height: 3px;
         width: 0;
-        background-color: var(--c-text-active);
+        background-color: var(--c-active);
         position: absolute;
       }
       &:hover:before {
@@ -130,7 +135,7 @@ export default {
       // overflow: hidden;
       box-sizing: border-box;
       margin: 0;
-      color: var(--c-text-light);
+      color: var(--c-active);
       font-size: 1.6rem;
       font-weight: 700;
       // letter-spacing: 7px;
@@ -155,7 +160,7 @@ export default {
       width: 100%;
       top: 0;
       left: 0;
-      background-color: var(--c-background-dark);
+      background-color: var(--c-background-light);
     }
     &__contact-button::after {
       content: '';
@@ -166,7 +171,7 @@ export default {
       width: 100%;
       top: 0;
       left: 0;
-      background-color: var(--c-background-light);
+      background-color: var(--c-background-dark);
       transition: transform .5s cubic-bezier(0.6, 0.05, 0.01, 0.99);
       transform-origin:  right;
     }
@@ -182,6 +187,9 @@ export default {
       transition: all .3s ease;
     }
 
+  }
+  .logo-link {
+    color: var(--c-text-dark) !important;
   }
 </style>
 

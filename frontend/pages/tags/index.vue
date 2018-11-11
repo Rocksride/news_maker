@@ -1,5 +1,7 @@
 <template>
-  <h2 class="title">Tags</h2>
+  <section class="content-section flex-center">
+    <h2 class="title">Tags</h2>
+  </section>
 </template>
 
 <script>

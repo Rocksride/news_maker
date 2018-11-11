@@ -36,12 +36,17 @@
   }
 }
 
-.flex-center {
+.flex-center-column {
+  // height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.flex-column {
   flex-direction: column;
+}
+.flex-center {
+  // width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
      

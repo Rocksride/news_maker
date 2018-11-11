@@ -6,6 +6,9 @@
       <div class="line line-2"></div>
       <div class="line line-3"></div>
       <div class="line line-4"></div>
+      <div class="line line-5"></div>
+      <div class="line line-6"></div>
+      <div class="line line-7"></div>
     </div>
     <nuxt />
   </div>
@@ -34,11 +37,11 @@ export default {
     // background-color: grey;
     min-height: 100vh;
     height: 100%;
-    width: 100%;
+    width: calc(100vw - var(--sidebar-width));
     // width: calc(100% - $sidebarWidth);
     position: fixed;
     top: 0;
-    left: $sidebarWidth;
+    left: var(--sidebar-width);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -50,12 +53,30 @@ export default {
       width: 1px;
       // width: 20%;
       height: 100%;
-      background-color: lavender;
+      background-color: var(--c-delimiter);
     }
-    @for $i from 1 through 5 {
-    .line-#{$i} {
-      left: $i * $sidebarWidth;
+    .line-1 {
+      left: calc(var(--sidebar-width) * 1);
     }
-  }
+    .line-2 {
+      left: calc(var(--sidebar-width) * 2);
+    }
+    .line-3 {
+      left: calc(var(--sidebar-width) * 3);
+    }
+    .line-4 {
+      left: calc(var(--sidebar-width) * 4);
+    }
+    .line-5 {
+      left: calc(var(--sidebar-width) * 5);
+    }
+    .line-6 {
+      left: calc(var(--sidebar-width) * 6);
+    }
+    .line-7 {
+      left: calc(var(--sidebar-width) * 7);
+    }
+
+
 
 </style>

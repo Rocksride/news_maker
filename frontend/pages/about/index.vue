@@ -1,11 +1,11 @@
 <template>
-  <section class="about">
+  <section class="about content-section">
     <div class="img-wrapper overflow-wrapper">
       <img ref='t1' class='translated' src="@/static/img/gazets/gazet17.jpg" alt="about image">
     </div>
     <div class="text-wrapper overflow-wrapper">
       <div ref='t2' class="title translated">
-        <UnderlineHeading>About us</UnderlineHeading>
+        <UnderlineHeading style='font-size: 6rem'>About us</UnderlineHeading>
       </div>
     </div>
     <div class="info-wrapper overflow-wrapper">
@@ -47,9 +47,6 @@ mixins: [translateMixin]
 
 <style lang="scss" scoped>
 .about {
-  position: absolute;
-  right: 0;
-  width: calc(100vw - #{$sidebarWidth});
   height: 100vh;
   display: flex;
   align-items: center;
