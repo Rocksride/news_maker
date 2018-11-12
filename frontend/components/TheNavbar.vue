@@ -1,17 +1,17 @@
 <template>
   <nav class='nav'>
-    <div class="nav__logo"><nuxt-link class='logo-link' to="/">Newswell</nuxt-link></div>
+    <div class="nav__logo"><nuxt-link active-class='' class='logo-link' exact to="/">Newswell</nuxt-link></div>
     <ul class="nav__links">
       <template v-if='isAuthenticated'>
-       <nuxt-link class='nav__list-item' to="/user">User</nuxt-link>
+       <a @click='$store.dispatch("logout")' class='nuxt-link'>Logout</a>
       </template>
-      <nuxt-link class='nav__list-item' to="/">Home</nuxt-link>
-      <nuxt-link class='nav__list-item' to="/news">News</nuxt-link>
-      <nuxt-link class='nav__list-item' to="/tags">Tags</nuxt-link>
-      <nuxt-link class='nav__list-item' to="/about">About</nuxt-link>
-      <nuxt-link class='nav__list-item' to="/news/:1">Last article</nuxt-link>
+      <nuxt-link class='nuxt-link' exact to="/">Home</nuxt-link>
+      <nuxt-link class='nuxt-link' exact to="/news">News</nuxt-link>
+      <nuxt-link class='nuxt-link' exact to="/tags">Tags</nuxt-link>
+      <nuxt-link class='nuxt-link' exact to="/about">About</nuxt-link>
+      <nuxt-link class='nuxt-link' exact to="/news/:1">Last article</nuxt-link>
     </ul>
-    <nuxt-link  class='nav__contact-button' to="/about">Contact us</nuxt-link>
+    <nuxt-link  class='nav__contact-button' exact to="/about">Contact us</nuxt-link>
 
   </nav>
 </template>
@@ -90,30 +90,7 @@ export default {
       justify-content: flex-start;
       flex-direction: column;
     }
-    &__list-item {
 
-      // margin: 3rem !important;
-      position: relative;
-      padding: 1rem;
-      color: #333;
-      font-size: 1.6rem;
-      // transition: all .3s ease-in;
-      display: block;
-      // width: 80%;
-      &:before {
-        transition: all .3s ease;
-        content: '';
-        top: 90%;
-        height: 3px;
-        width: 0;
-        background-color: var(--c-active);
-        position: absolute;
-      }
-      &:hover:before {
-        width: 130%;
-
-      }
-    }
     &__footer {
       // width: 100%;
       margin: 0;
@@ -135,7 +112,7 @@ export default {
       // overflow: hidden;
       box-sizing: border-box;
       margin: 0;
-      color: var(--c-active);
+      color: var(--c-background-light);
       font-size: 1.6rem;
       font-weight: 700;
       // letter-spacing: 7px;
@@ -160,7 +137,7 @@ export default {
       width: 100%;
       top: 0;
       left: 0;
-      background-color: var(--c-background-light);
+      background-color: var(--c-active);
     }
     &__contact-button::after {
       content: '';

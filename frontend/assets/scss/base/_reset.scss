@@ -33,3 +33,47 @@ html {
   overflow-x: hidden !important;
   overflow-y: auto !important;
 }
+
+.nuxt-link {
+  // margin: 3rem !important;
+  position: relative;
+  padding: 1rem;
+  color: #333;
+  font-size: 1.6rem;
+  // transition: all .3s ease-in;
+  display: block;
+  // width: 80%;
+  &:before {
+    transition: all .3s ease;
+    content: '';
+    top: 90%;
+    height: 3px;
+    width: 0;
+    background-color: var(--c-active);
+    position: absolute;
+  }
+  &:hover:before {
+    width: 130%;
+  }
+}
+
+.nuxt-link-active {
+
+  // margin: 3rem !important;
+  position: relative;
+  padding: 1rem;
+  color: #333;
+  font-size: 1.6rem;
+  // transition: all .3s ease-in;
+  display: block;
+  // width: 80%;
+  &:before {
+    transition: all .3s ease;
+    content: '';
+    top: 90%;
+    height: 3px;
+    width: 130%;
+    background-color: var(--c-active);
+    position: absolute;
+  }
+}

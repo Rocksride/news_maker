@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"backgr",
+				"background-color\tproperty"
+			],
+			[
 				"tran",
 				"translateMixin"
 			],
@@ -20,47 +24,38 @@
 	"buffers":
 	[
 		{
-			"file": "pages/index.vue",
+			"contents": "<template>\n  <section class=\" flex-center content-section\">\n    <div ref='left' class=\"left translated flex-center\">\n      <header class=\"list-header flex-center flex-column\">\n        <UnderlineHeading style='height 20vh;font-size: 4.6rem; position: relative'>\n          News\n        <sup class=\"list-quantity-number\" style='font-size: 3rem;'>46</sup>\n        </UnderlineHeading>\n      </header>\n\n      <ul>\n        <li>\n          <div class=\"post flex-center-column\"><div class=\"title\">Lorem ipsum dolor sit amet.</div>\n        <div class=\"subtitle\">Lorem ipsum dolor sit amet, consectetur adipisicing.</div></div>\n        </li>         \n        <li>\n          <div class=\"post flex-center-column\"><div class=\"title\">Lorem ipsum dolor sit amet.</div>\n        <div class=\"subtitle\">Lorem ipsum dolor sit amet, consectetur adipisicing.</div></div>\n        </li>\n        <li>\n          <div class=\"post flex-center-column\"><div class=\"title\">Lorem ipsum dolor sit amet.</div>\n        <div class=\"subtitle\">Lorem ipsum dolor sit amet, consectetur adipisicing.</div></div>\n        </li>         \n        <li>\n          <div class=\"post flex-center-column\"><div class=\"title\">Lorem ipsum dolor sit amet.</div>\n        <div class=\"subtitle\">Lorem ipsum dolor sit amet, consectetur adipisicing.</div></div>\n        </li>         \n        <li>\n          <div class=\"post flex-center-column\"><div class=\"title\">Lorem ipsum dolor sit amet.</div>\n          <div class=\"subtitle\">Lorem ipsum dolor sit amet, consectetur adipisicing.</div></div>\n        </li>\n      </ul>\n    </div>\n    <div ref='right' class=\"right translated \">\n      <header>\n          <h4 class='subtitle is-4'>10 14 2018 | BY VICTOR XING | CAPITAL MARKETS</h4>\n          <h3 class='title is-2'>Roundabout path in the snap-back of long-term bond</h3>\n        \n      </header>\n<!--       <section class=\"post-content\">\n          Executive Summary\nBIS’s Shin noted that the “snap-back” in long-term interest rates represents the biggest risk in the global economy\nA decade of policy-induced yield-chasing not only directly lowered long-term rates but also begot further demand\nAs term premium decompress amid waning policy support, higher long-term bond yields will induce further selling\nThe rise in long-term real interest rates (the discount rate that affects all risk assets) would threaten risk sentiment\n\n        </section> -->\n    </div>\n  </section>\n</template>\n\n<script>\nconst pkg = require('@/package')\nimport translateMixin from '@/mixins/translateMixin.js'\nimport UnderlineHeading from '@/components/UI/UnderlineHeading.vue'\nexport default {\n  head: () => ({\n    title: `${pkg.name} - Articles`\n  }),\n  layout: 'layout1',\n  name: 'news',\n  components: {\n    UnderlineHeading\n  },\n  data() {\n    return {\n\n    };\n  },\n  mixins: [translateMixin] \n};\n</script>\n\n<style lang=\"scss\" scoped>\n.content-section {\n  align-items: flex-start;\n}\n.left header {\n  width: 100%;\n  height: 20vh;\n  @include image-darken('/static/img/gazets/gazet9.jpg', 0.5);  \n}\n.left.translated {\n  opacity: 0;\n  visibility: hidden;\n  transform: translateX(-100%);\n}\n.left {\n  transform: none;\n  @include translateTransition;\n  \n  opacity: 1;\n  visibility: visible;\n  width: calc(3 * var(--c-sidebar-width));\n  display: flex;\n  align-items: stretch;\n  justify-content: center;\n  flex-direction: column;\n}\n.right {\n  border: 1px solid crimson;\n  @include translateTransition;\n  opacity: 1;\n  visibility: visible;\n  height: 100vh;\n  overflow-y: scroll;\n\n  width: calc(5 * var(--c-sidebar-width));\n  padding: var(--sidebar-width);\n  transform: none;\n  & header {\n    height: 30%;\n    padding-top: 3rem;\n    margin-top: 3rem;\n  }\n  & .post-content {\n    margin-top: auto;\n  }\n  &.translated {\n    transform: translateY(30%);\n    opacity: 0;\n    visibility: hidden;\n  }\n}\n.post {\n  width: 100%;\n  height: 200px;\n}\nul {\n  height: 80vh;\n  overflow-y: scroll;\n  // overflow-x: hidden;\n}\nli:nth-child(even) {\n  background-color: #f5f5f5;\n}li:nth-child(odd) {\n  background-color: var(--c-background-light);\n}\n\n</style>\n",
+			"settings":
+			{
+				"buffer_size": 4046,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "mixins/translateMixin.js",
+			"settings":
+			{
+				"buffer_size": 645,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Администратор/Desktop/prev.vue",
 			"settings":
 			{
 				"buffer_size": 4963,
 				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "layouts/layout1.vue",
-			"settings":
-			{
-				"buffer_size": 1563,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "assets/scss/abstract/_variables.scss",
-			"settings":
-			{
-				"buffer_size": 688,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "components/TheNavbar.vue",
-			"settings":
-			{
-				"buffer_size": 4721,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "    @for $i from 1 through 6 {\n    .line-#{$i} {\n      --i: #{$i}px;\n       left: calc($i * var(--width));\n      // width: var(--width);\n      // @include media($mSmall) {\n      //    left: $i * $sidebarWidth-sm;\n      // }\n      // @include media($laptop) {\n      //     left: $i * $sidebarWidth-md;\n      // }\n      // @include media($laptopL) {\n      //    left: $i * $sidebarWidth-lg;\n      // }\n    }\n    // @include media($laptop) {\n    //   @for $i from 2 through 4 {\n    //     .line-#{$i} {\n    //       display: block;\n    //     }\n    //   }\n    // } \n    // @include media($laptopL) {\n    //   @for $i from 5 through 6 {\n    //     .line-#{$i} {\n    //       display: block;\n    //     }\n    //   }\n    // }\n  }",
-			"settings":
-			{
-				"buffer_size": 723,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "assets/scss/abstract/_mixins.scss",
+			"settings":
+			{
+				"buffer_size": 919,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -76,16 +71,24 @@
 		"selected_items":
 		[
 			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"for",
+				"VUEFormatter"
+			],
+			[
+				"set syntax vue",
+				"Set Syntax: Vue Component"
+			],
+			[
 				"forma",
 				"VUEFormatter"
 			],
 			[
 				"form",
 				"VUEFormatter"
-			],
-			[
-				"insta",
-				"Package Control: Install Package"
 			],
 			[
 				"mat",
@@ -130,10 +133,6 @@
 			[
 				"isnta",
 				"Package Control: Install Package"
-			],
-			[
-				"set syntax vue",
-				"Set Syntax: Vue Component"
 			],
 			[
 				"mater",
@@ -186,45 +185,48 @@
 	"expanded_folders":
 	[
 		"/D/ТАРАС/news-maker/news_maker/frontend",
-		"/D/ТАРАС/news-maker/news_maker/frontend/assets",
-		"/D/ТАРАС/news-maker/news_maker/frontend/assets/scss",
-		"/D/ТАРАС/news-maker/news_maker/frontend/assets/scss/abstract",
-		"/D/ТАРАС/news-maker/news_maker/frontend/assets/scss/base",
+		"/D/ТАРАС/news-maker/news_maker/frontend/mixins",
 		"/D/ТАРАС/news-maker/news_maker/frontend/pages",
 		"/D/ТАРАС/news-maker/news_maker/frontend/pages/about",
 		"/D/ТАРАС/news-maker/news_maker/frontend/pages/news",
 		"/D/ТАРАС/news-maker/news_maker/frontend/pages/news/_id",
 		"/D/ТАРАС/news-maker/news_maker/frontend/pages/tags",
 		"/D/ТАРАС/news-maker/news_maker/frontend/pages/user",
-		"/D/ТАРАС/news-maker/news_maker/frontend/plugins"
+		"/D/ТАРАС/news-maker/news_maker/frontend/store",
+		"/D/ТАРАС/news-maker/news_maker/frontend/store/modules"
 	],
 	"file_history":
 	[
-		"/D/ТАРАС/news-maker/news_maker/frontend/assets/scss/base/_reset.scss",
-		"/D/ТАРАС/news-maker/news_maker/frontend/assets/scss/abstract/_variables.scss",
-		"/D/ТАРАС/news-maker/news_maker/frontend/components/UI/BorderedLink.vue",
-		"/D/ТАРАС/news-maker/news_maker/frontend/pages/news/_id/index.vue",
+		"/D/ТАРАС/news-maker/news_maker/frontend/pages/index.vue",
 		"/D/ТАРАС/news-maker/news_maker/frontend/pages/news/index.vue",
 		"/D/ТАРАС/news-maker/news_maker/frontend/pages/about/index.vue",
-		"/D/ТАРАС/news-maker/news_maker/frontend/node_modules/public-encrypt/test/nodeTests.js",
+		"/D/ТАРАС/news-maker/news_maker/frontend/pages/news/_id/index.vue",
+		"/D/ТАРАС/news-maker/news_maker/frontend/pages/tags/index.vue",
+		"/D/ТАРАС/news-maker/news_maker/frontend/assets/scss/base/_components.scss",
+		"/D/ТАРАС/news-maker/news_maker/frontend/layouts/layout1.vue",
+		"/D/ТАРАС/news-maker/news_maker/frontend/assets/scss/abstract/_mixins.scss",
 		"/D/ТАРАС/news-maker/news_maker/frontend/assets/scss/abstract/_colors.scss",
+		"/D/ТАРАС/news-maker/news_maker/frontend/store/modules/colorSwitcher.js",
+		"/D/ТАРАС/news-maker/news_maker/frontend/assets/scss/base/_reset.scss",
+		"/D/ТАРАС/news-maker/news_maker/frontend/assets/scss/base/_general.scss",
+		"/D/ТАРАС/news-maker/news_maker/frontend/components/UI/UnderlineHeading.vue",
+		"/D/ТАРАС/news-maker/news_maker/frontend/components/TheNavbar.vue",
+		"/D/ТАРАС/news-maker/news_maker/frontend/assets/scss/base/_utilities.scss",
+		"/D/ТАРАС/news-maker/news_maker/frontend/node_modules/color-string/color-string.js",
+		"/C/Users/Администратор/Desktop/notes",
+		"/D/ТАРАС/news-maker/news_maker/frontend/components/UI/BorderedLink.vue",
+		"/D/ТАРАС/news-maker/news_maker/frontend/assets/scss/abstract/_variables.scss",
+		"/D/ТАРАС/news-maker/news_maker/frontend/assets/scss/base/_index.scss",
+		"/D/ТАРАС/news-maker/news_maker/frontend/node_modules/public-encrypt/test/nodeTests.js",
 		"/D/ТАРАС/news-maker/news_maker/frontend/store/modules/auth.js",
-		"/D/ТАРАС/news-maker/news_maker/frontend/pages/index.vue",
 		"/D/ТАРАС/news-maker/news_maker/frontend/mixins/translateMixin.js",
 		"/D/ТАРАС/news-maker/news_maker/frontend/plugins/ksvuescrollmagic.js",
 		"/D/ТАРАС/news-maker/news_maker/frontend/nuxt.config.js",
-		"/D/ТАРАС/news-maker/news_maker/frontend/components/TheNavbar.vue",
-		"/D/ТАРАС/news-maker/news_maker/frontend/pages/tags/index.vue",
 		"/D/ТАРАС/news-maker/news_maker/frontend/node_modules/rxjs/src/util/applyMixins.ts",
-		"/D/ТАРАС/news-maker/news_maker/frontend/layouts/layout1.vue",
 		"/D/ТАРАС/news-maker/news_maker/frontend/assets/scss/base/_transitions.scss",
-		"/D/ТАРАС/news-maker/news_maker/frontend/assets/scss/abstract/_mixins.scss",
 		"/D/ТАРАС/news-maker/news_maker/frontend/mixins/translatedMixin.js",
-		"/D/ТАРАС/news-maker/news_maker/frontend/assets/scss/base/_utilities.scss",
 		"/D/ТАРАС/news-maker/news_maker/frontend/node_modules/units-css/lib/utilities.js",
 		"/D/ТАРАС/news-maker/news_maker/frontend/pages/user/index.vue",
-		"/C/Users/Администратор/Desktop/notes",
-		"/D/ТАРАС/news-maker/news_maker/frontend/components/UI/UnderlineHeading.vue",
 		"/D/ТАРАС/news-maker/news_maker/frontend/package.json",
 		"/D/ТАРАС/news-maker/news_maker/frontend/node_modules/bulma/sass/utilities/mixins.sass",
 		"/C/Users/Администратор/AppData/Roaming/Sublime Text 3/Packages/SideBarEnhancements/Side Bar.sublime-settings",
@@ -241,9 +243,10 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 136.0,
 		"where_history":
 		[
+			""
 		]
 	},
 	"find_state":
@@ -251,6 +254,17 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"ref",
+			".tags",
+			".",
+			"overflow",
+			"flex-column",
+			"c-text-active",
+			"hsl(43,88,73)",
+			".news-post",
+			"header",
+			"heading",
+			"width",
 			"6",
 			"$i",
 			"5",
@@ -300,12 +314,68 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "pages/index.vue",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4046,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								69,
+								72
+							]
+						],
+						"settings":
+						{
+							"default_dir": "D:\\ТАРАС\\news-maker\\news_maker\\frontend\\assets\\scss\\base",
+							"syntax": "Packages/Vue Syntax Highlight/Vue Component.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "mixins/translateMixin.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 645,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								565,
+								581
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Users/Администратор/Desktop/prev.vue",
 					"semi_transient": false,
 					"settings":
 					{
@@ -316,8 +386,8 @@
 						"selection":
 						[
 							[
-								1945,
-								1945
+								630,
+								630
 							]
 						],
 						"settings":
@@ -325,67 +395,27 @@
 							"syntax": "Packages/Vue Syntax Highlight/Vue Component.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 2295.0,
+						"translation.y": 900.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "layouts/layout1.vue",
+					"buffer": 3,
+					"file": "assets/scss/abstract/_mixins.scss",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1563,
+						"buffer_size": 919,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1506,
-								1506
-							],
-							[
-								1542,
-								1542
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Vue Syntax Highlight/Vue Component.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 765.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "assets/scss/abstract/_variables.scss",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 688,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								537,
-								537
-							],
-							[
-								600,
-								600
-							],
-							[
-								664,
-								664
+								756,
+								756
 							]
 						],
 						"settings":
@@ -394,63 +424,7 @@
 							"syntax": "Packages/Sass/Syntaxes/SCSS.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "components/TheNavbar.vue",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4721,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1078,
-								1078
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Vue Syntax Highlight/Vue Component.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 459.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 723,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								723,
-								723
-							]
-						],
-						"settings":
-						{
-							"default_dir": "D:\\ТАРАС\\news-maker\\news_maker\\frontend\\layouts",
-							"syntax": "Packages/Vue Syntax Highlight/Vue Component.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 300.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
@@ -461,7 +435,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 27.0
+		"height": 30.0
 	},
 	"input":
 	{
@@ -498,7 +472,7 @@
 	"project": "",
 	"replace":
 	{
-		"height": 50.0
+		"height": 56.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -508,8 +482,80 @@
 		"selected_items":
 		[
 			[
+				"componen",
+				"assets\\scss\\base\\_components.scss"
+			],
+			[
+				"mixins",
+				"assets\\scss\\abstract\\_mixins.scss"
+			],
+			[
+				"navbar",
+				"components\\TheNavbar.vue"
+			],
+			[
+				"colors",
+				"assets\\scss\\abstract\\_colors.scss"
+			],
+			[
+				"color",
+				"assets\\scss\\abstract\\_colors.scss"
+			],
+			[
+				"reset",
+				"assets\\scss\\base\\_reset.scss"
+			],
+			[
 				"index",
 				"pages\\index.vue"
+			],
+			[
+				"underi",
+				"components\\UI\\UnderlineHeading.vue"
+			],
+			[
+				"layout",
+				"layouts\\layout1.vue"
+			],
+			[
+				"compo",
+				"assets\\scss\\base\\_components.scss"
+			],
+			[
+				"base.scs",
+				"assets\\scss\\base\\_general.scss"
+			],
+			[
+				"components.scss",
+				"assets\\scss\\base\\_components.scss"
+			],
+			[
+				"util.scs",
+				"assets\\scss\\base\\_utilities.scss"
+			],
+			[
+				"l",
+				"layouts\\layout1.vue"
+			],
+			[
+				"under",
+				"components\\UI\\UnderlineHeading.vue"
+			],
+			[
+				"components",
+				"assets\\scss\\base\\_components.scss"
+			],
+			[
+				"border",
+				"components\\UI\\BorderedLink.vue"
+			],
+			[
+				"utils.scss",
+				"assets\\scss\\base\\_utilities.scss"
+			],
+			[
+				"variables",
+				"assets\\scss\\abstract\\_variables.scss"
 			],
 			[
 				"variab",
@@ -517,18 +563,6 @@
 			],
 			[
 				"layout1",
-				"layouts\\layout1.vue"
-			],
-			[
-				"navbar",
-				"components\\TheNavbar.vue"
-			],
-			[
-				"variables",
-				"assets\\scss\\abstract\\_variables.scss"
-			],
-			[
-				"layout",
 				"layouts\\layout1.vue"
 			],
 			[
@@ -564,16 +598,8 @@
 				"layouts\\layout1.vue"
 			],
 			[
-				"reset",
-				"assets\\scss\\base\\_reset.scss"
-			],
-			[
 				"variables.scs",
 				"assets\\scss\\abstract\\_variables.scss"
-			],
-			[
-				"mixins",
-				"assets\\scss\\abstract\\_mixins.scss"
 			],
 			[
 				"transitio",

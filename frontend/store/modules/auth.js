@@ -62,6 +62,10 @@ const actions = {
       console.error(err);
     }
   },
+  auth: async({commit, dispatch}) => {
+    commit(types.SET_TOKEN, Math.random() * 100)
+    $nuxt.$router.replace('/')
+  },
   signIn: async ({ commit, dispatch }, payload) => {
     try {
       const resp = await api.signIn(payload)
@@ -91,6 +95,7 @@ const actions = {
     }
     Cookie.remove('jwt')
     Cookie.remove('tokenExpiration');
+    $nuxt.$router.replace('/user/auth')
   }
 
 }

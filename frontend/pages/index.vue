@@ -55,6 +55,7 @@
       </div>
     </div>
   </div>
+  <footer class="footer flex-center">Awesome footer</footer>
 </section>
 </template>
 
@@ -226,5 +227,11 @@
       font-weight: 700;
       font-size: 4rem;
     }
+  }
+  .footer {
+    width: 100%;
+    height: 6vh;
+    background-color: var(--c-delimiter);
+    color: var(--c-active);
   }
 </style>

@@ -84,6 +84,9 @@ module.exports = {
         })
       }
     }
+  },
+  router: {
+    middleware: ['isAuth']
   }
 }
 

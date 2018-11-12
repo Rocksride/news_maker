@@ -12,6 +12,7 @@
   $delay-time: .2s;
 
   a {
+    border: none !important;
     overflow: hidden;
     box-sizing: border-box;
     color: ivory;

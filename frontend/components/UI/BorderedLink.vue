@@ -8,9 +8,12 @@
   </nuxt-link>
 </template>
 
-
+<script>
+  export default {
+    name: 'borderedLink'
+  }
+</script>
 <style lang="scss" scoped>
-  @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 
   .link {
     // overflow: hidden;
