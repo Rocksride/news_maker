@@ -1,4 +1,4 @@
-@import './mixins';
+
 $mobile-width: 600px;
 $tablet-width: 900px;
 $desktop-width: 1200px;
@@ -8,7 +8,8 @@ $border: 1px solid var(--c-border);
 $box-shadow: 0 1rem 2rem var(--c-border);
 
 $transition-all-time: 0.45s;
-
+$footerHeight: 55px;
+$sectionHeight: calc(100vh - 55px);
 // $sidebarWidth: 227px;
 $sidebarWidth-sm: calc(100vw / 3);
 $sidebarWidth-md: calc(100vw / 6);

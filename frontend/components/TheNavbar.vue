@@ -2,14 +2,12 @@
   <nav class='nav'>
     <div class="nav__logo"><nuxt-link active-class='' class='logo-link' exact to="/">Newswell</nuxt-link></div>
     <ul class="nav__links">
-      <template v-if='isAuthenticated'>
-       <a @click='$store.dispatch("logout")' class='nuxt-link'>Logout</a>
-      </template>
       <nuxt-link class='nuxt-link' exact to="/">Home</nuxt-link>
       <nuxt-link class='nuxt-link' exact to="/news">News</nuxt-link>
       <nuxt-link class='nuxt-link' exact to="/tags">Tags</nuxt-link>
       <nuxt-link class='nuxt-link' exact to="/about">About</nuxt-link>
       <nuxt-link class='nuxt-link' exact to="/news/:1">Last article</nuxt-link>
+      <a @click='$store.dispatch("logout")' class='nuxt-link'>Logout</a>
     </ul>
     <nuxt-link  class='nav__contact-button' exact to="/about">Contact us</nuxt-link>
 
@@ -117,7 +115,7 @@ export default {
       font-weight: 700;
       // letter-spacing: 7px;
       text-decoration: none;
-      padding: calc(3vh - 13.3795px) 2.6rem;
+      padding: calc(3vh - 5px) 2.6rem;
       display: flex;
       align-items: center;
       justify-content: center;

@@ -4,7 +4,7 @@
     <div class="left flex-center-column">
       <div class="overflow-wrapper">
         <div ref='tr-1' class="text-wrapper translated">
-          <UnderlineHeading  class='latest-news__heading '>Latest Articles</UnderlineHeading>
+          <UnderlineHeading  class='latest-news__heading heading'>Latest Articles</UnderlineHeading>
         </div>
         <div ref='tr-2' class="news-post  translated">
           <p class="news-post__info">10 14 2018 | BY VICTOR XING | CAPITAL MARKETS</p>
@@ -35,7 +35,7 @@
     <div class="right flex-center-column" style='align-items: flex-start'>
       <div class="overflow-wrapper">
         <div ref='tr-5' class="translated text-wrapper">
-          <UnderlineHeading>Tags</UnderlineHeading>
+          <UnderlineHeading class='heading'>Tags</UnderlineHeading>
         </div>
       </div>
     </div>
@@ -45,7 +45,7 @@
     <div class="left flex-center-column" style='align-items: flex-start'>
       <div class="overflow-wrapper">
        <div ref='tr-6' class="translated text-wrapper">
-          <UnderlineHeading  class='about '>About us</UnderlineHeading>
+          <UnderlineHeading  class='about heading'>About us</UnderlineHeading>
        </div>
       </div>
     </div>
@@ -77,36 +77,47 @@
     width: 100%;
     height: 100%;
   }
-  .row {
-    display: flex;
 
+  .row {
     width: 100%;
-    height: 94vh;
+    height: $sectionHeight;
   }
 
   .row-1 {
+    display: flex;
+
     .button-wrapper {
       width: 30%;
     }
     .left {
-      flex: 5;
       position: relative;
-      left: var(--sidebar-width);
+
+
+      @include media($laptop) {
+        flex: 3;
+        left: calc(var(--sidebar-width) / 2);
+      }
+      @include media($laptopL) {
+        flex: 5;
+        left: var(--sidebar-width);
+      }
       
     }
     .right {
       flex: 3;
-
+      @include media($laptop) {
+        flex: 2;
+      }
       .image {
         @include image('/static/img/gazets/gazet11.jpg');
       }
     }
     .text-wrapper {
       @include translateTransition;
+      @include show;
 
       &.translated {
-        opacity: 0;
-        visibility: hidden;
+        @include hide;
         transform: translateY(-100%);
       }
     }
@@ -124,9 +135,13 @@
 
   .row-2 {
 
+    display: flex;
+
     .left {
       flex: 5;
-
+      @include media($laptop) {
+        flex: 3;
+      }
       .image {
         @include image('/static/img/gazets/gazet13.jpg');
         @include show;
@@ -140,10 +155,13 @@
     }
     .right {
       flex: 3;
+      @include media($laptop) {
+        flex: 2;
+      }
       position: relative;
       .overflow-wrapper {
         position: absolute;
-        right: var(--sidebar-width);
+        right: calc(var(--sidebar-width) / 2);
         // right: 0;
       }
       // margin-left: calc(-1 * var(--sidebar-width) / 2);
@@ -160,15 +178,21 @@
   }
 
   .row-3 {
+    display: flex;
+
     .left {
       position: relative;
       left: var(--sidebar-width);
       flex: 3;
-
+      @include media($laptop) {
+        flex: 2;
+      }
     }
     .right {
       flex: 5;
-      
+      @include media($laptop) {
+        flex: 3;
+      }
       .image {
         @include image('/static/img/gazets/gazet10.jpg');
       }
@@ -230,8 +254,27 @@
   }
   .footer {
     width: 100%;
-    height: 6vh;
+    height: $footerHeight;
     background-color: var(--c-delimiter);
     color: var(--c-active);
+  }
+  .latest-news {
+    
+    
+    &__heading {
+      // @include media($laptop) {
+        font-size: 5rem !important,
+      // }
+    }
+
+  
+  }
+  .heading {
+    @include media($laptopL) {
+      font-size: 9rem !important;
+    }
+    @include media($laptop) {
+      font-size: 5rem !important;
+    }
   }
 </style>

@@ -3,11 +3,6 @@
 		<slot></slot>
 	</p>
 </template>
-<script>
-	export default {
-		 inheritAttrs: false,
-	}
-</script>
 
 <style lang="scss" scoped>
 	.heading {
