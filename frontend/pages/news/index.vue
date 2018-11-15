@@ -4,16 +4,8 @@
       <div class="news-list__header">
           <UnderlineHeading style='font-size: 5rem'>News</UnderlineHeading>
       </div>
-      <ul class="news-list__content">
-        <li v-for='i in 20' :key='i' class="news-list__post">
-          <h4 class="news-list__content-info">
-            {{i}} 14 2018 | BY VICTOR XING | CAPITAL MARKETS
-          </h4>
-          <h3 class="news-list__content-title">
-            Roundabout path in the snap-back of long-term bond yields
-          </h3>
-        </li>
-      </ul>
+      <news-list />
+
     </div>
     <div ref='tr-2' class="translated right">
       <article class='post'>
@@ -37,6 +29,7 @@
 
 <script>
 const pkg = require('@/package')
+import NewsList from '@/components/NewsList'
 import translateMixin from '@/mixins/translateMixin.js'
 import UnderlineHeading from '@/components/UI/UnderlineHeading.vue'
 export default {
@@ -46,12 +39,8 @@ export default {
   layout: 'layout1',
   name: 'news',
   components: {
-  	UnderlineHeading
-  },
-  data() {
-    return {
-
-    };
+  	UnderlineHeading,
+    NewsList
   },
   mixins: [translateMixin] 
 };
@@ -72,56 +61,7 @@ export default {
     transform: translateX(-100%);
   }
 }
-.news-list {
-  height: 100vh;
-  display: flex;
-  // align-items: stretch;
-  // justify-content: flex-start;
-  flex-direction: column;
 
-  &__header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 15vh;
-    @include image-darken('/static/img/figures/figure9.jpg', 0.3);
-  }
-
-  &__content {
-    overflow-y: scroll;
-    min-height: 80vh;
-    height: 85vh;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
-  }
-
-  &__post {
-    padding: 2rem 6rem;
-    width: 100%;
-
-    &:nth-child(odd) {
-      background-color: var(--c-delimiter);
-    }
-    &:nth-child(even) {
-      background-color: var(--c-background-light);
-    }
-  }
-
-  &__content-info {
-    font-size: 1rem;
-    color: var(--c-small-title);
-  }
-
-  &__content-title {
-    font-size: 1.6rem;
-    color: var(--c-text-light);
-    font-weight: bold;
-  }
-
-}
 
 .right {
   height: 100vh;

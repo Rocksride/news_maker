@@ -1,9 +1,0 @@
-<snippet>
-    <content><![CDATA[
-<template functional>
-  ${0}
-</template>
-]]></content>
-    <tabTrigger>vuef</tabTrigger>
-</snippet>
-

@@ -1,6 +1,7 @@
 <template>
   <section class="content-section flex-center">
-    <h2 class="title">Tags</h2>
+    <h2 class="title ">Tags</h2>
+    <button class="bw0 br2 bg-red pv2 ph3 white fw1 tc ttu tracked">do what you love</button>
   </section>
 </template>
 
