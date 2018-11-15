@@ -51,7 +51,14 @@ export default {
 }
 .left {
   height: 100%;
-  flex: 3;
+    flex: 3;
+  
+  // @include media($laptop) {
+  //   flex: 2;
+  // }
+  @include media($laptopL) {
+    flex: 3;
+  }
 
   @include show;
   @include translateTransition;
@@ -65,7 +72,14 @@ export default {
 
 .right {
   height: 100vh;
-  flex: 5;
+    flex: 5;
+  
+  // @include media($laptop) {
+  //   flex: 3;
+  // }
+  @include media($laptopL) {
+    flex: 5;
+  }
 
   @include show;
   @include translateTransition;
@@ -80,9 +94,21 @@ export default {
 
   min-height: 100vh;
   height: 100vh;
-  padding: 15rem var(--sidebar-width);
-  & > * {
-    margin-top: 6rem;
+
+
+
+
+
+  @include media($mSmall) {
+     padding: 1rem;
+  }
+  @include media($tablet) {
+      & > * {
+       margin-top: 6rem;
+      }
+  }
+  @include media($tablet) {
+    padding: 15rem var(--sidebar-width);
   }
   &__info {
     font-size: 1.6rem;

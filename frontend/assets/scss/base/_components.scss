@@ -1,7 +1,14 @@
 .content-section {
-  width: calc(100vw - var(--sidebar-width));
-  margin-left: var(--sidebar-width);
   position: relative;
-  min-height: 100vh;
   overflow: hidden;
+  width: 100vw;
+  margin-top: 8rem;
+  
+  @include media($tablet) {
+    min-height: 100vh;
+    width: calc(100vw - var(--sidebar-width));
+    margin-top: 0;
+    margin-left: var(--sidebar-width);
+  }
 }
+

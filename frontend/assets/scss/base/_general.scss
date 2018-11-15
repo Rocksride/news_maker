@@ -4,7 +4,15 @@
 }
 
 html {
-  font-size: 62.5% !important;
+  font-size: 50%  !important;
+
+  @include media($tablet) { // width < 900?
+    font-size: 62.5% !important; //1 rem = 8px, 8/16 = 50%
+  }
+
+  @include media($laptopL) {
+    font-size: 75% !important; //1rem = 12, 12/16
+  }
 }
 
 body {

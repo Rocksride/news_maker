@@ -1,16 +1,20 @@
 <template>
   <nav class='nav'>
-    <div class="nav__logo"><nuxt-link active-class='' class='logo-link' exact to="/">Newswell</nuxt-link></div>
-    <ul class="nav__links">
-      <nuxt-link class='nuxt-link' exact to="/">Home</nuxt-link>
-      <nuxt-link class='nuxt-link' exact to="/news">News</nuxt-link>
-      <nuxt-link class='nuxt-link' exact to="/tags">Tags</nuxt-link>
-      <nuxt-link class='nuxt-link' exact to="/about">About</nuxt-link>
-      <nuxt-link class='nuxt-link' exact to="/news/:1">Last article</nuxt-link>
-      <a @click='$store.dispatch("logout")' class='nuxt-link'>Logout</a>
-    </ul>
-    <nuxt-link  class='nav__contact-button' exact to="/about">Contact us</nuxt-link>
+    <div class="nav__logo"><nuxt-link active-class='' class='logo-link' exact to="/">Newswell</nuxt-link>
+      <img class='nav-hamburger'  @click='menuVisible = !menuVisible' src="https://icon.now.sh/burger" alt=""></div>
+    <div class='menu-wrapper' v-show='menuVisible' :class='{"visible": menuVisible}'>
+      <ul  class="nav__links" >
+        <nuxt-link class='nuxt-link nav-link' exact to="/">Home</nuxt-link>
+        <nuxt-link class='nuxt-link nav-link' exact to="/news">News</nuxt-link>
+        <nuxt-link class='nuxt-link nav-link' exact to="/tags">Tags</nuxt-link>
+        <nuxt-link class='nuxt-link nav-link' exact to="/about">About</nuxt-link>
+        <nuxt-link class='nuxt-link nav-link' exact to="/news/:1">Last article</nuxt-link>
+        <a @click='$store.dispatch("logout")' class='nuxt-link nav-link'>Logout</a>
+      </ul>
+      <nuxt-link  class='nav__contact-button' exact to="/about">Contact us</nuxt-link>
 
+    </div>
+    
   </nav>
 </template>
 
@@ -24,7 +28,10 @@ export default {
     ...mapGetters([
       'isAuthenticated'
     ])
-  }
+  },
+  data: () => ({
+    menuVisible: false
+  })
 
 }
 
@@ -34,11 +41,13 @@ export default {
 @import '@/assets/scss/main.scss';
 
   .nav {
+    overflow: hidden;
+    background-color: var(--c-background-light);
+    z-index: 1001;
     position: fixed;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-direction: column;
     // @include media($mSmall) {
     //    width: $sidebarWidth-sm;
     // }
@@ -48,17 +57,29 @@ export default {
     // @include media($laptopL) {
     //   width: $sidebarWidth-lg;
     // }
-    width: var(--sidebar-width);
-    height: 100%;
+    width: 100vw;
+    flex-direction: column;
+    @include media($tablet) {
+      width: var(--sidebar-width);
+      height: 100%;
+    }
+    .nav-hamburger {
+      cursor: pointer;
+      @include media($tablet) {
+        display: none;
+      }
+    }
     border-right: 1px solid lavender;
     &__logo {
+    background-color: var(--c-background-light);
+      padding: 2rem;
       height: 25%;
       letter-spacing: 1px;
       text-shadow: 3px 7px 10px rgba(0, 0, 0, 0.3);
       width: 100%;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
       text-transform: uppercase;
       font-size: 2.4rem;
       white-space: nowrap;
@@ -71,22 +92,72 @@ export default {
         top: 70%;
         left: -20%;
         content: '';
-        width: 80%;
         height: 3px;
         background-color: var(--c-active);
         transform:  rotate(-45deg);
         z-index: -2;
+        width: 26%;
+        top: 38px;
+        left: 9px;
+
+        @include media(300px) {
+          display: none;
+        }
+        @include media($tablet) {
+          display: block;
+          width: 80%;
+          top: 70%;
+          left: -20%;
+          z-index: 1;
+        }
+      }
+
+      @include media($tablet) {
+        padding: 0;
+        justify-content: center;
       }
     }
+    .menu-wrapper {
+      display: flex; flex-direction: column;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      height: 83%;
+      width: 100%;
 
+      @include media($tablet) {
+        display: flex !important;
+      }
+
+      &.visible {
+        display: flex !important;
+      }
+    }
     &__links {
-      margin-left: -4rem;
+      // display: none;
+      display: flex;
+      width: 100vw;
       height: 60%;
       // width: 90%;
-      display: flex;
-      align-items: flex-start;
       justify-content: flex-start;
       flex-direction: column;
+
+      @include media($tablet) {
+        align-items: flex-start;
+        margin-left: -4rem;
+        width: auto;
+        margin-left: 0;
+      }
+
+      .nav-link {
+        text-align: center;
+        display: block;
+        @include media($tablet) {
+          display: inline;
+        }
+
+      }
+
     }
 
     &__footer {
@@ -103,6 +174,9 @@ export default {
 
     &__contact-button{
       z-index: 1;
+      max-height: 55px;
+      height: 55px;
+      overflow: hidden;
       text-align: center;
       background-color: transparent;
       border: none;
@@ -111,11 +185,24 @@ export default {
       box-sizing: border-box;
       margin: 0;
       color: var(--c-background-light);
-      font-size: 1.6rem;
+      
       font-weight: 700;
       // letter-spacing: 7px;
       text-decoration: none;
-      padding: calc(3vh - 5px) 2.6rem;
+      
+      @include media(800px) {
+        font-size: 1.6rem;
+        padding: calc(3vh - 5px) 2.6rem;
+      }
+  
+      @include media(300px) {
+        height: auto;
+        font-size: 1.4rem;
+         padding: calc(3vh - 5px) 1rem;
+      }
+      // font-size: 1rem;
+
+
       display: flex;
       align-items: center;
       justify-content: center;

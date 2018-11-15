@@ -19,5 +19,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<!-- <style lang="scss" scoped>
+  html {
+    font-weight: 700;
+  }
 </style>
+ -->

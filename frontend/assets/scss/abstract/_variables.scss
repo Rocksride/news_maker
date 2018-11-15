@@ -28,10 +28,10 @@ $laptopL: 1440px;
   @include media($mSmall) {
       --sidebar-width: calc(100vw / 3);
   }
-  @include media($laptop) {
-     --sidebar-width: calc(100vw / 6);
-  }
-  @include media($laptopL) {
+  // @include media($laptop) {
+  //    --sidebar-width: calc(100vw / 6);
+  // }
+  @include media($tablet) {
      --sidebar-width: calc(100vw / 9);
   }
 

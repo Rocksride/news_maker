@@ -64,6 +64,24 @@ module.exports = {
   modules: [
     'nuxt-buefy',
     ['nuxt-sass-resources-loader', '@/assets/scss/main.scss'],
+    // 'nuxt-sass-resources-loader/_index.scss',
+
+    // ['nuxt-sass-resources-loader', [
+    //   //abstract
+    //   '@/assets/scss/abstract/_colors.scss',
+    //   '@/assets/scss/abstract/_mixins.scss',
+    //   '@/assets/scss/abstract/_variables.scss',
+    //   //base
+    //   '@/assets/scss/base/_animation.scss',
+    //   '@/assets/scss/base/_components.scss',
+    //   '@/assets/scss/base/_fonts.scss',
+    //   '@/assets/scss/base/_general.scss',
+    //   '@/assets/scss/base/_reset.scss',
+    //   '@/assets/scss/base/_transitions.scss',
+    //   '@/assets/scss/base/_typography.scss',
+    //   '@/assets/scss/base/_utilities.scss',
+    //   //
+    // ]],
   ],
 
   /*

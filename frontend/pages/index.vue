@@ -13,8 +13,8 @@
           </h3>
            <div class="button-wrapper">
           <!--    <BorderedLink style='font-size: 1rem' to='/news/:1'>READ THE POST</BorderedLink> -->
-          <nuxt-link to="/news/:1">
-             <UnderlineHeading style='font-size: 1.8rem; color: var(--c-text-dark)'>Read the post</UnderlineHeading>
+          <nuxt-link  to="/news/:1">
+             <UnderlineHeading style='font-size: 1.8rem !important; color: var(--c-text-dark)'>Read the post</UnderlineHeading>
           </nuxt-link>
            </div>
         </div>
@@ -77,14 +77,25 @@
     width: 100%;
     height: 100%;
   }
-
   .row {
     width: 100%;
     height: $sectionHeight;
+
+    @include media($mSmall) {
+      flex-direction: column;
+    }
+
+    @include media($tablet) {
+      flex-direction: row !important;
+    }
   }
 
   .row-1 {
     display: flex;
+    
+    @include media($mSmall) {
+     flex-direction: column-reverse;
+    }
 
     .button-wrapper {
       width: 30%;
@@ -113,6 +124,11 @@
       }
     }
     .text-wrapper {
+
+      text-align: center;
+      @include media($tablet) {
+          text-align: left;
+      }
       @include translateTransition;
       @include show;
 
@@ -161,15 +177,22 @@
       position: relative;
       .overflow-wrapper {
         position: absolute;
-        right: calc(var(--sidebar-width) / 2);
+
+        @include media($tablet) {
+          right: calc(var(--sidebar-width) / 2);
+        }
         // right: 0;
       }
       // margin-left: calc(-1 * var(--sidebar-width) / 2);
     }
     .text-wrapper {
+      text-align: center;
+      @include media($tablet) {
+          text-align: left;
+      }
       @include show;
       @include translateTransition;
-
+  
       &.translated {
         @include hide;
         transform: translateX(100%);
@@ -179,10 +202,16 @@
 
   .row-3 {
     display: flex;
+    
+    @include media($mSmall) {
+     flex-direction: column-reverse;
+    }
 
     .left {
       position: relative;
-      left: var(--sidebar-width);
+      @include media($tablet) {
+        left: var(--sidebar-width);
+      }
       flex: 3;
       @include media($laptop) {
         flex: 2;
@@ -200,6 +229,11 @@
     .text-wrapper {
       @include show;
       @include translateTransition;
+      @include media($tablet) {
+          text-align: left;
+      }
+
+      text-align: center;
 
       &.translated {
         @include hide;
@@ -231,7 +265,15 @@
   .news-post {
     @include translateTransition;
     @include show;
-
+    
+    @include media($mSmall) {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+    @include media($tablet) {
+      display: block;
+    }
     &.translated {
       transform: translate(-100%, -20%);
       @include hide;
@@ -255,8 +297,9 @@
   .footer {
     width: 100%;
     height: $footerHeight;
-    background-color: var(--c-delimiter);
+    background-color: var(--c-background-dark);
     color: var(--c-active);
+
   }
   .latest-news {
     

@@ -38,42 +38,70 @@ html {
   // margin: 3rem !important;
   position: relative;
   padding: 1rem;
-  color: #333;
+  color: var(--c-active);
   font-size: 1.6rem;
   // transition: all .3s ease-in;
   display: block;
   // width: 80%;
   &:before {
+    z-index: -1;
     transition: all .3s ease;
     content: '';
-    top: 90%;
-    height: 3px;
+    left: 0;
+    top: 0;
+    height: 100%;
     width: 0;
     background-color: var(--c-active);
     position: absolute;
+
+    @include media($tablet) {
+      height: 3px;
+      top: 90%;
+
+    }
+
+
+  }
+  &:hover {
+    color: var(--c-background-light);
+    @include media($laptop) {
+      color: var(--c-active);
+    }
   }
   &:hover:before {
-    width: 130%;
+    z-index: -1;
+    width: 100vw;
+     @include media($tablet) {
+      
+      width: 130%;
+    }
   }
 }
 
 .nuxt-link-active {
-
-  // margin: 3rem !important;
   position: relative;
   padding: 1rem;
-  color: #333;
   font-size: 1.6rem;
-  // transition: all .3s ease-in;
+  color: var(--c-background-light);
+
+  @include media($tablet) {
+    color: var(--c-active);
+  }
   display: block;
-  // width: 80%;
   &:before {
     transition: all .3s ease;
     content: '';
-    top: 90%;
-    height: 3px;
-    width: 130%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100vw;
     background-color: var(--c-active);
     position: absolute;
+
+    @include media($tablet) {
+      height: 3px;
+      top: 90%;
+      width: 130%;
+    }
   }
 }
