@@ -6,10 +6,14 @@ services:
       context: .
       dockerfile: config/development/Dockerfile.server
     image: newsmaker-server
-    command: ["watchexec", "-e", "py", "-r",  "python", "manage.py"]
+    command: ["python","manage.py", "runserver"]
     restart: on-failure
     volumes:
       - .:/app
+    depends_on:
+      - db
+    environment:
+      - CONFIG_FILE=config/development/config.yml
     ports:
       - "5000:5000"
   flake8:
@@ -18,6 +22,17 @@ services:
       context: .
       dockerfile: config/development/Dockerfile.server
     entrypoint: ["flake8", "--config=flake8.cfg"]
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: news_maker
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: news_maker_dev
+    volumes:
+      - ./postgres-data/postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
 
 networks:
   default:

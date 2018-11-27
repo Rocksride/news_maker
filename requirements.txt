@@ -1,2 +1,4 @@
-aiohttp
+flask
 flake8==3.5.0
+pyyaml
+sqlalchemy
