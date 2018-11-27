@@ -33,6 +33,35 @@ services:
       - ./postgres-data/postgres:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+  db-init:
+    image: newsmaker-server
+    entrypoint: ["python", "manage.py", "db", "init"]
+    environment:
+      - CONFIG_FILE=config/development/config.yml
+    volumes:
+      - .:/app
+  db-migrate:
+    image: newsmaker-server
+    entrypoint: ["python", "manage.py", "db", "migrate", "--message"]
+    environment:
+      - CONFIG_FILE=config/development/config.yml
+    volumes:
+      - .:/app
+  db-upgrade:
+    image: newsmaker-server
+    entrypoint: ["python", "manage.py", "db", "upgrade"]
+    environment:
+      - CONFIG_FILE=config/development/config.yml
+    volumes:
+      - .:/app
+  db-downgrade:
+    image: newsmaker-server
+    entrypoint: ["python", "manage.py", "db", "downgrade"]
+    environment:
+      - CONFIG_FILE=config/development/config.yml
+    volumes:
+      - .:/app
+
 
 networks:
   default:
