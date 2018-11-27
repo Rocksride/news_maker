@@ -1,4 +1,7 @@
 flask
+flask_sqlalchemy
 flake8==3.5.0
+marshmallow
+psycopg2
 pyyaml
 sqlalchemy
