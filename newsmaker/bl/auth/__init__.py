@@ -1,5 +1,4 @@
-import hashlib
-
+from newsmaker.lib.auth import generate_password_hash
 from newsmaker.models.users import User
 from newsmaker.services.db import db
 
@@ -10,18 +9,33 @@ def validate_user(user_data):
         User.query.filter(User.login == user_data['login']).exists()
     ).scalar()
     if login_already_exists:
-        errors.update({"login": "User login already exists"})
+        errors["login"] = "User login already exists"
+    return errors
+
+
+def authenticate_user(user_data):
+    errors = {}
+    login_exists = db.session.query(
+        User.query.filter(User.login == user_data['login']).exists()
+    ).scalar()
+    if not login_exists:
+        errors['login'] = "User does not exists"
+    password_correct = db.session.query(
+        User.query.filter(
+            User.login == user_data['login'],
+            User.password == generate_password_hash(user_data['password'])
+        ).exists()
+    ).scalar()
+    if not password_correct:
+        errors['password'] = "Wrong password"
     return errors
 
 
 def create_user(user_data):
-    password_bin = user_data['password'].encode()
-    password_sha256 = hashlib.sha256(password_bin)
-    password_hash = password_sha256.hexdigest()
     db.session.add(
         User(
             login=user_data['login'],
-            password=password_hash,
+            password=generate_password_hash(user_data['password']),
         )
     )
     db.session.commit()

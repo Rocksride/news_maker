@@ -2,7 +2,8 @@ from flask import request, jsonify
 from flask.views import MethodView
 from marshmallow import Schema, fields, validate
 
-from newsmaker.bl.auth import validate_user, create_user
+from newsmaker.bl.auth import validate_user, create_user, authenticate_user
+from newsmaker.lib.auth import create_jwt
 from newsmaker.lib.helpers.views import error_response
 
 
@@ -28,3 +29,15 @@ class RegisterView(MethodView):
             return error_response(errors)
         create_user(register_data)
         return jsonify("success")
+
+
+class LoginView(MethodView):
+    def post(self):
+        user_data, errors = RegisterSchema().load(request.json)
+        if errors:
+            return error_response(errors)
+        errors = authenticate_user(user_data)
+        if errors:
+            return error_response(errors)
+        jwt = create_jwt(user_data)
+        return jsonify({'jwt': jwt})
