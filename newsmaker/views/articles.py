@@ -9,8 +9,14 @@ from newsmaker.services.db import db
 
 class ArticleSchema(Schema):
     id = fields.Integer(allow_none=True)
-    title = fields.String(validate=[validate.Length(max=255)])
-    content = fields.String(validate=[validate.Length(max=1000)])
+    title = fields.String(
+        validate=[validate.Length(max=255)],
+        required=True,
+    )
+    content = fields.String(
+        validate=[validate.Length(max=1000)],
+        required=True,
+    )
 
 
 class ArticleView(MethodView):

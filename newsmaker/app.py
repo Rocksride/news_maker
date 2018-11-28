@@ -4,11 +4,17 @@ from flask import Flask
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager, Server
 
-from newsmaker.api import set_up_views
+from newsmaker.api import set_up_views as api_views
+from newsmaker.auth import set_up_views as auth_views
 from newsmaker.lib.config import config, to_upper_cased_keys
 from newsmaker.services.db import db
 
 log = logging.getLogger(__name__)
+
+
+def configure_views(app):
+    api_views(app)
+    auth_views(app)
 
 
 def configure_db(app):
@@ -53,6 +59,6 @@ def create_app():
     configure_db(app)
     configure_migration(app, db)
 
-    set_up_views(app)
+    configure_views(app)
     app.manager = configure_manager(app)
     return app
