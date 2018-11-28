@@ -1,4 +1,4 @@
-from newsmaker.lib.auth import generate_password_hash
+from newsmaker.lib.auth import generate_password_hash, decode_jwt
 from newsmaker.models.users import User
 from newsmaker.services.db import db
 
@@ -11,6 +11,13 @@ def validate_user(user_data):
     if login_already_exists:
         errors["login"] = "User login already exists"
     return errors
+
+
+def validate_token(token):
+    user_data = decode_jwt(token)
+    if user_data is None:
+        return False
+    return bool(authenticate_user(user_data))
 
 
 def authenticate_user(user_data):

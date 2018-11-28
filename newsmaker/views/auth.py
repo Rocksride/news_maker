@@ -2,7 +2,12 @@ from flask import request, jsonify
 from flask.views import MethodView
 from marshmallow import Schema, fields, validate
 
-from newsmaker.bl.auth import validate_user, create_user, authenticate_user
+from newsmaker.bl.auth import (
+    validate_user,
+    validate_token,
+    create_user,
+    authenticate_user,
+)
 from newsmaker.lib.auth import create_jwt
 from newsmaker.lib.helpers.views import error_response
 
@@ -40,4 +45,11 @@ class LoginView(MethodView):
         if errors:
             return error_response(errors)
         jwt = create_jwt(user_data)
-        return jsonify({'jwt': jwt})
+        return jsonify({'token': jwt})
+
+
+class ValidateTokenView(MethodView):
+    def post(self):
+        token = request.json.get('token')
+        errors = validate_token(token)
+        return jsonify(bool(errors))
