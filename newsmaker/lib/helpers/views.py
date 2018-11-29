@@ -13,7 +13,7 @@ def user_authorised(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
         token = request.headers.get('Authorization')
-        if token.startswith('Bearer'):
+        if token and token.lower().startswith('bearer'):
             token = token[7:]
         if not validate_token(token):
             abort(401)
