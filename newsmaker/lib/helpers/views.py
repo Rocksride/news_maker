@@ -9,7 +9,7 @@ def error_response(errors, code=400):
     return jsonify({'errors': errors}), code
 
 
-def user_authenticated(func):
+def user_authorised(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
         token = request.headers.get('Authorization')
