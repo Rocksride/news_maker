@@ -3,7 +3,7 @@ from flask.views import MethodView
 from marshmallow import Schema, fields, validate
 
 from newsmaker.bl.articles import save_article, validate_article
-from newsmaker.lib.helpers.views import user_authorised
+from newsmaker.lib.helpers.views import user_authorised, error_response
 from newsmaker.models.articles import Article
 from newsmaker.services.db import db
 
@@ -33,9 +33,9 @@ class ArticleView(MethodView):
     def post(self):
         article_data, errors = ArticleSchema().load(request.json)
         if errors:
-            return jsonify(errors), 400
+            return error_response(errors)
         errors = validate_article(article_data)
         if errors:
-            return jsonify(errors), 400
+            return error_response(errors)
         save_article(article_data)
         return jsonify("success")
