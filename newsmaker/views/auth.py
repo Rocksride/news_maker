@@ -12,7 +12,7 @@ from newsmaker.lib.auth import create_jwt
 from newsmaker.lib.helpers.views import error_response
 
 
-class RegisterSchema(Schema):
+class UserSchema(Schema):
     id = fields.Integer(allow_none=True)
     login = fields.String(
         validate=[validate.Length(max=255)],
@@ -26,7 +26,7 @@ class RegisterSchema(Schema):
 
 class RegisterView(MethodView):
     def post(self):
-        register_data, errors = RegisterSchema().load(request.json)
+        register_data, errors = UserSchema().load(request.json)
         if errors:
             return error_response(errors)
         errors = validate_user(register_data)
@@ -38,7 +38,7 @@ class RegisterView(MethodView):
 
 class LoginView(MethodView):
     def post(self):
-        user_data, errors = RegisterSchema().load(request.json)
+        user_data, errors = UserSchema().load(request.json)
         if errors:
             return error_response(errors)
         errors = authenticate_user(user_data)
