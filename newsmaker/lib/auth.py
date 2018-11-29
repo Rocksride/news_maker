@@ -24,7 +24,7 @@ def create_jwt(user_data):
         algorithm='HS256'
     ).decode('utf-8')
 
-sdasd
+
 def decode_jwt(token):
     try:
         return jwt.decode(
