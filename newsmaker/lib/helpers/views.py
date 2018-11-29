@@ -19,4 +19,3 @@ def user_authorised(func):
             abort(401)
         func(*args, **kwargs)
     return wrapper
-
