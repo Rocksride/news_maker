@@ -64,7 +64,7 @@ const actions = {
   },
   auth: async({commit, dispatch}) => {
     commit(types.SET_TOKEN, Math.random() * 100)
-    $nuxt.$router.replace('/')
+    $nuxt.$router.push('/')
   },
   signIn: async ({ commit, dispatch }, payload) => {
     try {
