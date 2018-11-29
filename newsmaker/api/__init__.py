@@ -6,8 +6,8 @@ def set_up_views(app):
 
     from newsmaker.views.articles import ArticleView
     mod.add_url_rule(
-        '/news',
-        view_func=ArticleView.as_view('news')
+        '/articles',
+        view_func=ArticleView.as_view('articles')
     )
 
     app.register_blueprint(mod, url_prefix='/api')
