@@ -2,16 +2,20 @@
   <news-provider>
     <sortable-list slot-scope='{items, openItemPage}' v-model='items'>
       <ul class="news-list__content" slot-scope='{items}'>
-        <sortable-item v-for='i in items' :key='i'>
+        
+        <sortable-item v-for='(i, index) in items' :key='i'>
           <li  class="news-list__post">
-          <h4 @click='openItemPage(i)' class="news-list__content-info">
+          <div class="news-list__post-wrapper">
+              <h4 @click='openItemPage(i)' class="news-list__content-info">
             {{i}} 14 2018 | BY VICTOR XING | CAPITAL MARKETS
-          </h4>
-          <sortable-handle>
-            <h3 class="news-list__content-title">
-             Roundabout path in the snap-back of long-term bond yields
-            </h3>
-          </sortable-handle>
+            </h4>
+            <sortable-handle>
+              <h3 class="news-list__content-title">
+               Roundabout path in the snap-back of long-term bond yields
+              </h3>
+            </sortable-handle>
+          </div>
+        <slot v-if='index==1' name="progress-indicator">Here goes progress</slot>
         </li>
         </sortable-item>
       </ul>
@@ -19,6 +23,7 @@
 </news-provider>
 </template>
 <script>
+
   import SortableList from './SortableList.js'
   import SortableItem from './SortableItem.js'
   import SortableHandle from './SortableHandle.js'
@@ -28,7 +33,7 @@
       SortableList,
       SortableItem,
       SortableHandle,
-      NewsProvider
+      NewsProvider,
     },
     props: ['news'],
     data() {
@@ -70,7 +75,7 @@
   }
 
   &__post {
-    padding: 2rem 6rem;
+    position: relative;
     width: 100%;
 
     &:nth-child(odd) {
@@ -81,12 +86,17 @@
     }
   }
 
+  &__post-wrapper {
+    padding: 2.6rem;
+  }
   &__content-info {
+
     font-size: 1rem;
     color: var(--c-small-title);
   }
 
   &__content-title {
+
     font-size: 1.6rem;
     color: var(--c-text-light);
     font-weight: bold;

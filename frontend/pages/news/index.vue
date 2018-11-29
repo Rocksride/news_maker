@@ -4,11 +4,13 @@
       <div class="news-list__header">
           <UnderlineHeading style='font-size: 5rem'>News</UnderlineHeading>
       </div>
-      <news-list />
+      <news-list>
+        <ScrollProgress :passedRefs='$refs' slot='progress-indicator' />
+      </news-list>
 
     </div>
     <div ref='tr-2' class="translated right">
-      <article class='post'>
+      <article class='post' ref='post'>
         <header class="post__header">
           <h4 class='post__info'>10 14 2018 | BY VICTOR XING | CAPITAL MARKETS</h4>
           <h3 class='post__title'>Roundabout path in the snap-back of long-term bond</h3>
@@ -28,7 +30,9 @@
 </template>
 
 <script>
+
 const pkg = require('@/package')
+import ScrollProgress from '@/components/ScrollProgress'
 import NewsList from '@/components/NewsList'
 import translateMixin from '@/mixins/translateMixin.js'
 import UnderlineHeading from '@/components/UI/UnderlineHeading.vue'
@@ -40,7 +44,8 @@ export default {
   name: 'news',
   components: {
   	UnderlineHeading,
-    NewsList
+    NewsList,
+    ScrollProgress
   },
   mixins: [translateMixin] 
 };
