@@ -17,5 +17,5 @@ def user_authorised(func):
             token = token[7:]
         if not validate_token(token):
             abort(401)
-        func(*args, **kwargs)
+        return func(*args, **kwargs)
     return wrapper
