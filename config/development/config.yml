@@ -2,3 +2,4 @@ flask:
   timezone: Europe/Kiev
   debug: 1
   sqlalchemy_database_uri: postgresql://news_maker:password@db:5432/news_maker_dev
+  secret: secret-key

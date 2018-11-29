@@ -7,4 +7,5 @@ flake8==3.5.0
 marshmallow
 psycopg2-binary
 pyyaml
+pyjwt
 sqlalchemy
