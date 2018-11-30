@@ -27,7 +27,7 @@
 			height: 0.1em;
 			background-color: currentColor;
 			position: absolute;
-			bottom: 0.1em;
+			bottom: 0.3rem;
 			left: 0;
 		}
 	}

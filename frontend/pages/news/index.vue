@@ -1,5 +1,6 @@
 <template>
 	<section class=" flex-center content-section">
+    <button class="add-news-button">+</button>
 		<div ref='tr-1' class="translated news-list left">
       <div class="news-list__header">
           <UnderlineHeading style='font-size: 5rem'>News</UnderlineHeading>
@@ -130,6 +131,31 @@ export default {
 
   &__text {
   }
+}
+.add-news-button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 3rem;
+  padding: 1rem;
+  background-color: var(--c-background-light);
+  color: var(--c-active);
+  border: 3px dashed var(--c-active);
+  border-radius: 50%;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.6rem;
+  transition: transform 0.1s linear;
 
+  &:hover {
+    color: var(--c-background-light);
+    background-color: var(--c-active);
+    transform: scale(1.1);
+  }
+  &:active {
+    transform: translate(3%, 3%);
+  }
 }
 </style>

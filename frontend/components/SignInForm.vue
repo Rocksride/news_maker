@@ -1,19 +1,36 @@
 <template>
   <AuthProvider>
-      <form slot-scope='{signIn}' class='left-form form translated'>
-            <label for="left-password" class=''>Password</label>
-            <input type="password" class="form-input password"  placeholder='enter password'  id="left-password">
-            <label for="left-email" class=''>Email</label>
-            <input type="email" class="form-input email" placeholder='enter email' id="left-email">
+      <form slot-scope='{signIn}' class='signin-form form translated'>
+           
+            <label for="signin-email">Username</label>
+            <input 
+              v-model='user.login'
+              type="text" 
+              class="form-input username" 
+              placeholder='enter username' 
+              id="signin-username"
+            >
+            <label for="signin-password">Password</label>
+            <input 
+              v-model='user.password'
+              type="password" 
+              class="form-input password"  
+              placeholder='enter password'  
+              id="signin-password"
+            >
             <div class="button-group">
-          
-
               <UnderlineHeading
+                 type='submit'
                  style='font-size: 3rem; text-align: center'
-                 @click.native='signIn'
+                 @click.native='signIn(user)'
+                 class='active-button hover-button'
                  >Login
               </UnderlineHeading>
-              <button type="button" @click='$emit("switchAuth")' class='active-button my-button' >Switch to SignUp</button>
+              <button 
+                type="button" 
+                @click='$emit("switchAuth")' 
+                class='active-button my-button' 
+              >Switch to SignUp</button>
             </div>
       </form>
   </AuthProvider>
@@ -23,11 +40,12 @@
   import AuthProvider from '@/components/AuthProvider.js'
   export default {
     props: [],
-    data() {
-      return {
-        
+    data: () => ({
+      user: {
+        login: null,
+        password: null
       }
-    },
+    }),
     components: {
       AuthProvider,
       UnderlineHeading

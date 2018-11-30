@@ -1,30 +1,60 @@
 import axios from 'axios'
 import * as R from 'ramda'
 
-export const getPosts = () => axios.get(process.env.baseURL + '/posts.json');
+// const _axios = axios.create({
+//   baseURL: process.env.baseURL,
+//   timeout: 1000,
+//   // headers: {'X-Custom-Header': 'foobar'}
+// });
 
-export const savePost = (payload, token) => axios.post(process.env.baseURL + '/posts.json?auth=' + token, payload);
+axios.defaults.baseURL = process.env.baseURL
+// axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+// axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
-export const getSinglePost = (id) => axios.get(process.env.baseURL + `/posts/${id}.json`);
+export const getArticles = () => axios.get('/api/articles')
 
-export const updatePost = (post, token) => axios.put(process.env.baseURL + `/posts/${post.id}.json?auth=` + token, post);
-
-export const signUp = ({
-  email,
-  password
-}) => axios.post('https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=' + process.env.fbAPIKey, {
-  email,
-  password,
-  returnSecureToken: true
+export const postArticle = (payload, token) => axios({
+  method: 'POST',
+  url: '/api/articles', 
+  data: payload,
+  crossDomain: true,
+  headers: {
+    'Access-Control-Allow-Origin': '*',
+    "content-type": "application/json"
+  }
 })
 
-export const signIn = ({
-  email,
-  password
-}) => axios.post('https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=' + process.env.fbAPIKey, {
-  email,
-  password,
-  returnSecureToken: true
+export const signIn = (payload) => axios({
+  method: 'POST',
+  url: '/auth/login',
+  data: payload,
+  crossDomain: true,
+  headers: {
+    'Access-Control-Allow-Origin': '*',
+    "content-type": "application/json"
+  }
 })
 
-export const postApi = (payload) => axios.post('http://localhost:3000/api/track-data', payload)
+export const signUp = (payload) => axios({
+  method: 'POST',
+  url: '/auth/register',
+  data: payload,
+  crossDomain: true,
+  headers: {
+    'Access-Control-Allow-Origin': '*',
+    "Content-Type": "application/json"
+  }
+})
+
+export const validateToken = (payload) => axios({
+  method: 'POST',
+  url: '/auth/validate_token',
+  data: payload,
+  crossDomain: true,
+  headers: {
+    'Access-Control-Allow-Origin': '*',
+    "content-type": "application/json"
+  }
+})
+

@@ -3,11 +3,11 @@
     methods: {
 
       signIn(data) {
-        this.$store.dispatch('auth');
+        this.$store.dispatch('signIn', data);
         
       },
       signUp(data) {
-        this.$store.dispatch('auth');
+        this.$store.dispatch('signUp', data);
         
       },
     },
