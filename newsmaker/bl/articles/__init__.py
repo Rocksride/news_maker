@@ -21,3 +21,11 @@ def save_article(article_data):
     )
     db.session.add(new_article_db)
     db.session.commit()
+
+
+def get_articles():
+    return db.session.query(
+        Article.id,
+        Article.title,
+        Article.content,
+    ).all()
