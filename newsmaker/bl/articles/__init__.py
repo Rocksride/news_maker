@@ -1,4 +1,7 @@
+from sqlalchemy import func
+
 from newsmaker.models.articles import Article
+from newsmaker.models.tags import article_tags
 from newsmaker.services.db import db
 
 
@@ -28,4 +31,16 @@ def get_articles():
         Article.id,
         Article.title,
         Article.content,
+        Article.author_id,
+        Article.rubric_id,
+        func.array_agg(article_tags.c.tag_id).label('tags_ids'),
+    ).join(
+        article_tags,
+        article_tags.c.article_id == Article.id
+    ).group_by(
+        Article.id,
+        Article.title,
+        Article.content,
+        Article.author_id,
+        Article.rubric_id,
     ).all()
