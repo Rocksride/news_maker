@@ -17,7 +17,16 @@ def validate_token(token):
     user_data = decode_jwt(token)
     if user_data is None:
         return False
-    return bool(authenticate_user(user_data))
+    return bool(user_exists(user_data))
+
+
+def user_exists(user_data_from_token):
+    return db.session.query(
+        User.query.filter(
+            User.login == user_data_from_token['login'],
+            User.password == user_data_from_token['password']
+        ).exists()
+    ).scalar()
 
 
 def authenticate_user(user_data):
@@ -46,3 +55,15 @@ def create_user(user_data):
         )
     )
     db.session.commit()
+
+
+def get_current_user_id():
+    from newsmaker.lib.helpers.views import get_token
+
+    token = get_token()
+    user_data = decode_jwt(token)
+    return db.session.query(
+        User.id,
+    ).filter(
+        User.login == user_data.get('login')
+    ).first().id

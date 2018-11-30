@@ -1,4 +1,6 @@
-from newsmaker.models.tags import Tag
+from sqlalchemy import insert
+
+from newsmaker.models.tags import Tag, article_tags
 from newsmaker.services.db import db
 
 
@@ -24,3 +26,11 @@ def get_tags():
         Tag.id,
         Tag.title,
     ).all()
+
+
+def add_article_tag(article_id, tag_id):
+    insert_article_tag = insert(article_tags).values(
+        article_id=article_id,
+        tag_id=tag_id,
+    )
+    db.engine.execute(insert_article_tag.on_conflict_do_nothing())
