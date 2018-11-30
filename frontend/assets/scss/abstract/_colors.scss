@@ -1,0 +1,42 @@
+$themes:
+('blue', (
+  (c-text-light, #252525),
+  (c-text-dark, #222),
+  (c-active, #21c2f8),
+  (c-background-dark, #202020),
+  (c-background-light,  #fff),
+  (c-delimiter, lavender),
+  (c-small-title, #a6a6a6)
+  )),
+('red', (
+  (c-text-light, #252525),
+  (c-text-dark, #222),
+  (c-active, #e83a30),
+  (c-background-dark, #202020),
+  (c-background-light,  #fff),
+  (c-delimiter, lavender),
+  (c-small-title, #a6a6a6)
+  )),
+('yellow', (
+  (c-text-light, #252525),
+  (c-text-dark, #222),
+  (c-active, hsl(12,51,30)),
+  (c-background-dark, #202020),
+  (c-background-light,  #fff),
+  (c-delimiter, lavender),
+  (c-small-title, #a6a6a6)
+));
+
+@each $theme in $themes {
+  $themeName: nth($theme, 1);
+  $themeColors: nth($theme, 2);
+
+  @each $variable, $color in $themeColors {
+    html {
+      --#{$variable}: #{$color};
+    }
+    html[data-theme="#{$themeName}"] {
+      --#{$variable}: #{$color};
+    }
+  }
+}
