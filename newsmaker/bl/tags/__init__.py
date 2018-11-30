@@ -33,4 +33,4 @@ def add_article_tag(article_id, tag_id):
         article_id=article_id,
         tag_id=tag_id,
     )
-    db.engine.execute(insert_article_tag.on_conflict_do_nothing())
+    db.engine.execute(insert_article_tag)

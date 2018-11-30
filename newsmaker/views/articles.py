@@ -16,7 +16,11 @@ class ArticleSchema(Schema):
         validate=[validate.Length(max=1000)],
         required=True,
     )
-    authorId = fields.Integer(attribute='author_id', required=True)
+    authorId = fields.Integer(
+        attribute='author_id',
+        dump_only=True,
+        required=True,
+    )
     rubricId = fields.Integer(attribute='rubric_id', required=True)
     tagsIds = fields.List(
         fields.Integer(),

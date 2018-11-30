@@ -24,14 +24,12 @@ def save_article(article_data):
         title=article_data.get('title'),
         content=article_data.get('content'),
         rubric_id=article_data.get('rubric_id'),
-        user_id=get_current_user_id(),
+        author_id=get_current_user_id(),
     )
     db.session.add(new_article_db)
-    # flash db to create article id for many to many table article_tags
-    db.session.flush()
+    db.session.commit()
     for tag_id in article_data.get('tags_ids'):
         add_article_tag(new_article_db.id, tag_id)
-    db.session.commit()
 
 
 def get_articles():
