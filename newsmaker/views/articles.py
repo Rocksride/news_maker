@@ -2,10 +2,8 @@ from flask import jsonify, request
 from flask.views import MethodView
 from marshmallow import Schema, fields, validate
 
-from newsmaker.bl.articles import save_article, validate_article
+from newsmaker.bl.articles import save_article, validate_article, get_articles
 from newsmaker.lib.helpers.views import user_authorised, error_response
-from newsmaker.models.articles import Article
-from newsmaker.services.db import db
 
 
 class ArticleSchema(Schema):
@@ -18,16 +16,23 @@ class ArticleSchema(Schema):
         validate=[validate.Length(max=1000)],
         required=True,
     )
+    authorId = fields.Integer(
+        attribute='author_id',
+        dump_only=True,
+        required=True,
+    )
+    rubricId = fields.Integer(attribute='rubric_id', required=True)
+    tagsIds = fields.List(
+        fields.Integer(),
+        attribute='tags_ids',
+        required=True,
+    )
 
 
 class ArticleView(MethodView):
     def get(self):
-        news = db.session.query(
-            Article.id,
-            Article.title,
-            Article.content,
-        )
-        return jsonify(ArticleSchema().dump(news, many=True).data)
+        articles = get_articles()
+        return jsonify(ArticleSchema().dump(articles, many=True).data)
 
     @user_authorised
     def post(self):

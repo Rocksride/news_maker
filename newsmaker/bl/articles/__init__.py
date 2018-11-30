@@ -1,4 +1,9 @@
+from sqlalchemy import func
+
+from newsmaker.bl.auth import get_current_user_id
+from newsmaker.bl.tags import add_article_tag
 from newsmaker.models.articles import Article
+from newsmaker.models.tags import article_tags
 from newsmaker.services.db import db
 
 
@@ -17,7 +22,31 @@ def validate_article(article_data):
 def save_article(article_data):
     new_article_db = Article(
         title=article_data.get('title'),
-        content=article_data.get('content')
+        content=article_data.get('content'),
+        rubric_id=article_data.get('rubric_id'),
+        author_id=get_current_user_id(),
     )
     db.session.add(new_article_db)
     db.session.commit()
+    for tag_id in article_data.get('tags_ids'):
+        add_article_tag(new_article_db.id, tag_id)
+
+
+def get_articles():
+    return db.session.query(
+        Article.id,
+        Article.title,
+        Article.content,
+        Article.author_id,
+        Article.rubric_id,
+        func.array_agg(article_tags.c.tag_id).label('tags_ids'),
+    ).join(
+        article_tags,
+        article_tags.c.article_id == Article.id
+    ).group_by(
+        Article.id,
+        Article.title,
+        Article.content,
+        Article.author_id,
+        Article.rubric_id,
+    ).all()

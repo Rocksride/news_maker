@@ -4,7 +4,6 @@ from marshmallow import Schema, fields, validate
 
 from newsmaker.bl.auth import (
     validate_user,
-    validate_token,
     create_user,
     authenticate_user,
 )
@@ -46,10 +45,3 @@ class LoginView(MethodView):
             return error_response(errors)
         jwt = create_jwt(user_data)
         return jsonify({'token': jwt})
-
-
-class ValidateTokenView(MethodView):
-    def post(self):
-        token = request.json.get('token')
-        errors = validate_token(token)
-        return jsonify(bool(errors))
