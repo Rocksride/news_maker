@@ -12,6 +12,8 @@ class ArticleSchema(Schema):
         validate=[validate.Length(max=255)],
         required=True,
     )
+    createDate = fields.DateTime(attribute='create_date', allow_none=True)
+    updateDate = fields.DateTime(attribute='update_date', allow_none=True)
     content = fields.String(
         validate=[validate.Length(max=1000)],
         required=True,
@@ -29,9 +31,21 @@ class ArticleSchema(Schema):
     )
 
 
+class SearchFilterSchema(Schema):
+    authorId = fields.Integer(attribute='author_id')
+    rubricId = fields.Integer(attribute='rubric_id')
+    tagsIds = fields.Function(
+        deserialize=lambda _: request.args.getlist('tagsIds'),
+        attribute='tags_ids',
+    )
+    createDateFrom = fields.Date(attribute='create_date_from')
+    createDateTo = fields.Date(attribute='create_date_to')
+
+
 class ArticleView(MethodView):
     def get(self):
-        articles = get_articles()
+        search_filter = SearchFilterSchema().load(request.args).data
+        articles = get_articles(search_filter)
         return jsonify(ArticleSchema().dump(articles, many=True).data)
 
     @user_authorised
