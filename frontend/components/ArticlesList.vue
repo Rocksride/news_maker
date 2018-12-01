@@ -1,17 +1,20 @@
 <template>
-  <news-provider>
-    <sortable-list slot-scope='{items, openItemPage}' v-model='items'>
-      <ul class="news-list__content" slot-scope='{items}'>
+  <articles-provider>
+    <sortable-list
+     v-if='items.length > 0'
+     slot-scope='{items, openItemPage}'
+     v-model='items'>
+      <ul class="articles-list__content" slot-scope='{items}'>
         
-        <sortable-item v-for='(i, index) in items' :key='i'>
-          <li  class="news-list__post">
-          <div class="news-list__post-wrapper">
-              <h4 @click='openItemPage(i)' class="news-list__content-info">
-            {{i}} 14 2018 | BY VICTOR XING | CAPITAL MARKETS
+        <sortable-item v-for='(item, index) in items' :key='item'>
+          <li  class="articles-list__post">
+          <div class="articles-list__post-wrapper">
+              <h4 @click='openItemPage(item)' class="articles-list__content-info">
+            14 2018 | BY VICTOR XING | {{item.title}}
             </h4>
             <sortable-handle>
-              <h3 class="news-list__content-title">
-               Roundabout path in the snap-back of long-term bond yields
+              <h3 class="articles-list__content-title">
+               {{item.content && item.content.slice(0, 100) + '...'}}
               </h3>
             </sortable-handle>
           </div>
@@ -20,22 +23,23 @@
         </sortable-item>
       </ul>
   </sortable-list>
-</news-provider>
+  <h3 class="title">Be first to add new article</h3>
+</articles-provider>
 </template>
 <script>
 
   import SortableList from './SortableList.js'
   import SortableItem from './SortableItem.js'
   import SortableHandle from './SortableHandle.js'
-  import NewsProvider from './NewsProvider.js'
+  import ArticlesProvider from './ArticlesProvider.js'
   export default {
     components: {
       SortableList,
       SortableItem,
       SortableHandle,
-      NewsProvider,
+      ArticlesProvider,
     },
-    props: ['news'],
+    props: ['articles'],
     data() {
       return {
         
@@ -48,7 +52,7 @@
 </script>
 
 <style lang="scss">
-  .news-list {
+.articles-list {
   height: 100vh;
   display: flex;
   // align-items: stretch;

@@ -7,7 +7,7 @@ export default {
   },
   methods: {
     openItemPage(id) {
-      this.$router.push(`/news/${id}`)
+      this.$router.push(`/articles/${id}`)
     }
   },
   render() {

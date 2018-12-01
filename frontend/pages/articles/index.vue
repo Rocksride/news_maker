@@ -1,13 +1,21 @@
 <template>
 	<section class=" flex-center content-section">
-    <button class="add-news-button">+</button>
-		<div ref='tr-1' class="translated news-list left">
-      <div class="news-list__header">
-          <UnderlineHeading style='font-size: 5rem'>News</UnderlineHeading>
+    <button 
+      ref='tr-3'
+      class="add-articles-button translated"
+    >+</button>
+
+ <!--    <portal to="modals">
+      <NewArticleForm />
+    </portal> -->
+
+		<div ref='tr-1' class="translated articles-list left">
+      <div class="articles-list__header">
+          <UnderlineHeading style='font-size: 5rem'>articles</UnderlineHeading>
       </div>
-      <news-list>
+      <articles-list>
         <ScrollProgress :passedRefs='$refs' slot='progress-indicator' />
-      </news-list>
+      </articles-list>
 
     </div>
     <div ref='tr-2' class="translated right">
@@ -34,7 +42,8 @@
 
 const pkg = require('@/package')
 import ScrollProgress from '@/components/ScrollProgress'
-import NewsList from '@/components/NewsList'
+import ArticlesList from '@/components/ArticlesList'
+import NewArticleForm from '@/components/NewArticleForm'
 import translateMixin from '@/mixins/translateMixin.js'
 import UnderlineHeading from '@/components/UI/UnderlineHeading.vue'
 export default {
@@ -42,10 +51,11 @@ export default {
     title: `${pkg.name} - Articles`
   }),
   layout: 'layout1',
-  name: 'news',
+  name: 'articles',
   components: {
   	UnderlineHeading,
-    NewsList,
+    ArticlesList,
+    NewArticleForm,
     ScrollProgress
   },
   mixins: [translateMixin] 
@@ -101,10 +111,6 @@ export default {
   min-height: 100vh;
   height: 100vh;
 
-
-
-
-
   @include media($mSmall) {
      padding: 1rem;
   }
@@ -132,7 +138,9 @@ export default {
   &__text {
   }
 }
-.add-news-button {
+.add-articles-button {
+  @include show;
+  @include translateTransition;
   border: none;
   outline: none;
   cursor: pointer;
@@ -142,20 +150,24 @@ export default {
   padding: 1rem;
   background-color: var(--c-background-light);
   color: var(--c-active);
-  border: 3px dashed var(--c-active);
+  border: 1px dashed var(--c-active);
   border-radius: 50%;
   font-size: 3rem;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.6rem;
-  transition: transform 0.1s linear;
-
   &:hover {
-    color: var(--c-background-light);
-    background-color: var(--c-active);
-    transform: scale(1.1);
+  font-weight: 700;
+  border-width: 4px;
+  top: 0.8rem;
+  right: 2.8rem;
   }
   &:active {
-    transform: translate(3%, 3%);
+    background-color: var(--c-active);
+    color: var(--c-background-light);
+  }
+  &.translated {
+    @include hide;
+    transform: translate(0%, -200%);
   }
 }
 </style>

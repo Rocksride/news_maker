@@ -1,7 +1,7 @@
 <template>
   <section class='content-section'>
 	     <hgroup>
-	        <h1 ref='test' class="title translated">news with id</h1>
+	        <h1 ref='test' class="title translated">article with id</h1>
 	        <h2 ref='testImg' class="subtitle translated">{{$route.params.id}}</h2>
 	     </hgroup>
   </section>

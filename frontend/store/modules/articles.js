@@ -1,21 +1,21 @@
 import * as types from '../mutationTypes'
 import * as api from '@/api'
 const state = {
-  news: [],
+  articles: [],
   numbers: Array.from({length:20}, (_, i) => i+1)
 
 }
 
 const getters = {
-  news: state => state.news,
+  articles: state => state.articles,
   numbers: state => state.numbers
 }
 
 const mutations = {
-  [types.SET_NEWS]: (state, payload) => state.news = payload,
-  [types.ADD_NEWS]: (state, payload) => state.news.push(payload),
-  [types.REMOVE_NEWS]: (state, payload) => state.news = state.news.filter(el => el.id !== payload.id),
-  [types.UPDATE_NEWS]: (state, payload) => state.news = state.news.map(el => el.id === payload.id ? payload : el)
+  [types.SET_ARTICLES]: (state, payload) => state.articles = payload,
+  [types.ADD_ARTICLES]: (state, payload) => state.articles.push(payload),
+  [types.REMOVE_ARTICLES]: (state, payload) => state.articles = state.articles.filter(el => el.id !== payload.id),
+  [types.UPDATE_ARTICLES]: (state, payload) => state.articles = state.articles.map(el => el.id === payload.id ? payload : el)
 }
 
 const actions = {
@@ -23,7 +23,7 @@ const actions = {
   //   if (!process.client) { }
   //   return api.getPosts()
   //     // .then(helpers.getValuesFrom)
-  //     .then(data => vuexContext.commit(types.SET_NEWS, data))
+  //     .then(data => vuexContext.commit(types.SET_ARTICLES, data))
   //     .catch(nuxtContext.error)
   // },
   // savePost: async ({ commit, dispatch, getters }, payload) => {
@@ -51,6 +51,9 @@ const actions = {
   //     console.error(err)
   //   }
   // },
+  addArticle: ({commit}, payload) => {
+    commit(types.ADD_ARTICLES, payload);
+  }
 }
 
 export default {

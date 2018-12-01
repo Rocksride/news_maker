@@ -35,6 +35,9 @@ html {
 }
 
 .nuxt-link {
+  display: block;
+  width: 100%;
+  text-align: center;
   // margin: 3rem !important;
   position: relative;
   padding: 1rem;
@@ -43,6 +46,10 @@ html {
   // transition: all .3s ease-in;
   display: block;
   // width: 80%;
+  @include media($tablet) {
+      color: var(--c-active);
+      text-align: left;
+  }
   &:before {
     z-index: -1;
     transition: all .3s ease;
@@ -64,7 +71,7 @@ html {
   }
   &:hover {
     color: var(--c-background-light);
-    @include media($laptop) {
+    @include media($tablet) {
       color: var(--c-active);
     }
   }
@@ -73,19 +80,23 @@ html {
     width: 100vw;
      @include media($tablet) {
       
-      width: 130%;
+      width: 100%;
     }
   }
 }
 
 .nuxt-link-active {
+  display: block;
+  width: 100%;
   position: relative;
   padding: 1rem;
   font-size: 1.6rem;
+  text-align: center;
   color: var(--c-background-light);
 
   @include media($tablet) {
     color: var(--c-active);
+    text-align: left;
   }
   display: block;
   &:before {
@@ -94,14 +105,15 @@ html {
     top: 0;
     left: 0;
     height: 100%;
-    width: 100vw;
+    width: 100%;
     background-color: var(--c-active);
     position: absolute;
 
     @include media($tablet) {
       height: 3px;
       top: 90%;
-      width: 130%;
+      width: 100%;
+      text-align: center;
     }
   }
 }

@@ -1,6 +1,7 @@
 <template>
   <div class='layout'>
     <TheNavbar />
+    <portal-target name="modals"> </portal-target>
     <div  class="lines ">
       <div  class="line  line-1"></div>
       <div  class="line  line-2"></div>

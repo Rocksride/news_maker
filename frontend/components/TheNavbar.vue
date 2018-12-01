@@ -5,10 +5,10 @@
     <div class='menu-wrapper' v-show='menuVisible' :class='{"visible": menuVisible}'>
       <ul  class="nav__links" >
         <nuxt-link class='nuxt-link nav-link' exact to="/">Home</nuxt-link>
-        <nuxt-link class='nuxt-link nav-link' exact to="/news">News</nuxt-link>
+        <nuxt-link class='nuxt-link nav-link' exact to="/articles">Articles</nuxt-link>
         <nuxt-link class='nuxt-link nav-link' exact to="/tags">Tags</nuxt-link>
         <nuxt-link class='nuxt-link nav-link' exact to="/about">About</nuxt-link>
-        <nuxt-link class='nuxt-link nav-link' exact to="/news/:1">Last article</nuxt-link>
+        <nuxt-link class='nuxt-link nav-link' exact to="/articles/:1">Last article</nuxt-link>
         <a @click='$store.dispatch("logout")' class='nuxt-link nav-link'>Logout</a>
       </ul>
       <nuxt-link  class='nav__contact-button' exact to="/about">Contact us</nuxt-link>
@@ -150,11 +150,10 @@ export default {
       }
 
       .nav-link {
-        text-align: center;
         display: block;
-        @include media($tablet) {
-          display: inline;
-        }
+        // @include media($tablet) {
+        //   display: inline;
+        // }
 
       }
 
@@ -174,8 +173,8 @@ export default {
 
     &__contact-button{
       z-index: 1;
-      max-height: 55px;
-      height: 55px;
+      // max-height: 55px;
+      height: 38px;
       overflow: hidden;
       text-align: center;
       background-color: transparent;
@@ -189,19 +188,19 @@ export default {
       font-weight: 700;
       // letter-spacing: 7px;
       text-decoration: none;
-      
-      @include media(800px) {
+
+      @include media($tablet) {
+        height: 55px;
+
         font-size: 1.6rem;
         padding: calc(3vh - 5px) 2.6rem;
       }
   
       @include media(300px) {
-        height: auto;
+        // height: $footerHeight;
         font-size: 1.4rem;
-         padding: calc(3vh - 5px) 1rem;
+         padding: calc(3vh - 5px) .5rem;
       }
-      // font-size: 1rem;
-
 
       display: flex;
       align-items: center;

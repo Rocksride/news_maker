@@ -10,7 +10,7 @@ import * as R from 'ramda'
 axios.defaults.baseURL = process.env.baseURL
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-// axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
 export const getArticles = () => axios.get('/api/articles')
 
@@ -20,7 +20,7 @@ export const postArticle = (payload, token) => axios({
   data: payload,
   crossDomain: true,
   headers: {
-    'Access-Control-Allow-Origin': '*',
+    // 'Access-Control-Allow-Origin': '*',
     "content-type": "application/json"
   }
 })
@@ -31,7 +31,7 @@ export const signIn = (payload) => axios({
   data: payload,
   crossDomain: true,
   headers: {
-    'Access-Control-Allow-Origin': '*',
+    // 'Access-Control-Allow-Origin': '*',
     "content-type": "application/json"
   }
 })
@@ -42,7 +42,7 @@ export const signUp = (payload) => axios({
   data: payload,
   crossDomain: true,
   headers: {
-    'Access-Control-Allow-Origin': '*',
+    // 'Access-Control-Allow-Origin': '*',
     "Content-Type": "application/json"
   }
 })
@@ -53,7 +53,7 @@ export const validateToken = (payload) => axios({
   data: payload,
   crossDomain: true,
   headers: {
-    'Access-Control-Allow-Origin': '*',
+    // 'Access-Control-Allow-Origin': '*',
     "content-type": "application/json"
   }
 })
