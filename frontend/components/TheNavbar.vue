@@ -5,10 +5,10 @@
     <div class='menu-wrapper' v-show='menuVisible' :class='{"visible": menuVisible}'>
       <ul  class="nav__links" >
         <nuxt-link class='nuxt-link nav-link' exact to="/">Home</nuxt-link>
-        <nuxt-link class='nuxt-link nav-link' exact to="/articles">Articles</nuxt-link>
-        <nuxt-link class='nuxt-link nav-link' exact to="/tags">Tags</nuxt-link>
+        <nuxt-link class='nuxt-link nav-link' to="/articles">Articles</nuxt-link>
+        <nuxt-link class='nuxt-link nav-link' to="/tags">Tags</nuxt-link>
         <nuxt-link class='nuxt-link nav-link' exact to="/about">About</nuxt-link>
-        <nuxt-link class='nuxt-link nav-link' exact to="/articles/:1">Last article</nuxt-link>
+        <nuxt-link class='nuxt-link nav-link' exact to="/articles/1">Last article</nuxt-link>
         <a @click='$store.dispatch("logout")' class='nuxt-link nav-link'>Logout</a>
       </ul>
       <nuxt-link  class='nav__contact-button' exact to="/about">Contact us</nuxt-link>
@@ -249,7 +249,27 @@ export default {
     }
 
   }
+
+  /*
+
+$mSmall: 320px;
+$mMedium: 375px;
+$mLarge: 425px;
+$tablet: 768px;
+$laptop: 1024px;
+$laptopL: 1440px;
+
+*/
   .logo-link {
+    @include media($tablet) {
+      font-size: 1.4rem;
+    }    
+    @include media($laptop) {
+      font-size: 1.8rem;
+    }   
+    @include media($laptopL) {
+      font-size: 2.2rem;
+    }
     color: var(--c-text-dark) !important;
   }
 </style>

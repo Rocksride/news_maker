@@ -1,5 +1,5 @@
 <template>
-  <progress ref='progress' class='scroll-progress' value="0" max='100'>
+  <progress slot-scope='{index}' :key='index' :ref='"progress"+index' class='scroll-progress' value="0" max='100'>
     <!-- fallback -->
   </progress>
 </template>
@@ -7,8 +7,8 @@
   import debounce from '@/utils/debounce.js'
   export default {
     props: {
-      passedRefs: {
-        required: true
+      index: {
+
       }
     },
     data() {
@@ -18,23 +18,30 @@
     },
     methods: {
       scrollHandler() {
-        console.log("scroll");
-        const post = this.passedRefs.post
-        console.log(post);
+        // const post = this.passedRefs.post
+        const post = document.querySelector('.detailed-post')
         const currentState = post.scrollTop;
         const pageHeight = post.scrollHeight - post.clientHeight;
         const scrollStatePercentage = currentState / pageHeight * 100;
-        console.log({pageHeight, currentState, scrollStatePercentage})
-        this.$refs.progress.setAttribute('value', scrollStatePercentage);
+        console.log({scrollStatePercentage})
+        const scrollProgress = document.querySelector('.scroll-progress')
+        scrollProgress.setAttribute('value', scrollStatePercentage);
       }
     },
     mounted() {
+      console.log('create')
       // this.debouncedHandler = debounce(this.scrollHandler, 1)
-      this.passedRefs.post.addEventListener('scroll', this.scrollHandler)
+        // this.$nextTick(() => {
+            const post = document.querySelector('.detailed-post')
+            console.log({post})
+            post.addEventListener('scroll', this.scrollHandler)
+          // this.passedRefs.post.addEventListener('scroll', this.scrollHandler)
 
-      this.$once('hook:destroyed', () => {
-        this.passedRefs.post.removeEventListener('scroll', this.scrollHandler)
-      })
+          this.$once('hook:destroyed', () => {
+            post.removeEventListener('scroll', this.scrollHandler)
+            // this.passedRefs.post.removeEventListener('scroll', this.scrollHandler)
+          })
+        // })
     }
   }
 </script>

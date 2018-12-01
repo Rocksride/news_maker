@@ -13,7 +13,7 @@
           </h3>
            <div class="button-wrapper">
           <!--    <BorderedLink style='font-size: 1rem' to='/news/:1'>READ THE POST</BorderedLink> -->
-          <nuxt-link  to="/news/:1">
+          <nuxt-link  to="/articles/:1">
              <UnderlineHeading style='font-size: 1.8rem !important; color: var(--c-text-dark)'>Read the post</UnderlineHeading>
           </nuxt-link>
            </div>

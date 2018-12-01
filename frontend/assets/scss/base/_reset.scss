@@ -50,6 +50,13 @@ html {
       color: var(--c-active);
       text-align: left;
   }
+  @include media($tablet) {
+    font-size: 1.4rem;
+  }
+  @include media($laptop) {
+    font-size: 1.6rem;
+  }
+
   &:before {
     z-index: -1;
     transition: all .3s ease;
@@ -60,7 +67,7 @@ html {
     width: 0;
     background-color: var(--c-active);
     position: absolute;
-
+  
     @include media($tablet) {
       height: 3px;
       top: 90%;

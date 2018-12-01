@@ -2,7 +2,7 @@ import { mapGetters } from 'vuex'
 export default {
   computed: {
     numbers() {
-      return this.$store.getters.numbers
+      return this.$store.getters.articles
     }
   },
   methods: {

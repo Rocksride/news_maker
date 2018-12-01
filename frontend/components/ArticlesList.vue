@@ -6,20 +6,28 @@
      v-model='items'>
       <ul class="articles-list__content" slot-scope='{items}'>
         
-        <sortable-item v-for='(item, index) in items' :key='item'>
-          <li  class="articles-list__post">
-          <div class="articles-list__post-wrapper">
-              <h4 @click='openItemPage(item)' class="articles-list__content-info">
-            14 2018 | BY VICTOR XING | {{item.title}}
-            </h4>
-            <sortable-handle>
-              <h3 class="articles-list__content-title">
-               {{item.content && item.content.slice(0, 100) + '...'}}
-              </h3>
-            </sortable-handle>
-          </div>
-        <slot v-if='index==1' name="progress-indicator">Here goes progress</slot>
-        </li>
+        <sortable-item v-for='(item) in items' :key='item.id'>
+              <li
+                @click='openArticle(item.id)'
+                class='articles-list__post article-current'
+                :class='{"article-current-active": articleId === item.id}'
+              >
+
+                <div class="articles-list__post-wrapper">
+                    <h4 class="articles-list__content-info">
+                         14 2018 | BY VICTOR XING | {{item.title}}
+                    </h4>
+                    <sortable-handle>
+                      <h3 class="articles-list__content-title">
+                       {{item.content && item.content.slice(0, 100) + '...'}}
+                      </h3>
+                    </sortable-handle>
+                </div>
+                <ScrollProgress 
+                 v-if='articleId === item.id'
+                />
+              </li>
+
         </sortable-item>
       </ul>
   </sortable-list>
@@ -28,16 +36,20 @@
 </template>
 <script>
 
+  import {mapGetters} from 'vuex'
   import SortableList from './SortableList.js'
   import SortableItem from './SortableItem.js'
   import SortableHandle from './SortableHandle.js'
   import ArticlesProvider from './ArticlesProvider.js'
+  import ScrollProgress from '@/components/ScrollProgress'
+
   export default {
     components: {
       SortableList,
       SortableItem,
       SortableHandle,
       ArticlesProvider,
+      ScrollProgress
     },
     props: ['articles'],
     data() {
@@ -45,8 +57,26 @@
         
       }
     },
+    mounted() {
+      console.dir({route: this.$route.params.id})
+    },
+    computed: {
+      ...mapGetters(['articleId'])
+    },
     methods: {
-      
+      checkForCurrentId(id) {
+        console.group('123')
+        console.log(id);
+        console.log(this.articleId)
+        console.groupEnd('123')
+        return this.articleId === id
+      },
+      openArticle(id) {
+        this.$store.dispatch('updateCurrentId', id)
+        this.$router.push({
+          path: `/articles/${id}`
+        })
+      }
     },
   }
 </script>
@@ -81,13 +111,8 @@
   &__post {
     position: relative;
     width: 100%;
-
-    &:nth-child(odd) {
-      background-color: var(--c-delimiter);
-    }
-    &:nth-child(even) {
-      background-color: var(--c-background-light);
-    }
+    background-color: var(--c-background-light);
+    border-bottom: 1px solid var(--c-delimiter);
   }
 
   &__post-wrapper {
@@ -107,4 +132,14 @@
   }
 
 }
+
+.article-current {
+  
+  &-active {
+    display: block;
+    padding: 0;
+    background-color: var(--c-delimiter);
+  }
+}
+
 </style>

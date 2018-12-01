@@ -1,3 +1,4 @@
+
 @mixin mobile {
   @media screen and (min-width: $mobile-width) {
     @content;
@@ -36,7 +37,7 @@
 
 @mixin translateTransition {
   transform: none;
-  transition: transform $translateTime $translateFunction;
+  transition: all $translateTime $translateFunction;
 }
 
 @mixin hide {
