@@ -32,9 +32,11 @@ def save_article(article_data):
         add_article_tag(new_article_db.id, tag_id)
 
 
-def get_articles():
-    return db.session.query(
+def get_articles(search_filter):
+    query = db.session.query(
         Article.id,
+        Article.create_date,
+        Article.update_date,
         Article.title,
         Article.content,
         Article.author_id,
@@ -49,4 +51,33 @@ def get_articles():
         Article.content,
         Article.author_id,
         Article.rubric_id,
-    ).all()
+    )
+    query = apply_search_filter(search_filter, query)
+    return query.all()
+
+
+def apply_search_filter(search_filter, query):
+    if search_filter.get('rubric_id'):
+        query = query.filter(
+            Article.rubric_id == search_filter.get('rubric_id')
+        )
+    if search_filter.get('author_id'):
+        query = query.filter(
+            Article.author_id == search_filter.get('author_id')
+        )
+    if search_filter.get('tags_ids'):
+        article_with_tags_subquery = db.session.query(
+            article_tags.c.article_id,
+        ).filter(
+            article_tags.c.tag_id.in_(search_filter.get('tags_ids'))
+        ).subquery()
+        query = query.filter(
+            Article.id.in_(article_with_tags_subquery)
+        )
+    create_date_from = search_filter.get('create_date_from')
+    if create_date_from:
+        query = query.filter(Article.create_date >= create_date_from)
+    create_date_to = search_filter.get('create_date_to')
+    if create_date_to:
+        query = query.filter(Article.create_date <= create_date_to)
+    return query
