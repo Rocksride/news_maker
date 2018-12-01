@@ -1,4 +1,4 @@
-from sqlalchemy import func
+from sqlalchemy import func, Date, cast
 
 from newsmaker.bl.auth import get_current_user_id
 from newsmaker.bl.tags import add_article_tag
@@ -76,8 +76,12 @@ def apply_search_filter(search_filter, query):
         )
     create_date_from = search_filter.get('create_date_from')
     if create_date_from:
-        query = query.filter(Article.create_date >= create_date_from)
+        query = query.filter(
+            cast(Article.create_date, Date) >= create_date_from
+        )
     create_date_to = search_filter.get('create_date_to')
     if create_date_to:
-        query = query.filter(Article.create_date <= create_date_to)
+        query = query.filter(
+            cast(Article.create_date, Date) <= create_date_to
+        )
     return query
