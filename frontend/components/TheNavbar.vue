@@ -11,7 +11,7 @@
         <nuxt-link class='nuxt-link nav-link' exact to="/articles/1">Last article</nuxt-link>
         <a @click='$store.dispatch("logout")' class='nuxt-link nav-link'>Logout</a>
       </ul>
-      <nuxt-link  class='nav__contact-button' exact to="/about">Contact us</nuxt-link>
+      <nuxt-link  class='styled-button' exact to="/about">Contact us</nuxt-link>
 
     </div>
     
@@ -43,7 +43,7 @@ export default {
   .nav {
     overflow: hidden;
     background-color: var(--c-background-light);
-    z-index: 1001;
+    z-index: 300;
     position: fixed;
     display: flex;
     align-items: center;
@@ -171,82 +171,8 @@ export default {
       margin-top: 7rem;
     }
 
-    &__contact-button{
-      z-index: 1;
-      // max-height: 55px;
-      height: 38px;
-      overflow: hidden;
-      text-align: center;
-      background-color: transparent;
-      border: none;
-      // border: 0.5px dashed white;
-      // overflow: hidden;
-      box-sizing: border-box;
-      margin: 0;
-      color: var(--c-background-light);
-      
-      font-weight: 700;
-      // letter-spacing: 7px;
-      text-decoration: none;
-
-      @include media($tablet) {
-        height: 55px;
-
-        font-size: 1.6rem;
-        padding: calc(3vh - 5px) 2.6rem;
-      }
+ 
   
-      @include media(300px) {
-        // height: $footerHeight;
-        font-size: 1.4rem;
-         padding: calc(3vh - 5px) .5rem;
-      }
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      position: relative;
-      display: flex;
-      transition: all .4s ease;
-      // transition-delay: .2s;
-    /*   align-items: center; */
-    /*   justify-content: center; */
-    }
-    &__contact-button::before {
-      content: '';
-      position: absolute;
-      z-index: -1;
-      height: 100%;
-      width: 100%;
-      top: 0;
-      left: 0;
-      background-color: var(--c-active);
-    }
-    &__contact-button::after {
-      content: '';
-      position: absolute;
-      z-index: -1;
-      transform: scaleX(0);
-      height: 100%;
-      width: 100%;
-      top: 0;
-      left: 0;
-      background-color: var(--c-background-dark);
-      transition: transform .5s cubic-bezier(0.6, 0.05, 0.01, 0.99);
-      transform-origin:  right;
-    }
-    &__contact-button:hover::after {
-      transform: scaleX(1);
-      transform-origin:  left;
-
-    }
-    &__contact-button .border {
-      display: inline-block;
-      position: absolute;
-      background-color: #202020;
-      transition: all .3s ease;
-    }
 
   }
 

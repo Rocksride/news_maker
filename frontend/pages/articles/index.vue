@@ -1,14 +1,10 @@
 <template>
 	<section class=" flex-center content-section">
-    <button 
+    <button
+      @click='$router.push("/new-article")'
       ref='tr-3'
       class="add-articles-button translated"
     >+</button>
-
- <!--<portal to="modals">
-      <NewArticleForm />
-    </portal> -->
-
 		<div ref='tr-1' class="translated articles-list left">
       <div class="articles-list__header">
           <UnderlineHeading style='font-size: 5rem'>articles</UnderlineHeading>
@@ -22,7 +18,7 @@
         name='article-switch'
         mode='out-in'
        >
-        <nuxt-child :key='$route.name'/>
+        <nuxt-child :key='$route.params.id'/>
        </transition>
     </div>
 	</section>
@@ -32,7 +28,6 @@
 
 const pkg = require('@/package')
 import ArticlesList from '@/components/ArticlesList'
-import NewArticleForm from '@/components/NewArticleForm'
 import translateMixin from '@/mixins/translateMixin.js'
 import UnderlineHeading from '@/components/UI/UnderlineHeading.vue'
 export default {
@@ -47,7 +42,6 @@ export default {
   components: {
   	UnderlineHeading,
     ArticlesList,
-    NewArticleForm,
   },
   mixins: [translateMixin] 
 };
@@ -140,4 +134,6 @@ export default {
     transform: translate(0%, -200%);
   }
 }
+
+
 </style>

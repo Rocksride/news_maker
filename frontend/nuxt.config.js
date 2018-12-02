@@ -53,7 +53,6 @@ module.exports = {
   */
   plugins: [
     "~/plugins/routerBeforeEach",
-    "~/plugins/portal-vue",
     {
       src: '~/plugins/ksvuescrollmagic',
       ssr: false
@@ -66,6 +65,7 @@ module.exports = {
   modules: [
     'nuxt-buefy',
     ['nuxt-sass-resources-loader', '@/assets/scss/main.scss'],
+    'portal-vue/nuxt',
     // 'nuxt-sass-resources-loader/_index.scss',
 
     // ['nuxt-sass-resources-loader', [

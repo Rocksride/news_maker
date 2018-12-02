@@ -1,6 +1,9 @@
 <template>
   <AuthProvider>
-      <form slot-scope='{signIn}' class='signin-form form translated'>
+      <form 
+        slot-scope='{signIn}' 
+        @submit.prevent='signIn(user)' 
+        class='signin-form form translated'>
            
             <label for="signin-email">Username</label>
             <input 
@@ -19,17 +22,16 @@
               id="signin-password"
             >
             <div class="button-group">
-              <UnderlineHeading
+              <button
                  type='submit'
                  style='font-size: 3rem; text-align: center'
-                 @click.native='signIn(user)'
-                 class='active-button hover-button'
+                 class='button-reset nuxt-link hover-button'
                  >Login
-              </UnderlineHeading>
+              </button>
               <button 
                 type="button" 
                 @click='$emit("switchAuth")' 
-                class='active-button my-button' 
+                class='button-reset active-button my-button' 
               >Switch to SignUp</button>
             </div>
       </form>
@@ -68,6 +70,8 @@
   }
   .my-button {
     color: var(--c-active) !important;
+    font-weight: 400;
+    cursor: pointer;
   }
   .button-group {
     display: flex;

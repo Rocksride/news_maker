@@ -19,11 +19,11 @@
     "ks-vue-scrollmagic": "^1.0.2",
     "nuxt": "^1.0.0",
     "nuxt-buefy": "^0.3.1",
-    "portal-vue": "^1.4.0",
+    "nuxt-sass-resources-loader": "^2.0.5",
+    "portal-vue": "^1.5.0",
     "ramda": "^0.25.0",
     "sortablejs": "^1.7.0",
-    "tachyons-sass": "^4.9.5",
-    "nuxt-sass-resources-loader": "^2.0.5"
+    "tachyons-sass": "^4.9.5"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",

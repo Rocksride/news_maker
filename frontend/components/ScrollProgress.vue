@@ -32,15 +32,15 @@
       console.log('create')
       // this.debouncedHandler = debounce(this.scrollHandler, 1)
         // this.$nextTick(() => {
-            const post = document.querySelector('.detailed-post')
-            console.log({post})
-            post.addEventListener('scroll', this.scrollHandler)
-          // this.passedRefs.post.addEventListener('scroll', this.scrollHandler)
+          //   const post = document.querySelector('.detailed-post')
+          //   console.log({post})
+          //   post.addEventListener('scroll', this.scrollHandler)
+          // // this.passedRefs.post.addEventListener('scroll', this.scrollHandler)
 
-          this.$once('hook:destroyed', () => {
-            post.removeEventListener('scroll', this.scrollHandler)
-            // this.passedRefs.post.removeEventListener('scroll', this.scrollHandler)
-          })
+          // this.$once('hook:destroyed', () => {
+          //   post.removeEventListener('scroll', this.scrollHandler)
+          //   // this.passedRefs.post.removeEventListener('scroll', this.scrollHandler)
+          // })
         // })
     }
   }

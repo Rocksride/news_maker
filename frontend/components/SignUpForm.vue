@@ -2,6 +2,7 @@
   <AuthProvider>
       <form
          slot-scope='{signUp}'
+         @submit.prevent='signUp(user)'
          class='signup-form form translated'>
             <label
              for="signup-password"
@@ -35,16 +36,17 @@
              v-model='user.email'
             >
             <div class="button-group">
-              <UnderlineHeading
+              <button
+                 type='submit'
                  style='font-size: 3rem; text-align: center'
                  @click.native='signUp(user)'
-                 class='active-button hover-button'
+                 class='nuxt-link button-reset hover-button'
               >Register
-              </UnderlineHeading>
+              </button>
               <button
                type="button"
                @click='$emit("switchAuth")' 
-               class='active-button my-button' 
+               class='button-reset  my-button' 
               >Switch to SignUp</button>
             </div>
       </form>
@@ -77,13 +79,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     & > * {
       margin-bottom: 10px;
     }
   }
   .my-button {
     color: var(--c-active) !important;
+    font-weight: 400;
+    cursor: pointer;
+    margin-top: 1rem;
   }
   .button-group {
     display: flex;

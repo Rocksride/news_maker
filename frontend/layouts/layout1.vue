@@ -1,7 +1,6 @@
 <template>
   <div class='layout'>
     <TheNavbar />
-    <portal-target name="modals"> </portal-target>
     <div  class="lines ">
       <div  class="line  line-1"></div>
       <div  class="line  line-2"></div>
@@ -20,8 +19,9 @@ import renderTranslateMixin from '@/mixins/renderTranslateMixin.js'
 import TheNavbar from '@/components/TheNavbar'
 export default {
   components: {
-    TheNavbar
-  },
+    TheNavbar,
+
+  }
   // mixins: [renderTranslateMixin]
 }
 </script>

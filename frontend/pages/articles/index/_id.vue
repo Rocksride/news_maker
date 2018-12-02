@@ -16,7 +16,9 @@ import translateMixin from '@/mixins/translateMixin.js'
 export default {
 	layout: 'layout1',
   name: 'index',
-
+  validate({ params }) {
+    return !isNaN(+params.id)
+  },
   data() {
     return {
 
@@ -66,15 +68,15 @@ export default {
   }
 }
 
-section {
-  position: absolute;
-  right: 0;
-  width: calc(100vw - var(--width));
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+// section {
+//   position: absolute;
+//   right: 0;
+//   width: calc(100vw - var(--width));
+//   height: 100vh;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// }
 hgroup {
 	
 	width: 30%;
