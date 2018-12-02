@@ -1,0 +1,35 @@
+html.theme-in-transition {
+  *,
+  *::before,
+  *::after {
+    transition: all $transition-all-time linear;
+
+  }
+}
+
+
+
+.article-switch-enter-active {
+    transition: all $translateTime cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    // transition-delay: 3s;
+}
+
+.article-switch-leave-active {
+    transition: all $translateTime cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+
+.article-switch-enter {
+    transform: scale(0) translateY(100%);
+    opacity: 0;
+}
+
+.article-switch-leave-to {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+.article-switch-leave-active {
+    transform:  scale(0) ranslateY(-100%);
+    opacity: 0;
+}
+ 
