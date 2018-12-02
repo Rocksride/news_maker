@@ -57,6 +57,10 @@ def get_articles(search_filter):
 
 
 def apply_search_filter(search_filter, query):
+    if search_filter.get('title'):
+        query = query.filter(
+            Article.title.ilike(f'%{search_filter.get("title")}%')
+        )
     if search_filter.get('rubric_id'):
         query = query.filter(
             Article.rubric_id == search_filter.get('rubric_id')
