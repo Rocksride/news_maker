@@ -32,6 +32,7 @@ class ArticleSchema(Schema):
 
 
 class SearchFilterSchema(Schema):
+    title = fields.String()
     authorId = fields.Integer(attribute='author_id')
     rubricId = fields.Integer(attribute='rubric_id')
     tagsIds = fields.Function(
