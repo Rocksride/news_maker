@@ -93,6 +93,7 @@ export default {
 
 
 .add-articles-button {
+  z-index: 1000;
   $transitionDefault: $translateTime $translateFunction;
   $transitionFaster: $translateTime/4 $translateFunction;
 

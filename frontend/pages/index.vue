@@ -6,14 +6,17 @@
         <div ref='tr-1' class="text-wrapper translated">
           <UnderlineHeading  class='latest-news__heading heading'>Latest Articles</UnderlineHeading>
         </div>
-        <div ref='tr-2' class="news-post  translated">
-          <p class="news-post__info">10 14 2018 | BY VICTOR XING | CAPITAL MARKETS</p>
+        <div 
+          v-if='Boolean(latestArticle)'
+          ref='tr-2' 
+          class="news-post  translated">
+          <p class="news-post__info">{{date}} | {{loginName}} | {{rubric}}</p>
           <h3 class="news-post__title">
-            Roundabout path in the snap-back of long-term bond yields
+            {{latestArticle.title}}
           </h3>
            <div class="button-wrapper">
           <!--    <BorderedLink style='font-size: 1rem' to='/news/:1'>READ THE POST</BorderedLink> -->
-          <nuxt-link  to="/articles/:1">
+          <nuxt-link  :to='articlePath'>
              <UnderlineHeading style='font-size: 1.8rem !important; color: var(--c-text-dark)'>Read the post</UnderlineHeading>
           </nuxt-link>
            </div>
@@ -45,7 +48,10 @@
     <div class="left flex-center-column" style='align-items: flex-start'>
       <div class="overflow-wrapper">
        <div ref='tr-6' class="translated text-wrapper">
-          <UnderlineHeading  class='about heading'>About us</UnderlineHeading>
+          <UnderlineHeading  
+            class='about heading'
+            style='font-size: 4.3rem'
+            >About us</UnderlineHeading>
        </div>
       </div>
     </div>
@@ -68,6 +74,23 @@
     components: {
       UnderlineHeading,
       BorderedLink
+    },
+    computed: {
+      loginName(id) {
+        return this.$store.getters.getLoginName(Number(this.latestArticle.authorId))
+      },
+      latestArticle() {
+        return this.$store.getters.latestArticle
+      },
+      date() {
+        return this.latestArticle.createDate.slice(0, 10).split('-').reverse().join(' ')
+      },
+      rubric() {
+        return this.$store.getters.getRubric(this.latestArticle.rubricId).title
+      },
+      articlePath() {
+        return `articles/${this.latestArticle.id || ''}`
+      }
     },
     mixins: [translateMixin]
   }
@@ -102,22 +125,20 @@
     }
     .left {
       position: relative;
-
-
       @include media($laptop) {
-        flex: 3;
-        left: calc(var(--sidebar-width) / 2);
+        flex: 5;
+        // left: calc(var(--sidebar-width) / 2);
       }
       @include media($laptopL) {
         flex: 5;
-        left: var(--sidebar-width);
+        // left: var(--sidebar-width);
       }
       
     }
     .right {
       flex: 3;
       @include media($laptop) {
-        flex: 2;
+        flex: 3;
       }
       .image {
         @include image('/static/img/gazets/gazet11.jpg');
@@ -156,7 +177,7 @@
     .left {
       flex: 5;
       @include media($laptop) {
-        flex: 3;
+        flex: 5;
       }
       .image {
         @include image('/static/img/gazets/gazet13.jpg');
@@ -172,7 +193,7 @@
     .right {
       flex: 3;
       @include media($laptop) {
-        flex: 2;
+        flex: 3;
       }
       position: relative;
       .overflow-wrapper {
@@ -214,13 +235,13 @@
       }
       flex: 3;
       @include media($laptop) {
-        flex: 2;
+        flex: 3;
       }
     }
     .right {
       flex: 5;
       @include media($laptop) {
-        flex: 3;
+        flex: 5;
       }
       .image {
         @include image('/static/img/gazets/gazet10.jpg');

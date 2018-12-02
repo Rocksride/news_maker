@@ -1,6 +1,9 @@
+const forbiddenRoutesForUnAuthed = [
+  '/new-article'
+]
 export default ({store, route, error, redirect}) => {
-  if (!store.state.auth.token && route.path !== '/user/auth') {
-    console.log('incorrect')
+    console.log(route.path)
+  if (!store.state.auth.token && forbiddenRoutesForUnAuthed.includes(route.path)) {
     return redirect('/user/auth')
-  }
+  }  
 } 

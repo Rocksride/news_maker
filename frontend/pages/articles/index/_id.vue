@@ -1,7 +1,8 @@
 <template>
   <article class='post detailed-post' :key='$route.params.id'>
+     <ScrollProgress index='scroll-key' class='my-scroll'/>
     <header class="post__header">
-      <h4 class='post__info'>{{$route.params.id}} 14 2018 | BY VICTOR XING | {{article.title}}</h4>
+      <h4 class='post__info'>{{getDate}} | by {{loginName}} | {{rubric}}</h4>
       <h3 class='post__title'>Roundabout path in the snap-back of long-term bond</h3>
     </header>
 
@@ -12,6 +13,7 @@
 </template>
 
 <script>
+import ScrollProgress from '@/components/ScrollProgress'
 import translateMixin from '@/mixins/translateMixin.js'
 export default {
 	layout: 'layout1',
@@ -25,9 +27,22 @@ export default {
     };
   },
   computed: {
-      article() {
+    article() {
         return this.$store.getters.getArticle(Number(this.$route.params.id));
-      }
+    },
+    loginName() {
+      return this.$store.getters.getLoginName(Number(this.article.authorId))
+    },
+    getDate() {
+      console.log();
+      return this.article.createDate.slice(0, 10).split('-').reverse().join(' ')
+    },
+    rubric() {
+      return this.$store.getters.getRubric(this.article.rubricId).title
+    },
+  },
+  components: {
+    ScrollProgress
   },
   mixins: [translateMixin]
 };
@@ -36,7 +51,7 @@ export default {
 <style lang="scss" scoped>
 .post {
   overflow-y: scroll;
-
+  position: relative;
   min-height: 100vh;
   height: 100vh;
 
@@ -105,5 +120,12 @@ hgroup {
 }
 .subtitle.translated {
 	transform: translateY(-300%);
+}
+.my-scroll {
+  margin: 0;
+  position: fixed;
+  top: 0;
+  left: calc(var(--sidebar-width) * 4);
+  width: 100%;
 }
 </style>

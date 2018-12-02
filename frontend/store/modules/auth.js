@@ -1,26 +1,64 @@
 import * as R from 'ramda'
 import * as api from '@/api'
 import * as types from '../mutationTypes'
+import axios from 'axios'
 const log = R.tap(console.log);
 
 const state = {
-  token: null
+  token: null,
+  user: {
+    userId: null,
+    login: null,
+    email: null
+  },
+  users: null
 }
 
 const getters = {
+  users: state => state.users,
   token: state => state.token,
-  isAuthenticated: state => state.token != null
+  isAuthenticated: state => state.token != null,
+  user: state => state.user,
+  getLoginName: state => id => {
+    console.log({id});
+    console.log(typeof id)
+    const temp = state.users.find(el => Number(el.id) === id)
+    if (!temp) return ''
+    console.log('\n\n\n******************\n')
+    console.log({users: state.users});
+    console.log({temp});
+    return  temp.login || ''
+  }
 }
 
 const mutations = {
+
+  [types.SET_ALL_USERS]: (state, payload) => state.users = payload,
   [types.CLEAR_TOKEN]: state => state.token = null,
+  [types.CLEAR_USER]: state => state.user = {userId: null, login: null, email: null },
   [types.SET_TOKEN]: (state, payload) => {
     state.token = payload;
+  },
+  [types.SET_USER]: (state, payload) => {
+    state.user = {
+      login: payload.login,
+      email: null,
+      userId: payload.id
+    }
   }
 }
 
 const actions = {
-
+  nuxtServerInit: async (vuexContent, nuxtContent) => {
+    try {
+      // if (!process.client) {
+        const {data: users} = await  api.getUsers()
+        vuexContent.commit(types.SET_ALL_USERS, users)
+      // }
+    } catch(err) {
+      console.log(error);
+    }
+  },
   initAuth: ({ commit, dispatch }, req) => {
    
     if (process.client) {
@@ -37,17 +75,24 @@ const actions = {
       console.error(err);
     }
   },
-  signIn: async ({ commit, dispatch }, payload) => {
+  signIn: async ({ commit, dispatch, getters }, payload) => {
     console.log('sign in')
 
     try {
-      const resp = await api.signIn(payload)
-      const data = resp.data
-      commit(types.SET_TOKEN, data.token);
-
+      const {data: answer} = await api.signIn(payload)
+      commit(types.SET_TOKEN, answer.token);
+      axios.defaults.headers.common['Authorization'] = `Bearer ${answer.token}`;
+      console.log({axios})
+      
       if (process.client) {
-        localStorage.setItem('token', data.token);
+        localStorage.setItem('token', answer.token);
       }
+      // const {data: usersList} = await api.getUsers();
+      // commit(types.SET_ALL_USERS, usersList);
+      const usersList = getters.users
+      const currentUser = usersList.find(el => el.login === payload.login)
+      commit(types.SET_USER, currentUser)
+
       $nuxt.$router.push('/')
     } catch (err) {
       console.error(err);
@@ -55,9 +100,12 @@ const actions = {
   },
   logout: ({ commit, dispatch }) => {
     commit(types.CLEAR_TOKEN);
+    commit(types.CLEAR_USER);
     if (process.client) {
       localStorage.removeItem('token')
     }
+    axios.defaults.headers.common['Authorization'] = null;
+
     $nuxt.$router.replace('/user/auth')
   }
 

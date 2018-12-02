@@ -8,8 +8,15 @@
         <nuxt-link class='nuxt-link nav-link' to="/articles">Articles</nuxt-link>
         <nuxt-link class='nuxt-link nav-link' to="/tags">Tags</nuxt-link>
         <nuxt-link class='nuxt-link nav-link' exact to="/about">About</nuxt-link>
-        <nuxt-link class='nuxt-link nav-link' exact to="/articles/1">Last article</nuxt-link>
-        <a @click='$store.dispatch("logout")' class='nuxt-link nav-link'>Logout</a>
+        <a 
+          v-if='$store.getters.isAuthenticated'
+          @click='$store.dispatch("logout")' 
+          class='nuxt-link nav-link'>Logout</a>
+        <nuxt-link
+          v-else 
+          class='nuxt-link nav-link' 
+          exact 
+          to="/user/auth">Login</nuxt-link>
       </ul>
       <nuxt-link  class='styled-button' exact to="/about">Contact us</nuxt-link>
 

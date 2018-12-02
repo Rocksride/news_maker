@@ -106,7 +106,7 @@ module.exports = {
     }
   },
   router: {
-    // middleware: ['isAuth']
+    middleware: ['isAuth']
   }
 }
 

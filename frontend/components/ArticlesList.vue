@@ -3,30 +3,34 @@
     <sortable-list
      v-if='items.length > 0'
      slot-scope='{items, openItemPage}'
-     v-model='items'>
+     v-model='items'
+    >
       <ul class="articles-list__content" slot-scope='{items}'>
         
         <sortable-item v-for='(item) in items' :key='item.id'>
-              <li
-                @click='openArticle(item.id)'
+              <nuxt-link
+                :to='/articles/+item.id'
+                exact
+                nuxt-link
+                active-class='omit-class'
                 class='articles-list__post article-current'
-                :class='{"article-current-active": articleId === item.id}'
+                exact-active-class='article-current-active'
               >
 
                 <div class="articles-list__post-wrapper">
                     <h4 class="articles-list__content-info">
-                         14 2018 | BY VICTOR XING | {{item.title}}
+                         {{getDate(item)}} | by {{loginName(item)}} | {{rubric(item)}}
                     </h4>
                     <sortable-handle>
                       <h3 class="articles-list__content-title">
-                       {{item.content && item.content.slice(0, 100) + '...'}}
+                       {{formatText(item.title)}}
                       </h3>
                     </sortable-handle>
                 </div>
-                <ScrollProgress 
+               <!--  <ScrollProgress 
                  v-if='articleId === item.id'
-                />
-              </li>
+                /> -->
+              </nuxt-link>
 
         </sortable-item>
       </ul>
@@ -57,11 +61,7 @@
         
       }
     },
-    mounted() {
-      console.dir({route: this.$route.params.id})
-    },
     computed: {
-      ...mapGetters(['articleId'])
     },
     methods: {
       checkForCurrentId(id) {
@@ -71,11 +71,20 @@
         console.groupEnd('123')
         return this.articleId === id
       },
-      openArticle(id) {
-        this.$store.dispatch('updateCurrentId', id)
-        this.$router.push({
-          path: `/articles/${id}`
-        })
+       loginName(item) {
+        return this.$store.getters.getLoginName(Number(item.authorId))
+      },
+      getDate(item) {
+        console.log(item);
+        return item.createDate.slice(0, 10).split('-').reverse().join(' ')
+      },
+      rubric(item) {
+        return this.$store.getters.getRubric(item.rubricId).title
+      },
+      formatText(text) {
+        return text.length >= 100
+        ? text.slice(0, 100) + '...'
+        : text
       }
     },
   }

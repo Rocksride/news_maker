@@ -14,11 +14,11 @@
     
           <label for="article-title">Add Content</label>
           <textarea
-           cols='100'
-           class='form-input form-textarea'
-           id="article-title"
-           v-model='article.content'
-           placeholder='Enter the content'
+             cols='100'
+             class='form-input form-textarea'
+             id="article-title"
+             v-model='article.content'
+             placeholder='Enter the content'
            >
           </textarea>
           <b-field label="Select tags">
@@ -30,7 +30,8 @@
                 icon="label"
                 :allow-new="false"
                 placeholder="Add a tag"
-                @typing="getFilteredTags">
+                @typing="getFilteredTags"
+            >
                 <template slot-scope="props">
                     <strong>{{props.option.id}}</strong>: {{props.option.title}}
                 </template>
@@ -46,9 +47,11 @@
                 autocomplete
                 field="title"
                 icon="label"
+                :maxtags='1'
                 :allow-new="false"
                 placeholder="Add a tag"
-                @typing="getFilteredRubrics">
+                @typing="getFilteredRubrics"
+            >
                 <template slot-scope="props">
                     <strong>{{props.option.id}}</strong>: {{props.option.title}}
                 </template>
@@ -90,11 +93,19 @@
         const dataToSend = {
           title: this.article.title,
           content: this.article.content,
-          tags: this.article.selectedTags.map(e => e.id),
-          rubrics: this.article.selectedRubrics.map(e => e.id)
+          authorId: this.$store.getters.user.userId,
+          tagsIds: this.article.selectedTags.map(e => e.id),
+          rubricId: this.article.selectedRubrics[0].id
         }
         console.log(dataToSend)
         this.$store.dispatch('addArticle', dataToSend)
+        this.article =  {
+        title: null,
+        content: null,
+        selectedTags: [],
+        selectedRubrics: [],
+        }
+        this.$router.push('/articles')
       },
       getFilteredTags(text) {
           this.filteredTags = this.tags.filter((option) => {

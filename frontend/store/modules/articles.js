@@ -1,21 +1,11 @@
 import * as types from '../mutationTypes'
 import * as api from '@/api'
 const state = {
-  articles: [
-    {
-      id: 1,
-      title: 'test title',
-      content: 'test content Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita obcaecati quam quisquam, dicta labore, earum tenetur, distinctio assumenda modi iste quod, deleniti mollitia rerum vero sequi. Saepe cupiditate voluptatibus impedit.</div><div>Nulla quae doloribus aperiam hic unde quas quia vero eaque, at perspiciatis repellat asperiores distinctio minima reiciendis natus aliquid obcaecati totam impedit fugit ad ea laborum. Asperiores, quae est eligendi!</div><div>Dolores, earum corrupti sunt, natus, dignissimos architecto incidunt reiciendis magni deserunt ducimus quia assumenda dolorum. Voluptatem eius repellendus, officiis deserunt odit. Architecto reiciendis, laborum esse itaque alias dolorum ducimus dolores.</div><div>Nulla veniam laboriosam repellat culpa ea hic cupiditate distinctio adipisci sint atque aut quidem autem, at, non obcaecati. Alias magnam placeat maxime accusamus nostrum et, molestiae reiciendis quae iste minima.</div><div>Totam, perspiciatis, fuga consequuntur, maxime nulla praesentium qui accusamus eos libero necessitatibus facilis nemo aut dignissimos fugiat laborum voluptas ab pariatur optio sit corporis sint modi, atque sapiente? Hic, numquam!</div><div>Illo reprehenderit ab quaerat, aliquam quas? Architecto nesciunt molestias, incidunt enim aperiam distinctio molestiae, cumque expedita modi voluptatum, similique blanditiis consectetur natus, libero. Nesciunt consectetur sed error quaerat? Ipsam, neque.'
-    },  
-    {
-      id: 2,
-      title: 'test2 title',
-      content: 'test3 content'
-    },
-  ]
+  articles: []
 }
 
 const getters = {
+  latestArticle: state => state.articles[0],
   articles: state => state.articles,
   getArticle: state => id => state.articles.find(el => el.id === id),
 }
@@ -28,6 +18,17 @@ const mutations = {
 }
 
 const actions = {
+  nuxtServerInit: async (vuexContent, nuxtContent) => {
+    try {
+      // if (!process.client) {
+        const {data: articles} = await  api.getArticles()
+        console.log(articles)
+        vuexContent.commit(types.SET_ARTICLES, articles)
+      // }
+    } catch(err) {
+      console.log(error);
+    }
+  },
   // nuxtServerInit: (vuexContext, nuxtContext) => {
   //   if (!process.client) { }
   //   return api.getPosts()
@@ -60,8 +61,24 @@ const actions = {
   //     console.error(err)
   //   }
   // },
-  addArticle: ({commit}, payload) => {
-    commit(types.ADD_ARTICLE, payload);
+  addArticle: async ({commit}, payload) => {
+    try {
+      const res = await api.postArticle(payload);
+      console.log(res)
+      // commit(types.ADD_ARTICLE, payload);
+      dispatch('initArticles')
+    } catch(err) {
+      console.error(err);
+    }
+  },
+  initArticles: async ({commit}) => {
+    try {
+      await api.getArticles()
+      
+      // console.log({articles})
+    } catch (err) {
+      console.error(err)
+    }
   }
 }
 

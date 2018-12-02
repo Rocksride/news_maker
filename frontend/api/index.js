@@ -9,20 +9,19 @@ import * as R from 'ramda'
 
 axios.defaults.baseURL = process.env.baseURL
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+axios.defaults.headers.common['Content-Type'] = "application/json"
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
-
 export const getArticles = () => axios.get('/api/articles')
+export const getUsers = () => axios.get('/api/users')
+export const getTags = () => axios.get('/api/tags')
+export const getRubrics = () => axios.get('/api/rubrics')
 
-export const postArticle = (payload, token) => axios({
+export const postArticle = (payload) => axios({
   method: 'POST',
   url: '/api/articles', 
   data: payload,
   crossDomain: true,
-  headers: {
-    // 'Access-Control-Allow-Origin': '*',
-    "content-type": "application/json"
-  }
+
 })
 
 export const signIn = (payload) => axios({
@@ -30,10 +29,7 @@ export const signIn = (payload) => axios({
   url: '/auth/login',
   data: payload,
   crossDomain: true,
-  headers: {
-    // 'Access-Control-Allow-Origin': '*',
-    "content-type": "application/json"
-  }
+
 })
 
 export const signUp = (payload) => axios({
@@ -41,10 +37,7 @@ export const signUp = (payload) => axios({
   url: '/auth/register',
   data: payload,
   crossDomain: true,
-  headers: {
-    // 'Access-Control-Allow-Origin': '*',
-    "Content-Type": "application/json"
-  }
+
 })
 
 export const validateToken = (payload) => axios({
@@ -52,9 +45,6 @@ export const validateToken = (payload) => axios({
   url: '/auth/validate_token',
   data: payload,
   crossDomain: true,
-  headers: {
-    // 'Access-Control-Allow-Origin': '*',
-    "content-type": "application/json"
-  }
+
 })
 

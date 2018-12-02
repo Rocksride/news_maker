@@ -2,15 +2,19 @@
 export const SET_COLOR_THEME = 'SET_COLOR_THEME'
 
 // USER
+export const SET_ALL_USERS = 'SET_ALL_USERS'
+export const SET_USER = 'SET_USER'
 export const CLEAR_TOKEN = 'CLEAR_TOKEN'
 export const SET_TOKEN = 'SET_TOKEN'
+export const CLEAR_USER = 'CLEAR_USER'
+export const SET_USER_ID = 'SET_USER_ID'
 
 
 // ARTICLES
 export const SET_ARTICLES = 'SET_ARTICLES';
 export const ADD_ARTICLE = 'ADD_ARTICLE';
 export const UPDATE_ARTICLE = 'UPDATE_ARTICLE';
-export const UPDATE_CURRENT_ARTICLE_ID = 'UPDATE_CURRENT_ARTICLE_ID';
+// export const UPDATE_CURRENT_ARTICLE_ID = 'UPDATE_CURRENT_ARTICLE_ID';
 export const REMOVE_ARTICLE = 'REMOVE_ARTICLE';
 
 
