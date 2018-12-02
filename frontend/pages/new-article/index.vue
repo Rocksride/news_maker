@@ -1,7 +1,7 @@
 <template>
      <section class='section'>
         <form
-         action.prevent
+         @submit.prevent='addArticle'
          class='article-form'
         >
           <label for="article-title">Add Title</label>
@@ -21,10 +21,45 @@
            placeholder='Enter the content'
            >
           </textarea>
-          
+          <b-field label="Select tags">
+            <b-taginput
+                v-model="article.selectedTags"
+                :data="tags"
+                autocomplete
+                field="title"
+                icon="label"
+                :allow-new="false"
+                placeholder="Add a tag"
+                @typing="getFilteredTags">
+                <template slot-scope="props">
+                    <strong>{{props.option.id}}</strong>: {{props.option.title}}
+                </template>
+                <template slot="empty">
+                    There are no items
+                </template>
+            </b-taginput>
+        </b-field>
+          <b-field label="Select rubrics">
+            <b-taginput
+                v-model="article.selectedRubrics"
+                :data="rubrics"
+                autocomplete
+                field="title"
+                icon="label"
+                :allow-new="false"
+                placeholder="Add a tag"
+                @typing="getFilteredRubrics">
+                <template slot-scope="props">
+                    <strong>{{props.option.id}}</strong>: {{props.option.title}}
+                </template>
+                <template slot="empty">
+                    There are no items
+                </template>
+            </b-taginput>
+        </b-field>
           <button
+           type='submit'
            class="button-reset nuxt-link my-button"
-           @click="addArticle"
           >Add New Article</button>
       </form>
      </section>
@@ -36,12 +71,46 @@
     data: () => ({
       article: {
         title: null,
-        content: null
-      }
+        content: null,
+        selectedTags: [],
+        selectedRubrics: [],
+      },
+      isSelectOnly: false,
     }),
+    computed: {
+      tags() {
+        return this.$store.getters.tags
+      },
+      rubrics() {
+        return this.$store.getters.rubrics
+      }
+    },
     methods: {
       addArticle() {
-        this.$store.dispatch('addArticle', this.article)
+        const dataToSend = {
+          title: this.article.title,
+          content: this.article.content,
+          tags: this.article.selectedTags.map(e => e.id),
+          rubrics: this.article.selectedRubrics.map(e => e.id)
+        }
+        console.log(dataToSend)
+        this.$store.dispatch('addArticle', dataToSend)
+      },
+      getFilteredTags(text) {
+          this.filteredTags = this.tags.filter((option) => {
+              return option.title
+                  .toString()
+                  .toLowerCase()
+                  .indexOf(text.toLowerCase()) >= 0
+          })
+      },
+      getFilteredRubrics(text) {
+          this.filteredRubrics = this.rubrics.filter((option) => {
+              return option.title
+                  .toString()
+                  .toLowerCase()
+                  .indexOf(text.toLowerCase()) >= 0
+          })
       }
     },
   }
@@ -79,7 +148,7 @@
 }
 
 .form-textarea {
-  height: 30rem;
+  height: 20rem;
 }
 
 </style>

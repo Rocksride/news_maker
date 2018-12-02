@@ -124,3 +124,25 @@ html {
     }
   }
 }
+
+// BULMA RESET
+
+.label,
+.taginput,
+a,
+a.dropdown-item,
+.tag > *,
+.input {
+  font-size: 1.6rem !important;
+  font-weight: 400 !important;
+}
+
+.control {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.icon {
+  margin-top: .6rem !important;
+}

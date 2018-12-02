@@ -12,22 +12,19 @@ const state = {
       title: 'test2 title',
       content: 'test3 content'
     },
-  ],
-  numbers: Array.from({length:20}, (_, i) => i+1)
-
+  ]
 }
 
 const getters = {
   articles: state => state.articles,
   getArticle: state => id => state.articles.find(el => el.id === id),
-  numbers: state => state.numbers
 }
 
 const mutations = {
   [types.SET_ARTICLES]: (state, payload) => state.articles = payload,
-  [types.ADD_ARTICLES]: (state, payload) => state.articles.push(payload),
-  [types.REMOVE_ARTICLES]: (state, payload) => state.articles = state.articles.filter(el => el.id !== payload.id),
-  [types.UPDATE_ARTICLES]: (state, payload) => state.articles = state.articles.map(el => el.id === payload.id ? payload : el)
+  [types.ADD_ARTICLE]: (state, payload) => state.articles.push(payload),
+  [types.REMOVE_ARTICLE]: (state, payload) => state.articles = state.articles.filter(el => el.id !== payload.id),
+  [types.UPDATE_ARTICLE]: (state, payload) => state.articles = state.articles.map(el => el.id === payload.id ? payload : el)
 }
 
 const actions = {
@@ -64,7 +61,7 @@ const actions = {
   //   }
   // },
   addArticle: ({commit}, payload) => {
-    commit(types.ADD_ARTICLES, payload);
+    commit(types.ADD_ARTICLE, payload);
   }
 }
 
