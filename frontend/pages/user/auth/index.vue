@@ -118,13 +118,13 @@
       }
       &.translate-left {
       clip-path: polygon(0% 0%, 100% 0%, 80% 50%, 100% 100%, 0% 100% );
-      background-image: url(/static/img/gazets/gazet6.jpg);
+      background-image: url(/static/img/gazets/gazet6-zipped.jpg);
 
         left: 30%;
       }
       &.translate-right {
       clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 20% 50%);
-      background-image: url(/static/img/gazets/gazet4.jpg);
+      background-image: url(/static/img/gazets/gazet4-zipped.jpg);
 
         left: 70%;
       }

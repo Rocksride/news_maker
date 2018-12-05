@@ -1,7 +1,7 @@
 <template>
   <section class="about content-section">
     <div class="img-wrapper overflow-wrapper">
-      <img ref='t1' class='translated' src="@/static/img/gazets/gazet17.jpg" alt="about image">
+      <img ref='t1' class='translated' src="@/static/img/gazets/gazet17-zipped.jpg" alt="about image">
     </div>
     <div class="text-wrapper overflow-wrapper">
       <div ref='t2' class="title translated">
@@ -34,13 +34,7 @@ export default {
     title: `${pkg.name} - About`
   }),
   name: 'about',
-
-  data() {
-    return {
-
-    };
-  },
-mixins: [translateMixin]
+  mixins: [translateMixin]
 };
 </script>
 

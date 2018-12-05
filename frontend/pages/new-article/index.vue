@@ -1,8 +1,9 @@
 <template>
-     <section class='section'>
+     <section class='section overflow-hidden'>
         <form
+         ref='tr-1'
          @submit.prevent='addArticle'
-         class='article-form'
+         class='article-form translated'
         >
           <label for="article-title">Add Title</label>
           <input
@@ -68,6 +69,9 @@
      </section>
 </template>
 <script>
+
+  import translateMixin from '@/mixins/translateMixin.js'
+
   export default {
     layout: 'layout1',
     props: [],
@@ -124,6 +128,8 @@
           })
       }
     },
+    mixins: [translateMixin]
+
   }
 </script>
 
@@ -139,14 +145,22 @@
    
   }
   .article-form {
+    @include show;
+    @include translateTransition;
     width: 50%;
     height: auto;
     display: flex;
     align-items: stretch;
     justify-content: center;
     flex-direction: column;
-     & > * {
+
+    & > * {
       margin-bottom: 10px;
+    }
+
+    &.translated {
+      @include hide;
+      transform: translateY(-100%);
     }
   }
 
