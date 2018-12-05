@@ -72,7 +72,7 @@ const actions = {
   },
   signIn: async ({ commit, dispatch, getters }, payload) => {
     console.log('sign in')
-
+    debugger
     try {
       const {data: answer} = await api.signIn(payload)
       commit(types.SET_TOKEN, answer.token);
@@ -82,9 +82,9 @@ const actions = {
       if (process.client) {
         localStorage.setItem('token', answer.token);
       }
-      // const {data: usersList} = await api.getUsers();
-      // commit(types.SET_ALL_USERS, usersList);
-      const usersList = getters.users
+      const {data: usersList} = await api.getUsers();
+      commit(types.SET_ALL_USERS, usersList);
+      // const usersList = getters.users
       const currentUser = usersList.find(el => el.login === payload.login)
       commit(types.SET_USER, currentUser)
 

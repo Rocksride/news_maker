@@ -3,7 +3,8 @@ const pkg = require('./package')
 module.exports = {
   mode: 'universal',
   env: {
-    baseURL: process.env.BASE_URL || 'http://0.0.0.0:5000'
+    baseURL: 'http://malder.pythonanywhere.com'
+    // baseURL: process.env.BASE_URL || 'http://0.0.0.0:5000'
   },
   /*  
   ** Headers of the page

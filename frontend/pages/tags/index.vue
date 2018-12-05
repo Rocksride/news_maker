@@ -6,6 +6,7 @@
       >Chose some tag</UnderlineHeading>
     <ul  class='list '>
       <li 
+        v-if='item.title'
         class='list-item'
         v-for='item in tags'
         :key='item.title'

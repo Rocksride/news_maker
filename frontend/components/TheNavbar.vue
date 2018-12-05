@@ -10,7 +10,8 @@
         <nuxt-link class='nuxt-link nav-link' to="/rubrics">Rubrics</nuxt-link>
         <nuxt-link class='nuxt-link nav-link' to="/authors">Authors</nuxt-link>
         <nuxt-link class='nuxt-link nav-link' exact to="/about">About</nuxt-link>
-        <a 
+        <a  
+        
           v-if='$store.getters.isAuthenticated'
           @click='$store.dispatch("logout")' 
           class='nuxt-link nav-link'>Logout</a>

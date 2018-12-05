@@ -82,10 +82,10 @@
     }),
     computed: {
       tags() {
-        return this.$store.getters.tags
+        return this.$store.getters.tags.filter(el => el.title)
       },
       rubrics() {
-        return this.$store.getters.rubrics
+        return this.$store.getters.rubrics.filter(el => el.title)
       }
     },
     methods: {

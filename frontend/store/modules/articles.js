@@ -118,8 +118,9 @@ const actions = {
   },
   initArticles: async ({commit}) => {
     try {
-      await api.getArticles()
-      // console.log({articles})
+      const {data: articles} = await api.getArticles()
+      commit(types.SET_ARTICLES, articles);
+      console.log({articles})
     } catch (err) {
       console.error(err)
     }
