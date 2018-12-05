@@ -35,22 +35,22 @@
         <div ref='tr-4' class="translated image"></div>
       </div>
     </div>
-    <div class="right flex-center-column" style='align-items: flex-start'>
+    <div class="right flex-center-column" >
       <div class="overflow-wrapper">
         <div ref='tr-5' class="translated text-wrapper">
-          <UnderlineHeading class='heading'>Tags</UnderlineHeading>
+          <UnderlineHeading class='heading' style='font-size: 5rem'>Tags</UnderlineHeading>
         </div>
       </div>
     </div>
 
   </div>
   <div class="row row-3">
-    <div class="left flex-center-column" style='align-items: flex-start'>
+    <div class="left flex-center-column" >
       <div class="overflow-wrapper">
        <div ref='tr-6' class="translated text-wrapper">
           <UnderlineHeading  
             class='about heading'
-            style='font-size: 4.3rem'
+            style='font-size: 5rem'
             >About us</UnderlineHeading>
        </div>
       </div>
@@ -115,7 +115,6 @@
 
   .row-1 {
     display: flex;
-    
     @include media($mSmall) {
      flex-direction: column-reverse;
     }
@@ -124,6 +123,7 @@
       width: 30%;
     }
     .left {
+      flex: 5;
       position: relative;
       @include media($laptop) {
         flex: 5;
@@ -141,7 +141,7 @@
         flex: 3;
       }
       .image {
-        @include image('/static/img/gazets/gazet11.jpg');
+        @include image('/static/img/gazets/gazet11-zipped.jpg');
       }
     }
     .text-wrapper {
@@ -180,7 +180,7 @@
         flex: 5;
       }
       .image {
-        @include image('/static/img/gazets/gazet13.jpg');
+        @include image('/static/img/gazets/gazet13-zipped.jpg');
         @include show;
         @include translateTransition;
 
@@ -244,7 +244,7 @@
         flex: 5;
       }
       .image {
-        @include image('/static/img/gazets/gazet10.jpg');
+        @include image('/static/img/gazets/gazet10-zipped.jpg');
       }
     }
     .text-wrapper {
@@ -301,7 +301,9 @@
     }
 
     & > * {
-      margin: 2rem 0;
+      @include media($tablet) {
+        margin: 2rem 0;
+      }
     }
 
     &__info {
@@ -313,6 +315,11 @@
       width: 50%;
       font-weight: 700;
       font-size: 4rem;
+      text-align: center;
+
+      @include media($tablet) {
+        text-align: left;
+      }
     }
   }
   .footer {

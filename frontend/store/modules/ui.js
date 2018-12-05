@@ -2,6 +2,7 @@ import * as types from '../mutationTypes'
 const state = {
   circleLoaderVisibility: false,
   transitionLoaderVisibility: false,
+
   // chosenArticleId: 1
 }
 

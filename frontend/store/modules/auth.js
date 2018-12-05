@@ -20,13 +20,8 @@ const getters = {
   isAuthenticated: state => state.token != null,
   user: state => state.user,
   getLoginName: state => id => {
-    console.log({id});
-    console.log(typeof id)
     const temp = state.users.find(el => Number(el.id) === id)
     if (!temp) return ''
-    console.log('\n\n\n******************\n')
-    console.log({users: state.users});
-    console.log({temp});
     return  temp.login || ''
   }
 }
@@ -56,7 +51,7 @@ const actions = {
         vuexContent.commit(types.SET_ALL_USERS, users)
       // }
     } catch(err) {
-      console.log(error);
+      console.log(err);
     }
   },
   initAuth: ({ commit, dispatch }, req) => {

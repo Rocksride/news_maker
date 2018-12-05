@@ -3,7 +3,7 @@
      <ScrollProgress index='scroll-key' class='my-scroll'/>
     <header class="post__header">
       <h4 class='post__info'>{{getDate}} | by {{loginName}} | {{rubric}}</h4>
-      <h3 class='post__title'>Roundabout path in the snap-back of long-term bond</h3>
+      <h3 class='post__title'>{{article.title}}</h3>
     </header>
 
     <p class="post__text">

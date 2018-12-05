@@ -1,7 +1,16 @@
 <template>
   <section class="content-section flex-center">
-    <h2 class="title ">Tags</h2>
-    <button class="bw0 br2 bg-red pv2 ph3 white fw1 tc ttu tracked">do what you love</button>
+    <ul >
+      <li 
+        v-for='item in tags'
+        :key='item.title'
+      >
+        <button 
+          class="link"
+          @click='searchByTag(item)'
+          >{{item.title}}</button>
+      </li>
+    </ul>
   </section>
 </template>
 
@@ -20,6 +29,16 @@ export default {
 
     };
   },
+  methods: {
+    searchByTag(item) {
+      this.$store.dispatch('searchByTag', item)
+    }
+  },
+  computed: {
+    tags() {
+      return this.$store.getters.tags
+    }
+  }
 };
 </script>
 

@@ -1,13 +1,13 @@
 <template>
   <articles-provider>
     <sortable-list
-     v-if='items.length > 0'
      slot-scope='{items, openItemPage}'
      v-model='items'
     >
       <ul class="articles-list__content" slot-scope='{items}'>
         
-        <sortable-item v-for='(item) in items' :key='item.id'>
+        <template v-if='items.length'>
+          <sortable-item v-for='(item) in items' :key='item.id'>
               <nuxt-link
                 :to='/articles/+item.id'
                 exact
@@ -33,19 +33,24 @@
               </nuxt-link>
 
         </sortable-item>
+ 
+        </template>
+        <FilterControllers></FilterControllers>
       </ul>
   </sortable-list>
-  <h3 class="title">Be first to add new article</h3>
 </articles-provider>
 </template>
-<script>
 
+
+<script>
+  
   import {mapGetters} from 'vuex'
   import SortableList from './SortableList.js'
   import SortableItem from './SortableItem.js'
   import SortableHandle from './SortableHandle.js'
   import ArticlesProvider from './ArticlesProvider.js'
   import ScrollProgress from '@/components/ScrollProgress'
+  import FilterControllers from '@/components/FilterControllers'
 
   export default {
     components: {
@@ -53,7 +58,8 @@
       SortableItem,
       SortableHandle,
       ArticlesProvider,
-      ScrollProgress
+      ScrollProgress,
+      FilterControllers
     },
     props: ['articles'],
     data() {
@@ -79,6 +85,7 @@
         return item.createDate.slice(0, 10).split('-').reverse().join(' ')
       },
       rubric(item) {
+        console.log('*********\n' + this.$store.getters.rubrics + '\n**************')
         return this.$store.getters.getRubric(item.rubricId).title
       },
       formatText(text) {
@@ -94,6 +101,7 @@
 .articles-list {
   height: 100vh;
   display: flex;
+  justify-content: flex-start;
   // align-items: stretch;
   // justify-content: flex-start;
   flex-direction: column;
@@ -104,7 +112,7 @@
     justify-content: center;
     width: 100%;
     height: 15vh;
-    @include image-darken('/static/img/figures/figure9.jpg', 0.3);
+    @include image-darken('/static/img/figures/figure9-zipped.jpg', 0.3);
   }
 
   &__content {

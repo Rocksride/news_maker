@@ -1,16 +1,61 @@
 import * as types from '../mutationTypes'
 import * as api from '@/api'
 const state = {
-  articles: []
+  articles: [],
+  filteredArticles: [],
+  filters: {
+    tagsIds: [],
+    rubricsIds: [],
+    authorsIds: [],
+    title: '',
+    content: ''
+  }
 }
 
 const getters = {
   latestArticle: state => state.articles[0],
+  filters: state => ({...state.filters}),
   articles: state => state.articles,
+  filteredArticles: state => {
+    const filters = state.filters;
+    console.log({filters});
+    const articles = state.articles;
+    const titleRegex = new RegExp(filters.title)
+    const contentRegex = new RegExp(filters.content)
+
+    return articles.reduce((acc, curr) => {
+    const isRubricMatched = filters.rubricsIds.length
+       ? filters.rubricsIds.includes(curr.rubricId)
+       : true    
+    const isTagsIdsMatched = filters.tagsIds.length
+       ? filters.tagsIds.some(el => {
+        return curr.tagsIds.includes(el)
+       })
+       : true    
+    const isAuthrorsIdsMatched = filters.authorsIds.length
+       ? filters.authorsIds.includes(curr.authorId)
+       : true
+
+      if (
+        curr.title.toLowerCase().startsWith(filters.title.toLowerCase()) &&
+        curr.content.toLowerCase().startsWith(filters.content.toLowerCase()) &&
+        isRubricMatched && 
+        isTagsIdsMatched && 
+        isAuthrorsIdsMatched
+      ) {
+        acc.push(curr);
+      }
+      return acc;
+    }, [])
+  },
   getArticle: state => id => state.articles.find(el => el.id === id),
 }
 
 const mutations = {
+  [types.SET_ARTICLES_FILTERS]: (state, payload) => {
+    console.log({payload});
+    state.filters = payload
+  },
   [types.SET_ARTICLES]: (state, payload) => state.articles = payload,
   [types.ADD_ARTICLE]: (state, payload) => state.articles.push(payload),
   [types.REMOVE_ARTICLE]: (state, payload) => state.articles = state.articles.filter(el => el.id !== payload.id),
@@ -22,11 +67,11 @@ const actions = {
     try {
       // if (!process.client) {
         const {data: articles} = await  api.getArticles()
-        console.log(articles)
+        // console.log(articles)
         vuexContent.commit(types.SET_ARTICLES, articles)
       // }
     } catch(err) {
-      console.log(error);
+      console.log(err);
     }
   },
   // nuxtServerInit: (vuexContext, nuxtContext) => {
@@ -74,12 +119,24 @@ const actions = {
   initArticles: async ({commit}) => {
     try {
       await api.getArticles()
-      
       // console.log({articles})
     } catch (err) {
       console.error(err)
     }
-  }
+  },
+  searchByTag: async ({commit, getters}, {id}) => {
+    const {data: articles} = await api.searchArticles({
+      tagsIds: id
+    })
+    commit(types.SET_ARTICLES_FILTERS, {
+      tagsIds: id
+    })
+    console.log(articles);
+    commit(types.SET_ARTICLES, articles) 
+
+    const latestArticleId = getters.latestArticle && getters.latestArticle.id || ''
+    $nuxt.$router.push(`/articles/${latestArticleId}`)
+  },
 }
 
 export default {

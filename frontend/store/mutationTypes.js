@@ -9,8 +9,8 @@ export const SET_TOKEN = 'SET_TOKEN'
 export const CLEAR_USER = 'CLEAR_USER'
 export const SET_USER_ID = 'SET_USER_ID'
 
-
 // ARTICLES
+export const SET_ARTICLES_FILTERS = 'SET_ARTICLES_FILTERS';
 export const SET_ARTICLES = 'SET_ARTICLES';
 export const ADD_ARTICLE = 'ADD_ARTICLE';
 export const UPDATE_ARTICLE = 'UPDATE_ARTICLE';

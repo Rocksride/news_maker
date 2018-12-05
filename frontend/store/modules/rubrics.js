@@ -1,18 +1,7 @@
 import * as types from '../mutationTypes'
 import * as api from '@/api'
 const state = {
-  rubrics: [
-    {
-        "description": "random rubric 1",
-        "id": 1,
-        "title": "rubric 1"
-    },
-    {
-        "description": "random rubric 2",
-        "id": 2,
-        "title": "rubric 2"
-    }
-]
+  rubrics: []
 }
 
 const getters = {
@@ -21,20 +10,24 @@ const getters = {
 }
 
 const mutations = {
-  [types.SET_RUBRICS]: (state, payload) => state.articles = payload,
+  [types.SET_RUBRICS]: (state, payload) => state.rubrics = payload,
   // [types.ADD_TAG]: (state, payload) => state.articles.push(payload),
   // [types.REMOVE_TAG]: (state, payload) => state.articles = state.articles.filter(el => el.id !== payload.id),
   // [types.UPDATE_TAG]: (state, payload) => state.articles = state.articles.map(el => el.id === payload.id ? payload : el)
 }
 
 const actions = {
-  // nuxtServerInit: (vuexContext, nuxtContext) => {
-  //   if (!process.client) { }
-  //   return api.getPosts()
-  //     // .then(helpers.getValuesFrom)
-  //     .then(data => vuexContext.commit(types.SET_ARTICLES, data))
-  //     .catch(nuxtContext.error)
-  // },
+  nuxtServerInit: async (vuexContent, nuxtContent) => {
+    try {
+      // if (!process.client) {
+        const {data: rubrics} = await  api.getRubrics()
+        console.log(rubrics)
+        vuexContent.commit(types.SET_RUBRICS, rubrics)
+      // }
+    } catch(err) {
+      console.log(err);
+    }
+  },
   // savePost: async ({ commit, dispatch, getters }, payload) => {
   //   try {
   //     const obj = {
