@@ -1,0 +1,5 @@
+flask:
+  timezone: Europe/Kiev
+  debug: 1
+  sqlalchemy_database_uri: postgres://deaztcrw:i9xTnbqJvpfblEqwMiZlFDdrG3IODRbg@manny.db.elephantsql.com:5432/deaztcrw
+  secret: secret-key
