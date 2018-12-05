@@ -9,9 +9,15 @@
       <div class="articles-list__header">
           <UnderlineHeading style='font-size: 5rem'>articles</UnderlineHeading>
       </div>
+      <button 
+        @click='toggleSearchPanelVisibility'
+        class="reset-button my-button styled-button">Toggle Search Panel</button>
       <articles-list />
 
     </div>
+    <transition name='panel-toggle' mode='out-in'>
+      <FilterControllers v-if='searchPanelVisibility'></FilterControllers>
+    </transition>
     <div ref='post' class="translated right">
        <transition 
         appear
@@ -30,6 +36,8 @@ const pkg = require('@/package')
 import ArticlesList from '@/components/ArticlesList'
 import translateMixin from '@/mixins/translateMixin.js'
 import UnderlineHeading from '@/components/UI/UnderlineHeading.vue'
+import FilterControllers from '@/components/FilterControllers'
+
 export default {
   head: () => ({
     title: `${pkg.name} - Articles`
@@ -39,9 +47,20 @@ export default {
     deleteMeAfter: true
   }),
   name: 'articles',
+  computed: {
+    searchPanelVisibility() {
+      return this.$store.getters.searchPanelVisibility
+    }
+  },
+  methods: {
+    toggleSearchPanelVisibility() {
+      this.$store.dispatch('toggleSearchPanelVisibility')
+    }
+  },
   components: {
   	UnderlineHeading,
     ArticlesList,
+    FilterControllers
   },
   mixins: [translateMixin] 
 };

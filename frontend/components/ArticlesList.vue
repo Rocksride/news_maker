@@ -35,7 +35,7 @@
         </sortable-item>
  
         </template>
-        <FilterControllers></FilterControllers>
+        
       </ul>
   </sortable-list>
 </articles-provider>
@@ -50,7 +50,6 @@
   import SortableHandle from './SortableHandle.js'
   import ArticlesProvider from './ArticlesProvider.js'
   import ScrollProgress from '@/components/ScrollProgress'
-  import FilterControllers from '@/components/FilterControllers'
 
   export default {
     components: {
@@ -59,7 +58,6 @@
       SortableHandle,
       ArticlesProvider,
       ScrollProgress,
-      FilterControllers
     },
     props: ['articles'],
     data() {
@@ -70,14 +68,7 @@
     computed: {
     },
     methods: {
-      checkForCurrentId(id) {
-        console.group('123')
-        console.log(id);
-        console.log(this.articleId)
-        console.groupEnd('123')
-        return this.articleId === id
-      },
-       loginName(item) {
+      loginName(item) {
         return this.$store.getters.getLoginName(Number(item.authorId))
       },
       getDate(item) {
@@ -85,7 +76,6 @@
         return item.createDate.slice(0, 10).split('-').reverse().join(' ')
       },
       rubric(item) {
-        console.log('*********\n' + this.$store.getters.rubrics + '\n**************')
         return this.$store.getters.getRubric(item.rubricId).title
       },
       formatText(text) {
