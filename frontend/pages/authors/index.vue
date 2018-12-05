@@ -3,18 +3,18 @@
      <div ref='tr-2' class="translated left flex-center flex-column">
         <UnderlineHeading 
         style='font-size: 5rem'
-      >Chose some tag</UnderlineHeading>
+      >Chose some Author</UnderlineHeading>
     <ul  class='list '>
       <li 
         class='list-item'
-        v-for='item in tags'
-        :key='item.title'
+        v-for='item in authors'
+        :key='item.login'
       >
         <button 
           class="link button-reset  nuxt-link"
           @click='searchByTag(item)'
           style='font-size: 2rem;'
-          >{{item.title}}</button>
+          >{{item.login}}</button>
       </li>
     </ul>
      </div>
@@ -50,8 +50,8 @@ export default {
     UnderlineHeading
   },
   computed: {
-    tags() {
-      return this.$store.getters.tags
+    authors() {
+      return this.$store.getters.users
     }
   },
     mixins: [translateMixin]
@@ -68,7 +68,7 @@ export default {
 
   &.translated {
     @include hide;
-    transform: translate(-30%, 100%);
+    transform: translate(-50%, 50%);
   }
 }
 .right {
@@ -104,13 +104,13 @@ export default {
 .img-wrapper {
   width: calc(var(--sidebar-width) * 3);
   height: 100vh;
-  @include image('/static/img/gazets/gazet11-zipped.jpg');
+  @include image('/static/img/figures/figure11-zipped.jpg');
   @include show;
   @include translateTransition;
 
   &.translated {
     @include hide;
-    transform: translate(30%, -100%);
+    transform: translate(50%, -50%);
 
   }
 }

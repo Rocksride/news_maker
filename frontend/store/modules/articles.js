@@ -106,7 +106,7 @@ const actions = {
   //     console.error(err)
   //   }
   // },
-  addArticle: async ({commit}, payload) => {
+  addArticle: async ({commit, dispatch}, payload) => {
     try {
       const res = await api.postArticle(payload);
       console.log(res)

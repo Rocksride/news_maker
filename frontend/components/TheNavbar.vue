@@ -5,8 +5,10 @@
     <div class='menu-wrapper' v-show='menuVisible' :class='{"visible": menuVisible}'>
       <ul  class="nav__links" >
         <nuxt-link class='nuxt-link nav-link' exact to="/">Home</nuxt-link>
-        <nuxt-link class='nuxt-link nav-link' to="/articles">Articles</nuxt-link>
+        <nuxt-link class='nuxt-link nav-link' :to='articlePath'>Articles</nuxt-link>
         <nuxt-link class='nuxt-link nav-link' to="/tags">Tags</nuxt-link>
+        <nuxt-link class='nuxt-link nav-link' to="/rubrics">Rubrics</nuxt-link>
+        <nuxt-link class='nuxt-link nav-link' to="/authors">Authors</nuxt-link>
         <nuxt-link class='nuxt-link nav-link' exact to="/about">About</nuxt-link>
         <a 
           v-if='$store.getters.isAuthenticated'
@@ -38,7 +40,15 @@ export default {
   },
   data: () => ({
     menuVisible: false
-  })
+  }),
+  computed: {
+   latestArticle() {
+    return this.$store.getters.latestArticle
+   },
+   articlePath() {
+    return `articles/${this.latestArticle.id || ''}`
+   }
+  }
 
 }
 

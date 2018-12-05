@@ -51,7 +51,9 @@
   align-items: center;
   justify-content: center;
 }
-
+.flex-column {
+  flex-direction: column;
+}
 .flex-self-left {
   align-self: flex-start;
 }
@@ -60,4 +62,8 @@
   outline: none;
   background: none;
   border: none;
+}
+
+.overflow-hidden {
+  overflow: hidden;
 }

@@ -3,11 +3,11 @@
      <div ref='tr-2' class="translated left flex-center flex-column">
         <UnderlineHeading 
         style='font-size: 5rem'
-      >Chose some tag</UnderlineHeading>
+      >Chose some rubric</UnderlineHeading>
     <ul  class='list '>
       <li 
         class='list-item'
-        v-for='item in tags'
+        v-for='item in rubrics'
         :key='item.title'
       >
         <button 
@@ -50,8 +50,8 @@ export default {
     UnderlineHeading
   },
   computed: {
-    tags() {
-      return this.$store.getters.tags
+    rubrics() {
+      return this.$store.getters.rubrics
     }
   },
     mixins: [translateMixin]
@@ -68,7 +68,7 @@ export default {
 
   &.translated {
     @include hide;
-    transform: translate(-30%, 100%);
+    transform: translate(30%, -100%);
   }
 }
 .right {
@@ -104,13 +104,13 @@ export default {
 .img-wrapper {
   width: calc(var(--sidebar-width) * 3);
   height: 100vh;
-  @include image('/static/img/gazets/gazet11-zipped.jpg');
+  @include image('/static/img/figures/figure13-zipped.jpg');
   @include show;
   @include translateTransition;
 
   &.translated {
     @include hide;
-    transform: translate(30%, -100%);
+    transform: translate(100%, 40%);
 
   }
 }

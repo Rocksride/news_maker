@@ -14,8 +14,7 @@
           Newswell
         </h3>
         <p class="text">
-          Portfolio manager (corporate asset) and research provider assisting institutional asset managers with macro research and market analysis.
-          Kekselias’ staff previously co-managed a $1.5 billion fixed income portfolio for a $1 trillion plus institutional fund manager, and Kekselias also provides policy analysis for foreign monetary authorities.
+          News portal made by <a href="https://gitlab.com/rocksride" class="nuxt-link" style='display: inline;'>Rocksride</a> and <a href="https://gitlab.com/vitvickiy" class='nuxt-link' style='display: inline;'>Dmitry</a>. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo illum suscipit itaque. At in inventore numquam, porro, doloremque vero nulla expedita necessitatibus aliquid iure facere aut alias aperiam quis, qui, quia. Et dicta reprehenderit ea, maiores enim quidem consequuntur quos aut, labore error quas nostrum consequatur id, in beata
         </p>
       </div>
     </div>

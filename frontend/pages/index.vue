@@ -4,7 +4,9 @@
     <div class="left flex-center-column">
       <div class="overflow-wrapper">
         <div ref='tr-1' class="text-wrapper translated">
-          <UnderlineHeading  class='latest-news__heading heading'>Latest Articles</UnderlineHeading>
+          <nuxt-link to='/articles'>
+            <UnderlineHeading  class='latest-news__heading heading'>Latest Articles</UnderlineHeading>
+          </nuxt-link>
         </div>
         <div 
           v-if='Boolean(latestArticle)'
@@ -38,7 +40,9 @@
     <div class="right flex-center-column" >
       <div class="overflow-wrapper">
         <div ref='tr-5' class="translated text-wrapper">
-          <UnderlineHeading class='heading' style='font-size: 5rem'>Tags</UnderlineHeading>
+          <nuxt-link to='/tags'>
+            <UnderlineHeading class='heading' style='font-size: 5rem'>Tags</UnderlineHeading>
+          </nuxt-link>
         </div>
       </div>
     </div>
@@ -48,10 +52,12 @@
     <div class="left flex-center-column" >
       <div class="overflow-wrapper">
        <div ref='tr-6' class="translated text-wrapper">
-          <UnderlineHeading  
+          <nuxt-link to='/about'>
+            <UnderlineHeading  
             class='about heading'
             style='font-size: 5rem'
             >About us</UnderlineHeading>
+          </nuxt-link>
        </div>
       </div>
     </div>
@@ -79,14 +85,14 @@
       loginName(id) {
         return this.$store.getters.getLoginName(Number(this.latestArticle.authorId))
       },
-      latestArticle() {
-        return this.$store.getters.latestArticle
-      },
       date() {
         return this.latestArticle.createDate.slice(0, 10).split('-').reverse().join(' ')
       },
       rubric() {
         return this.$store.getters.getRubric(this.latestArticle.rubricId).title
+      },
+      latestArticle() {
+        return this.$store.getters.latestArticle
       },
       articlePath() {
         return `articles/${this.latestArticle.id || ''}`
