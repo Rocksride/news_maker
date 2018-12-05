@@ -15,7 +15,7 @@ const state = {
 }
 
 const getters = {
-  users: state => state.users,
+  users: state => state.users.filter(el => el.login),
   token: state => state.token,
   isAuthenticated: state => state.token != null,
   user: state => state.user,
@@ -72,7 +72,6 @@ const actions = {
   },
   signIn: async ({ commit, dispatch, getters }, payload) => {
     console.log('sign in')
-    debugger
     try {
       const {data: answer} = await api.signIn(payload)
       commit(types.SET_TOKEN, answer.token);

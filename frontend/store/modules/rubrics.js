@@ -5,7 +5,7 @@ const state = {
 }
 
 const getters = {
-  rubrics: state => state.rubrics,
+  rubrics: state => state.rubrics.filter(el => el.title),
   getRubric: state => id => state.rubrics.find(el => el.id === id),
 }
 

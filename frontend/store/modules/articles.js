@@ -15,7 +15,7 @@ const state = {
 const getters = {
   latestArticle: state => state.articles[0],
   filters: state => ({...state.filters}),
-  articles: state => state.articles,
+  articles: state => state.articles.filter(el => el.title),
   filteredArticles: state => {
     const filters = state.filters;
     console.log({filters});

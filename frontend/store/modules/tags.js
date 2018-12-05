@@ -5,7 +5,7 @@ const state = {
 }
 
 const getters = {
-  tags: state => state.tags,
+  tags: state => state.tags.filter(el => el.title),
   getTag: state => id => state.tags.find(el => el.id === id),
 }
 
