@@ -35,7 +35,7 @@
         </sortable-item>
  
         </template>
-        
+        <h3 v-else class="title">No articles were wound</h3>
       </ul>
   </sortable-list>
 </articles-provider>

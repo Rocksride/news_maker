@@ -15,7 +15,7 @@
           class="link button-reset  nuxt-link"
           @click='searchByTag(item)'
           style='font-size: 2rem;'
-          >{{item.title}}</button>
+          >#{{item.title}}</button>
       </li>
     </ul>
      </div>

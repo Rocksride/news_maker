@@ -15,9 +15,9 @@
       <articles-list />
 
     </div>
-    <transition name='panel-toggle' mode='out-in'>
-      <FilterControllers v-if='searchPanelVisibility'></FilterControllers>
-    </transition>
+    <div ref='tr-4' class="translated search-controlls-wrapper">
+      <FilterControllers  class='search-controlls-wrapper' :class='{"translated": !searchPanelVisibility}'/>
+    </div>
     <div ref='post' class="translated right">
        <transition 
         appear
@@ -61,6 +61,11 @@ export default {
   	UnderlineHeading,
     ArticlesList,
     FilterControllers
+  },
+  beforeRouteLeave (to, from, next) {
+      this.$store.dispatch('setSearchPanelVisibility', false)
+      this.$store.dispatch('resetFilters');
+      next();
   },
   mixins: [translateMixin] 
 };
@@ -125,7 +130,8 @@ export default {
   border: none;
   outline: none;
   cursor: pointer;
-  position: absolute;
+  position: fixed;
+  
   top: 1rem;
   right: 3rem;
   padding: 1rem;
@@ -155,5 +161,14 @@ export default {
   }
 }
 
+.search-controlls-wrapper {
+  @include show;
+  @include translateTransition;
+  
 
+  &.translated {
+    @include hide;
+    transform: translateY(-150%);
+  }
+}
 </style>

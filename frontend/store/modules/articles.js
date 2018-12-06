@@ -74,6 +74,15 @@ const actions = {
       console.log(err);
     }
   },
+  resetFilters: ({commit}) => {
+    commit(types.SET_ARTICLES_FILTERS, {
+        tagsIds: [],
+        rubricsIds: [],
+        authorsIds: [],
+        title: '',
+        content: ''
+    })
+  },
   // nuxtServerInit: (vuexContext, nuxtContext) => {
   //   if (!process.client) { }
   //   return api.getPosts()
@@ -108,10 +117,19 @@ const actions = {
   // },
   addArticle: async ({commit, dispatch}, payload) => {
     try {
+      commit(types.SET_LOADER_VISIBILITY, true);
+
       const res = await api.postArticle(payload);
       console.log(res)
       // commit(types.ADD_ARTICLE, payload);
-      dispatch('initArticles')
+      dispatch('initArticles');
+      // dispatch('showNotification', {
+      //   duration: 4000,
+      //   type: 'is-success',
+      //   message: 'articles has been added'
+      // })
+      commit(types.SET_LOADER_VISIBILITY, false);
+      
     } catch(err) {
       console.error(err);
     }

@@ -45,6 +45,7 @@ html {
   font-size: 1.6rem;
   // transition: all .3s ease-in;
   display: block;
+  cursor: pointer;
   // width: 80%;
   @include media($tablet) {
       color: var(--c-active);
@@ -129,7 +130,7 @@ html {
 
 .label,
 .taginput,
-a,
+
 a.dropdown-item,
 .tag > *,
 .input {

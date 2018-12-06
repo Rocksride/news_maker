@@ -33,7 +33,7 @@
                 field="title"
                 icon="label"
                 :allow-new="false"
-                placeholder="Select a tag"
+                placeholder="Select a rubric"
                 @typing="getFilteredRubrics"
             >
                 <template slot-scope="props">
@@ -44,7 +44,7 @@
                 </template>
             </b-taginput>
         </b-field>
-          <b-field label="Select rubrics">
+          <b-field label="Select Authors">
             <b-taginput
                 v-model="searchObj.authorsIds"
                 :data="users"
@@ -139,7 +139,7 @@
 <style lang="scss" scoped>
   .wrapper {
     position: absolute;
-    top: 50%;
+    top: 43%;
     transform: translateY(-50%);
     right: calc(3* var(--sidebar-width));
     width: calc(2 * var(--sidebar-width));

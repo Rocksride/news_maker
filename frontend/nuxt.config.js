@@ -67,6 +67,7 @@ module.exports = {
     'nuxt-buefy',
     ['nuxt-sass-resources-loader', '@/assets/scss/main.scss'],
     'portal-vue/nuxt',
+    '@nuxtjs/toast',
     // 'nuxt-sass-resources-loader/_index.scss',
 
     // ['nuxt-sass-resources-loader', [
@@ -86,7 +87,9 @@ module.exports = {
     //   //
     // ]],
   ],
-
+  toast: {
+      position: 'top-center'
+  },
   /*
   ** Build configuration
   */

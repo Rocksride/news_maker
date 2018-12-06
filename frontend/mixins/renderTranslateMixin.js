@@ -1,9 +1,6 @@
 export default {
    created () {
     console.log(this);
-
-
-    
         const [first, ...items] = Object.values(this.$refs) || []
         console.log(items);
         first.classList.remove('translated')

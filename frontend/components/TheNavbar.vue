@@ -5,10 +5,10 @@
     <div class='menu-wrapper' v-show='menuVisible' :class='{"visible": menuVisible}'>
       <ul  class="nav__links" >
         <nuxt-link class='nuxt-link nav-link' exact to="/">Home</nuxt-link>
-        <nuxt-link class='nuxt-link nav-link' :to='articlePath'>Articles</nuxt-link>
-        <nuxt-link class='nuxt-link nav-link' to="/tags">Tags</nuxt-link>
-        <nuxt-link class='nuxt-link nav-link' to="/rubrics">Rubrics</nuxt-link>
-        <nuxt-link class='nuxt-link nav-link' to="/authors">Authors</nuxt-link>
+        <nuxt-link class='nuxt-link nav-link' :to='articlePath'>Articles <span class='quantity'>{{articles.length}}</span></nuxt-link>
+        <nuxt-link class='nuxt-link nav-link' to="/tags">Tags <span class='quantity'>{{tags.length}}</span></nuxt-link>
+        <nuxt-link class='nuxt-link nav-link' to="/rubrics">Rubrics <span class='quantity'>{{rubrics.length}}</span></nuxt-link>
+        <nuxt-link class='nuxt-link nav-link' to="/authors">Authors <span class='quantity'>{{users.length}}</span></nuxt-link>
         <nuxt-link class='nuxt-link nav-link' exact to="/about">About</nuxt-link>
         <a  
         
@@ -48,7 +48,19 @@ export default {
    },
    articlePath() {
     return `articles/${this.latestArticle.id || ''}`
-   }
+   },
+   articles() {
+    return this.$store.getters.articles
+   },
+   tags() {
+    return this.$store.getters.tags
+   },
+   rubrics() {
+    return this.$store.getters.rubrics
+   },
+   users() {
+    return this.$store.getters.users
+   },
   }
 
 }
@@ -106,6 +118,8 @@ export default {
       position: relative;
       // transform: perspective(400px) skewY(-50deg);
       &:before {
+        // perspective: 1000px;
+        // perspective-origin: 150% 150%;
         position: absolute;
         top: 70%;
         left: -20%;
@@ -215,6 +229,14 @@ $laptopL: 1440px;
       font-size: 2.2rem;
     }
     color: var(--c-text-dark) !important;
+  }
+
+  .quantity {
+    font-size: 1.2rem;
+    // margin-bottom: 2rem;
+    position: relative;
+    bottom: .7rem;
+    color: var(--c-background-dark);
   }
 </style>
 

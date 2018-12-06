@@ -2,7 +2,6 @@ export default {
    beforeRouteEnter (to, from, next) {
       next(vm => {
         const [first, ...items] = Object.values(vm.$refs) || []
-        console.log(items);
         first.classList.remove('translated')
         items.forEach((el, i) => {
           setTimeout(() => {

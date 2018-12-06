@@ -62,7 +62,6 @@ const actions = {
     }
   },
   signUp: async ({ commit, dispatch }, payload) => {
-    console.log('sign up')
     try {
       const resp = await api.signUp(payload)
       dispatch('signIn', payload);
@@ -71,12 +70,11 @@ const actions = {
     }
   },
   signIn: async ({ commit, dispatch, getters }, payload) => {
-    console.log('sign in')
     try {
+      commit(types.SET_LOADER_VISIBILITY, true);
       const {data: answer} = await api.signIn(payload)
       commit(types.SET_TOKEN, answer.token);
       axios.defaults.headers.common['Authorization'] = `Bearer ${answer.token}`;
-      console.log({axios})
       
       if (process.client) {
         localStorage.setItem('token', answer.token);
@@ -86,8 +84,14 @@ const actions = {
       // const usersList = getters.users
       const currentUser = usersList.find(el => el.login === payload.login)
       commit(types.SET_USER, currentUser)
+      commit(types.SET_LOADER_VISIBILITY, false);
 
       $nuxt.$router.push('/')
+      console.group('toast');
+    // console.log(this.$toasted);
+    // console.log($toasted);
+    // console.groupEnd('toast');
+      // this.$toast.success('Successfully authenticated')
     } catch (err) {
       console.error(err);
     }

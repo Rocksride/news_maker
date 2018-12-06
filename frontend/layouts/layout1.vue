@@ -1,6 +1,7 @@
 <template>
   <div class='layout'>
     <TheNavbar />
+     <b-loading :is-full-page="true" :active="showLoader" :can-cancel="true"></b-loading>
     <div  class="lines ">
       <div  class="line  line-1"></div>
       <div  class="line  line-2"></div>
@@ -20,7 +21,11 @@ import TheNavbar from '@/components/TheNavbar'
 export default {
   components: {
     TheNavbar,
-
+  },
+  computed: {
+    showLoader() {
+      return this.$store.getters.loaderVisibility
+    }
   }
   // mixins: [renderTranslateMixin]
 }
