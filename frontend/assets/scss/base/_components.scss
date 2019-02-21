@@ -217,4 +217,10 @@ modal-mask {
       background-color: #202020;
       transition: all .3s ease;
     }
-    }
+  }
+
+
+.errorMessage {
+  color: hsl(0, 100%, 50%);
+}
+

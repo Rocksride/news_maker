@@ -52,6 +52,12 @@ const actions = {
       // }
     } catch(err) {
       console.log(err);
+      const notification = {
+        type: 'error',
+        message: err.message
+      }
+      vuexContent.dispatch('pushNotification', notification)
+
     }
   },
   initAuth: ({ commit, dispatch }, req) => {
@@ -63,10 +69,19 @@ const actions = {
   },
   signUp: async ({ commit, dispatch }, payload) => {
     try {
+      commit(types.SET_LOADER_VISIBILITY, true);
       const resp = await api.signUp(payload)
       dispatch('signIn', payload);
     } catch (err) {
-      console.error(err);
+      commit(types.SET_LOADER_VISIBILITY, false);
+      console.log(err);
+
+      const notification = {
+        type: 'error',
+        message: err.message
+      }
+      dispatch('pushNotification', notification)
+
     }
   },
   signIn: async ({ commit, dispatch, getters }, payload) => {
@@ -86,6 +101,12 @@ const actions = {
       commit(types.SET_USER, currentUser)
       commit(types.SET_LOADER_VISIBILITY, false);
 
+      const notification = {
+        type: 'success',
+        message: 'You have successfully signed in'
+      }
+      dispatch('pushNotification', notification)
+
       $nuxt.$router.push('/')
       console.group('toast');
     // console.log(this.$toasted);
@@ -93,6 +114,15 @@ const actions = {
     // console.groupEnd('toast');
       // this.$toast.success('Successfully authenticated')
     } catch (err) {
+      console.log(err)
+      commit(types.SET_LOADER_VISIBILITY, false);
+
+       const notification = {
+        type: 'error',
+        message: err.message
+      }
+      dispatch('pushNotification', notification)
+
       console.error(err);
     }
   },
@@ -105,6 +135,12 @@ const actions = {
     axios.defaults.headers.common['Authorization'] = null;
 
     $nuxt.$router.replace('/user/auth')
+
+    const notification = {
+      type: 'success',
+      message: 'you have logged out'
+    }
+    dispatch('pushNotification', notification)
   }
 
 }

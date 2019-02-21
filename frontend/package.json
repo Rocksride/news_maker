@@ -24,7 +24,9 @@
     "portal-vue": "^1.5.0",
     "ramda": "^0.25.0",
     "sortablejs": "^1.7.0",
-    "tachyons-sass": "^4.9.5"
+    "tachyons-sass": "^4.9.5",
+    "vue-toasted": "^1.1.26",
+    "vuelidate": "^0.7.4"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",

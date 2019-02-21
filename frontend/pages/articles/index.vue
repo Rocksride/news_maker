@@ -72,8 +72,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.content-section {
-}
+
 .left {
   height: 100%;
     flex: 3;

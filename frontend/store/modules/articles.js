@@ -129,8 +129,19 @@ const actions = {
       //   message: 'articles has been added'
       // })
       commit(types.SET_LOADER_VISIBILITY, false);
-      
+
+      const notification = {
+        type: 'success',
+        message: 'The article has been added'
+      }
+      dispatch('pushNotification', notification)
+
     } catch(err) {
+        const notification = {
+        type: 'error',
+        message: err.message
+      }
+      dispatch('pushNotification', notification)
       console.error(err);
     }
   },

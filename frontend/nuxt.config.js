@@ -57,6 +57,14 @@ module.exports = {
     {
       src: '~/plugins/ksvuescrollmagic',
       ssr: false
+    },
+    {
+      src: '~/plugins/vuelidate',
+      ssr: false
+    },
+    {
+      src: '~/plugins/toast',
+      ssr: false
     }
   ],
 
@@ -67,7 +75,6 @@ module.exports = {
     'nuxt-buefy',
     ['nuxt-sass-resources-loader', '@/assets/scss/main.scss'],
     'portal-vue/nuxt',
-    '@nuxtjs/toast',
     // 'nuxt-sass-resources-loader/_index.scss',
 
     // ['nuxt-sass-resources-loader', [
@@ -87,9 +94,6 @@ module.exports = {
     //   //
     // ]],
   ],
-  toast: {
-      position: 'top-center'
-  },
   /*
   ** Build configuration
   */
@@ -97,6 +101,9 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
+    vendor: [
+      'vuelidate'
+    ],
     extend(config, ctx) {
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
@@ -108,6 +115,7 @@ module.exports = {
         })
       }
     }
+    
   },
   router: {
     middleware: ['isAuth']

@@ -47,7 +47,7 @@ export default {
     return this.$store.getters.latestArticle
    },
    articlePath() {
-    return `articles/${this.latestArticle.id || ''}`
+    return `/articles/${this.latestArticle.id || ''}`
    },
    articles() {
     return this.$store.getters.articles

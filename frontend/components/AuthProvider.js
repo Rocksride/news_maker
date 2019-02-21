@@ -2,12 +2,18 @@
     props: [],
     methods: {
 
-      signIn(data) {
-        this.$store.dispatch('signIn', data);
+      signIn(data, vuelidate) {
+        vuelidate.$touch();
+        if (!vuelidate.$error) {
+          this.$store.dispatch('signIn', data);
+        }
         
       },
-      signUp(data) {
-        this.$store.dispatch('signUp', data);
+      signUp(data, vuelidate) {
+        vuelidate.$touch();
+        if (!vuelidate.$error) {
+          this.$store.dispatch('signUp', data);
+        }
         
       },
     },
