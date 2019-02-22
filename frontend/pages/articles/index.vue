@@ -136,7 +136,7 @@ export default {
   padding: 1rem;
   background-color: var(--c-background-light);
   color: var(--c-active);
-  border: 1px dashed var(--c-active);
+  border: 3px dotted var(--c-active);
   border-radius: 50%;
   font-size: 3rem;
   font-weight: 400;

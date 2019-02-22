@@ -51,14 +51,14 @@
 <style lang="scss" scoped>
   .notification-item {
     width: 100%;
-    border: 1px solid;
+    // border: 1px solid;
     font-size: 2.4rem;
     padding: .8rem 2rem;
     font-weight: 700;
     display: flex;
     position: relative;
     @include translateTransition;
-    
+
 
     &.translated {
       @include hide;
@@ -71,29 +71,29 @@
       position: absolute;
       top: 50%;
       right: 3%;
-      font-size: 2rem;
+      font-size: 2.2rem;
       transform: translate(-50%, -50%);
-
+      padding: 3px;
+      transition: all .3s ease-out;
+      &:hover {
+        // font-size: 2.3rem;
+        color: white;
+      }
     }
 
   }
 
   .error {
-    background-color: hsl(0, 100%, 60%);
-    color: hsl(0, 100%, 10%);
-    border-color: hsl(0, 100%, 50%);
+    @include notificationFactory(0);
   }
 
   .warning {
-    background-color: hsl(50, 100%, 80%);
-    color: hsl(50, 100%, 10%);
-    border-color: hsl(50, 100%, 50%);
+    @include notificationFactory(50);
   }
 
   .success {
-    background-color: hsl(200, 80%, 60%);
-    color: hsl(200, 100%, 10%);
-    border-color: hsl(200, 100%, 50%);
+    @include notificationFactory(200);
+
   }
 
 

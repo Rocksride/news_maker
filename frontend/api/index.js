@@ -11,12 +11,6 @@ const apiClient = axios.create({
   timeout: 10000,
 })
 
-// axios.defaults.baseURL = process.env.baseURL
-// axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-// axios.defaults.headers.common['Content-Type'] = "application/json"
-// axios.defaults.headers.common['Access-Control-Allow-Headers'] = 'authorization,access-control-allow-headers'
-// axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
-
 export const getArticles = () => apiClient.get('/api/articles')
 
 export const getUsers = () => apiClient.get('/api/users')
@@ -31,7 +25,7 @@ export const searchArticles = (payload) => apiClient.get('/api/articles', {
 
 export const postArticle = payload => apiClient.post('/api/articles', payload)
 
-const corsURL = 'https://cors-anywhere.herokuapp.com/'
+// const corsURL = 'https://cors-anywhere.herokuapp.com/'
 export const signIn = payload => apiClient.post('/auth/login', payload)
 // export const signIn = payload => axios.post(corsURL + process.env.baseURL + '/auth/login', payload)
 

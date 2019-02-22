@@ -14,16 +14,21 @@
                 class='errorMessage'
               >Login is required!</p>
               <p 
-                v-if='!$v.user.login.maxLength' 
+                v-else-if='!$v.user.login.maxLength' 
                 class='errorMessage'
               >Maximum length is 255 chars!</p>
+              <p 
+                v-else-if='!$v.user.login.exists' 
+                class='errorMessage'
+              >Sorry login has been already taken</p>
+              <span v-show='$v.user.login.exists.$pending'>Checking user database...</span>
             </template>
             <input
              type="text"
              class="form-input username"
-             v-model='user.login'
+             v-model.lazy='user.login'
              placeholder='enter username'
-             :class="{error: $v.user.login.$error}"
+             :class="{error: $v.user.login.$error, valid: !$v.user.login.$invalid}"
              @blur='$v.user.login.$touch()'
              id="signup-username">
 
@@ -37,11 +42,11 @@
                 class='errorMessage'
               >Password is required!</p>
               <p 
-                v-if='!$v.user.password.maxLength' 
+                v-else-if='!$v.user.password.maxLength' 
                 class='errorMessage'
               >Maximum length is 255 chars!</p>
               <p 
-                v-if='!$v.user.password.minLength' 
+                v-else-if='!$v.user.password.minLength' 
                 class='errorMessage'
               >Minimum length is 6 chars!</p>
             </template>           
@@ -50,7 +55,7 @@
              v-model='user.password'
              class="form-input password"
              placeholder='enter password'
-             :class="{ error: $v.user.password.$error }"
+             :class="{ error: $v.user.password.$error, valid: !$v.user.password.$invalid }"
              @blur='$v.user.password.$touch()'
              id="signup-password">
 
@@ -64,7 +69,7 @@
                 class='errorMessage'
               >Email is required!</p>
               <p 
-                v-if='!$v.user.email.email' 
+                v-else-if='!$v.user.email.email' 
                 class='errorMessage'
               >Please type correct email!</p>
             </template>              
@@ -74,7 +79,7 @@
              placeholder='enter email' 
              id="signup-email"
              v-model='user.email'
-             :class="{ error: $v.user.email.$error}"
+             :class="{ error: $v.user.email.$error, valid: !$v.user.email.$invalid}"
              @blur='$v.user.email.$touch()'
             >
             <div class="button-group">
@@ -95,6 +100,7 @@
   </AuthProvider>
 </template>
 <script>
+  import { getUsers } from '@/api'
   import UnderlineHeading from '@/components/UI/UnderlineHeading'
   import AuthProvider from '@/components/AuthProvider.js'
   import { email, required, maxLength, minLength } from 'vuelidate/lib/validators'
@@ -111,7 +117,13 @@
       user: {
         login: {
           required,
-          maxLength: maxLength(255)
+          maxLength: maxLength(255),
+          exists() { 
+            return getUsers()
+            .then(response => response.data.map(x => x.login))
+            .then(userNames => !userNames.includes(this.user.login))
+            // .then(console.log)
+          },
         },
         password: {
           required,
@@ -143,6 +155,10 @@
     
     .error {
       border: 1px solid hsl(0, 100%, 50%);
+    } 
+
+    .valid {
+      border: 1px solid hsl(140, 100%, 50%);
     }
 
     & > * {

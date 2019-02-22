@@ -12,7 +12,7 @@
                 class='errorMessage'
               >Please enter username</p>
               <p 
-                v-if='!$v.user.login.minLength'
+                v-else-if='!$v.user.login.minLength'
                 class='errorMessage'
               >Login must have > 3 chars</p>
             </template>
@@ -20,7 +20,7 @@
               v-model='user.login'
               type="text" 
               class="form-input username" 
-              :class="{error: $v.user.login.$error}"
+              :class="{error: $v.user.login.$error, valid: !$v.user.login.$invalid}"
               placeholder='enter username' 
               id="signin-username"
               @blur='$v.user.login.$touch()'
@@ -32,11 +32,11 @@
                 class='errorMessage'
               >Please enter password</p>
               <p 
-                v-if='!$v.user.password.maxLength'
+                v-else-if='!$v.user.password.maxLength'
                 class='errorMessage'
               >Password must have  255 chars</p>
               <p 
-                v-if='!$v.user.password.minLength'
+                v-else-if='!$v.user.password.minLength'
                 class='errorMessage'
               >Password must have > 6 chars</p>
             </template>
@@ -44,7 +44,7 @@
               v-model='user.password'
               type="password" 
               class="form-input password"  
-              :class="{error: $v.user.password.$error}"
+              :class="{error: $v.user.password.$error, valid: !$v.user.password.$invalid}"
               placeholder='enter password'  
               id="signin-password"
               @blur='$v.user.password.$touch()'
@@ -113,6 +113,10 @@
     
     .error {
       border: 1px solid hsl(0, 100%, 50%);
+    }
+
+    .valid {
+      border: 1px solid hsl(140, 100%, 50%);
     }
 
     & > * {

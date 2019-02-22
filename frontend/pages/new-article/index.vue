@@ -6,14 +6,15 @@
          class='article-form translated'
         >
           <label for="article-title">Add Title</label>
-          <template v-if='$v.article.title.$error'>
+          <template >
             <p 
               class='errorMessage'
-              v-if='!$v.article.title.required'>Please fill title field</p>
+              v-if='!$v.article.title.required && $v.article.title.$error'
+            >Please fill title field</p>
           </template>
           <input
            class='form-input'
-           :class="{ error: $v.article.title.$error }"
+           :class="{ error: $v.article.title.$error, valid: !$v.article.title.$invalid }"
            type="text"
            id="article-title"
            v-model='article.title'
@@ -29,7 +30,7 @@
           <textarea
              cols='100'
              class='form-input form-textarea'
-             :class="{ error: $v.article.content.$error }"
+             :class="{ error: $v.article.content.$error, valid: !$v.article.content.$invalid }"
              id="article-title"
              v-model='article.content'
              placeholder='Enter the content'
@@ -39,7 +40,8 @@
           <template v-if='$v.article.selectedTags.$error'>
             <p 
               class='errorMessage'
-              v-if='!$v.article.selectedTags.required'>Please select tags</p>
+              v-if='!$v.article.selectedTags.required'>Please select exisiting tags</p>
+           
           </template>
           <b-field label="Select tags">
             <b-taginput
@@ -64,7 +66,8 @@
           <template v-if='$v.article.selectedRubrics.$error'>
             <p 
               class='errorMessage'
-              v-if='!$v.article.selectedRubrics.required'>Please select rubrics</p>
+              v-if='!$v.article.selectedRubrics.required'>Please select existing rubrics</p>
+            
           </template>
           <b-field label="Select rubrics">
             <b-taginput
@@ -99,7 +102,6 @@
      </section>
 </template>
 <script>
-
   import translateMixin from '@/mixins/translateMixin.js'
   import { required } from 'vuelidate/lib/validators'
   export default {
@@ -118,8 +120,22 @@
       article: {
         title: { required },
         content: { required },
-        selectedTags: { required },
-        selectedRubrics: { required }
+        selectedTags: { 
+          required,
+          exists() {
+            return this.tags.reduce((acc, curr) => {
+              return acc || this.tags.includes(curr)
+            }, false)
+          } 
+        },
+        selectedRubrics: {
+         required,
+          exists() {
+            return this.rubrics.reduce((acc, curr) =>{
+              return acc || this.rubrics.includes(curr)
+            }, false)
+          }
+        }
       }
     },
     computed: {
@@ -198,6 +214,16 @@
     align-items: stretch;
     justify-content: center;
     flex-direction: column;
+    
+    .error {
+      border: 1px solid hsl(0, 100%, 50%);
+    }
+
+    .valid {
+      border: 1px solid hsl(140, 100%, 50%);
+    }
+
+
 
     & > * {
       margin-bottom: 10px;
